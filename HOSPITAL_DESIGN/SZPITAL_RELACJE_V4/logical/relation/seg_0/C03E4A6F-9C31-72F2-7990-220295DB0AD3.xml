@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Recepty_Leki" directorySegmentName="seg_0" id="C03E4A6F-9C31-72F2-7990-220295DB0AD3">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:29:09 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<sourcePk>403A7874-F23E-90AB-BE1B-E324D5434E16</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>zawiera</nameOnSource>
+<nameOnTarget>wchodzi w skład</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5153EA25-EE22-E4FF-9138-DE6F4AB0CC3B</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>AB14F42F-15C5-EC1D-0B53-368AE5835C79</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

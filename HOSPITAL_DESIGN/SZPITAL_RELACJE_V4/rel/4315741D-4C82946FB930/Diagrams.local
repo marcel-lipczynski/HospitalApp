@@ -1,0 +1,4 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="main_view" objectID="03D4FFE8-1C20-6FB5-48DC-DA7E07D95B62" name="Relacje_z_sekwencjami" visible="true"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AD45CD62-56C6-A881-12C5-9D5E8A4FE309" containerWithKeyObject="E78B622F-6499-3B7A-4ABA-CF511FDD945F" localFKIndex="BCEA3338-C5FC-3801-6437-87C02C983A35" name="Karta_pobytu_Sala_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>D02A727B-9DFE-6904-EB0A-C6B640C9FBC3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Sala</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>868BD8C7-D022-C927-0DF7-34A98B2A756B</referredTableID>
+<keyObject>88EE8564-B0EB-559F-C908-8E89C1B92B44</keyObject>
+<referredKeyID>88EE8564-B0EB-559F-C908-8E89C1B92B44</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nr_sali</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

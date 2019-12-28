@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="KartyPobytu_Recepty" directorySegmentName="seg_0" id="D5ABEE94-995B-2E78-0BE3-E8FBEDB91F34">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:37:36 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<sourcePk>403A7874-F23E-90AB-BE1B-E324D5434E16</sourcePk>
+<targetPk>219FD413-AC37-4BEB-F68D-883154540506</targetPk>
+<identifying>true</identifying>
+<nameOnSource>jest zapisana w</nameOnSource>
+<nameOnTarget>ma zapisaną</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>5153EA25-EE22-E4FF-9138-DE6F4AB0CC3B</sourceEntity>
+<targetCardinalityString>1</targetCardinalityString>
+<targetEntity>DF77879B-F5D3-B464-2295-23AE549410AF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

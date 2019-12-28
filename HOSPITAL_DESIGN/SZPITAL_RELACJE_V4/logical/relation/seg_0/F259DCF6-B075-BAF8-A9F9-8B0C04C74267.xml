@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="KartyPobytu_Diagnozy" directorySegmentName="seg_0" id="F259DCF6-B075-BAF8-A9F9-8B0C04C74267">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 12:04:11 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<sourcePk>219FD413-AC37-4BEB-F68D-883154540506</sourcePk>
+<identifying>true</identifying>
+<nameOnSource>zawiera infromacje o</nameOnSource>
+<nameOnTarget>jest zapisana w</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>DF77879B-F5D3-B464-2295-23AE549410AF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>034F99FE-CD44-D6D3-8695-6C01625AABD7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

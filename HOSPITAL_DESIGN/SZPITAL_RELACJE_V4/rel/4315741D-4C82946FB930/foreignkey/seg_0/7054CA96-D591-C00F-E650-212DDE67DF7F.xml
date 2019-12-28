@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7054CA96-D591-C00F-E650-212DDE67DF7F" containerWithKeyObject="A1E1B27E-C47E-9156-9574-ABFDAAF7FD85" localFKIndex="E9F06F3A-5ACA-EA9B-F069-3C116EA9F496" name="Lek_Specj_Specj_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>18FD4745-2B3E-4EAB-595C-ED41A0F7C0C5</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Specjalizacje</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C1A1726F-E4BF-2365-8B3D-537E2565EF72</referredTableID>
+<keyObject>5C77A9A0-D4FA-2852-0373-E731CA1688FF</keyObject>
+<referredKeyID>5C77A9A0-D4FA-2852-0373-E731CA1688FF</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nazwa_specjalizacji</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

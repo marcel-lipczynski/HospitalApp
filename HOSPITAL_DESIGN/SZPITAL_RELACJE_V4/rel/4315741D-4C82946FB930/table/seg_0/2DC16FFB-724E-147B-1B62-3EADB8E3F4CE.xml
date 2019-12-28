@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2DC16FFB-724E-147B-1B62-3EADB8E3F4CE" name="Recepta">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<comment><![CDATA[Tabela zawierajaca recepty]]></comment>
+<commentInRDBMS><![CDATA[Tabela zawierajaca recepty]]></commentInRDBMS>
+<generatorID>5153EA25-EE22-E4FF-9138-DE6F4AB0CC3B</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_recepty" id="F5256A05-8719-B123-8EE6-FCDE0C08673D">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>A4C7846E-25EE-78B0-04D6-BD76407F32A4</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_wystawienia" id="1A01361F-099A-4702-6947-2131B0D92C5E">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>721D1EC6-0FEF-3C3D-3C86-909DEA572EBB</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Lekarz_id_lekarza" id="7E97A05B-5F32-7A94-DE63-632DFC45BA30">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>9D666AAC-B575-14AF-73B6-D15205F9C378</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F7EB0D78-7580-64FA-34CC-44F861448254" referredColumn="C7E8EBC6-6946-64FC-F518-B24DF8C2EC29"/>
+</associations>
+</Column>
+<Column name="Karta_pobytu_id_karty" id="7E812DE4-D6F8-9F1B-B974-CF0E29EE4497">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>9DA5E120-E34D-E615-F80B-698CE8F3433C</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91FA4210-2D48-9BDE-F8BA-D1B4F3A6E79A" referredColumn="8C01467B-058F-9F17-E82F-15D8C00D9F25"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="122CF84E-488F-CD0B-6EBE-D9E10C287EA4" name="Recepta_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>403A7874-F23E-90AB-BE1B-E324D5434E16</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5256A05-8719-B123-8EE6-FCDE0C08673D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BAE00C8C-B17B-795E-C431-19313608B2FE" name="Recepta__UN">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:39:39 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E97A05B-5F32-7A94-DE63-632DFC45BA30"/>
+<colUsage columnID="7E812DE4-D6F8-9F1B-B974-CF0E29EE4497"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00DA4368-91A4-7A31-975C-367342E801DF" name="Recepta_Karta_pobytu_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>D5ABEE94-995B-2E78-0BE3-E8FBEDB91F34</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E812DE4-D6F8-9F1B-B974-CF0E29EE4497"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A6D179DA-B8A5-6D3B-1287-9B717122D04B" name="Recepta_Lekarz_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>BAF67137-C3CC-4076-0AF4-8F836CC10DAA</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7E97A05B-5F32-7A94-DE63-632DFC45BA30"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

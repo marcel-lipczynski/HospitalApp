@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="32D2B846-AE9C-B7DD-555C-CC04CF6886AD" containerWithKeyObject="A6636F92-9FE0-3A90-95E7-55044EAE4B3A" localFKIndex="8FC8DEBB-F500-7B3F-5B8E-DFF6EA3600E7" name="Operacja_Karta_pobytu_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>FF936B9D-113A-7AD5-9909-4A735FD94D2B</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Karta_pobytu</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E78B622F-6499-3B7A-4ABA-CF511FDD945F</referredTableID>
+<keyObject>63D0F351-79D3-2FC1-2637-DED57C2CB0CF</keyObject>
+<referredKeyID>63D0F351-79D3-2FC1-2637-DED57C2CB0CF</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_karty</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

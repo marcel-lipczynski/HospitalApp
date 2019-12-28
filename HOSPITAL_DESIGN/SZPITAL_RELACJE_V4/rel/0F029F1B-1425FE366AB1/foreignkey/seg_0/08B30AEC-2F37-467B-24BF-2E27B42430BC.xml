@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="08B30AEC-2F37-467B-24BF-2E27B42430BC" containerWithKeyObject="5CD49EB3-B8C1-E427-3CE8-A7B39B320F70" localFKIndex="02D7E186-5DBB-311F-D13F-B6F470911A81" name="Pielegniarki_Sale_Pielegniarka_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>517FF9B1-D305-0B1B-E384-B8C4C7971899</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Pielegniarka</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>F2465F6C-6252-315E-970A-685401FDAC23</referredTableID>
+<keyObject>40B90789-6104-49B4-AF20-FD116308C59F</keyObject>
+<referredKeyID>40B90789-6104-49B4-AF20-FD116308C59F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_pielegniarki</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

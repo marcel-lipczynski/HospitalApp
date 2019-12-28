@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C72A792C-B994-A0BB-6714-B9156F93B5C8" containerWithKeyObject="4AD9AB14-1CD1-F2C4-FF45-1133544BB849" localFKIndex="2E12BD56-8BA6-A94F-FC7F-A1E5C42C31B4" name="Diagnoza_Lekarz_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>AF720E4E-56DD-C83A-3EB3-6B78F300CA07</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Lekarz</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DFF9DC4D-EBB2-D4B8-E8A1-801181F2066F</referredTableID>
+<keyObject>AF003DFD-A406-92A4-ECB2-1D2A015CA04D</keyObject>
+<referredKeyID>AF003DFD-A406-92A4-ECB2-1D2A015CA04D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_lekarza</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

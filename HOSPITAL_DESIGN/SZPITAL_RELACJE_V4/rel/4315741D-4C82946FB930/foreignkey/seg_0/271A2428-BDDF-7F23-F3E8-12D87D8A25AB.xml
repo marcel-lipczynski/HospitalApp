@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="271A2428-BDDF-7F23-F3E8-12D87D8A25AB" containerWithKeyObject="6EF94FA7-F3F5-0696-7C98-265BF0E5EF2F" localFKIndex="6B80EF58-94F4-2403-D98A-87C0886B382B" name="Piel_Sale_Piel_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>517FF9B1-D305-0B1B-E384-B8C4C7971899</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Pielegniarka</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>8CE6A407-7869-0DD1-0DCB-7167EA567FB1</referredTableID>
+<keyObject>265A558C-3C3C-9F72-C058-1112DE07437F</keyObject>
+<referredKeyID>265A558C-3C3C-9F72-C058-1112DE07437F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_pielegniarki</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

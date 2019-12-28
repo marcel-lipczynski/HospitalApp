@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Sale_KartyPobytu" directorySegmentName="seg_0" id="D02A727B-9DFE-6904-EB0A-C6B640C9FBC3">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-09 11:36:06 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<sourcePk>3CE2344C-EED4-096A-C9F3-EEF90DBFD049</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>przypisana</nameOnSource>
+<nameOnTarget>ma przypisaną</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>269E816B-AF89-0165-0A58-6831A396D53D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>DF77879B-F5D3-B464-2295-23AE549410AF</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

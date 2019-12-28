@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="5029B360-5A1A-BB59-A1B0-D075FD1E9913" containerWithKeyObject="51F614FC-EF90-73E3-6744-AD6AFBACB2B0" localFKIndex="AAA2EAB5-A399-5B94-A9AA-0186513FC4E7" name="Recepty_Leki_Lek_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>C03E4A6F-9C31-72F2-7990-220295DB0AD3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<referredTableLongName>Lek</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>FA648F44-F114-BDD6-ADC8-CACCC5F4B0AA</referredTableID>
+<keyObject>BC6BC953-C93E-DF2A-CA98-F677880B463F</keyObject>
+<referredKeyID>BC6BC953-C93E-DF2A-CA98-F677880B463F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nazwa_leku</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

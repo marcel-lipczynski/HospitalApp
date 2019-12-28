@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="51F614FC-EF90-73E3-6744-AD6AFBACB2B0" name="Recepty_Leki">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<comment><![CDATA[Tabela zawierajaca informacje o receptach i lekach]]></comment>
+<commentInRDBMS><![CDATA[Tabela zawierajaca informacje o receptach i lekach]]></commentInRDBMS>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Recepta_id_recepty" id="0AA2F41E-2267-E0DA-47BD-43EFFAF8161B">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5D29DE1D-FF29-E5F8-D041-E2AFA6F4FAA5" referredColumn="F5256A05-8719-B123-8EE6-FCDE0C08673D"/>
+</associations>
+</Column>
+<Column name="Lek_nazwa_leku" id="42E3FB66-21CE-AC83-90EA-45E0A80EFB23">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5029B360-5A1A-BB59-A1B0-D075FD1E9913" referredColumn="29CFEA35-1776-7BC4-751C-D89D4C8EE733"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2F900CF7-BEB6-4102-750D-29E5ACC04C22" name="Recepty_Leki_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0AA2F41E-2267-E0DA-47BD-43EFFAF8161B"/>
+<colUsage columnID="42E3FB66-21CE-AC83-90EA-45E0A80EFB23"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5375E3DE-9C06-0A5E-B4A9-CD0EC874C3EA" name="Recepty_Leki_Recepta_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>C03E4A6F-9C31-72F2-7990-220295DB0AD3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0AA2F41E-2267-E0DA-47BD-43EFFAF8161B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AAA2EAB5-A399-5B94-A9AA-0186513FC4E7" name="Recepty_Leki_Lek_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>C03E4A6F-9C31-72F2-7990-220295DB0AD3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="42E3FB66-21CE-AC83-90EA-45E0A80EFB23"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

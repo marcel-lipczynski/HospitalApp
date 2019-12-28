@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6EF94FA7-F3F5-0696-7C98-265BF0E5EF2F" name="Pielegniarki_Sale">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<comment><![CDATA[Tabela zawierajaca informacje o pielegniarkach i salach]]></comment>
+<commentInRDBMS><![CDATA[Tabela zawierajaca informacje o pielegniarkach i salach]]></commentInRDBMS>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Pielegniarka_id_pielegniarki" id="9413D7CC-C28E-7EF6-3556-ACF79A3C51FE">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="271A2428-BDDF-7F23-F3E8-12D87D8A25AB" referredColumn="C5BB5312-D550-4858-E0F3-B4396CD1B3D7"/>
+</associations>
+</Column>
+<Column name="Sala_nr_sali" id="02C0B1D3-29E5-78D7-CC6A-B583FA31C646">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C21D8B77-AC1B-606F-0690-12FC734A4FB1" referredColumn="07E983C7-657C-AECF-11EE-3AE8789F26E5"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A2895263-A880-172F-DEE6-AB1A82706C0C" name="Pielegniarki_Sale_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9413D7CC-C28E-7EF6-3556-ACF79A3C51FE"/>
+<colUsage columnID="02C0B1D3-29E5-78D7-CC6A-B583FA31C646"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B80EF58-94F4-2403-D98A-87C0886B382B" name="Piel_Sale_Piel_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>517FF9B1-D305-0B1B-E384-B8C4C7971899</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9413D7CC-C28E-7EF6-3556-ACF79A3C51FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="567ABDE0-42D0-5FD7-CB42-71F0D3BF4D5B" name="Pielegniarki_Sale_Sala_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-28 14:10:30 UTC</createdTime>
+<generatorID>517FF9B1-D305-0B1B-E384-B8C4C7971899</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02C0B1D3-29E5-78D7-CC6A-B583FA31C646"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
