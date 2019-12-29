@@ -4,10 +4,7 @@ package com.szbd.hospital.controller;
 import com.szbd.hospital.entity.Pacjent;
 import com.szbd.hospital.service.PacjentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,31 @@ public class PacjentController {
     @GetMapping("")
     public List<Pacjent> findAll(){
         return pacjentService.findAll();
+    }
+
+    @GetMapping("/{pesel}")
+    public Pacjent findById(@PathVariable String pesel){
+        return pacjentService.findById(pesel);
+    }
+
+    @PostMapping("")
+    public void save(@RequestBody Pacjent pacjent){
+        for(Pacjent hospitalPacjent: pacjentService.findAll()){
+            if(hospitalPacjent.getPesel().equals(pacjent.getPesel())){
+                throw new RuntimeException("Istnieje pacjent o podanym peselu!" + pacjent.getPesel());
+            }
+        }
+        pacjentService.save(pacjent);
+    }
+
+    @PutMapping("")
+    public void update(@RequestBody Pacjent pacjent){
+        pacjentService.save(pacjent);
+    }
+
+    @DeleteMapping("/{pesel}")
+    public void deleteById(@PathVariable String pesel){
+        pacjentService.deleteById(pesel);
     }
 
 }

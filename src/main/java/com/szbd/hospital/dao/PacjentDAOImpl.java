@@ -32,4 +32,34 @@ public class PacjentDAOImpl implements PacjentDAO {
         return pacjentList;
 
     }
+
+    @Override
+    public Pacjent findById(String pesel) {
+        Session session = entityManager.unwrap(Session.class);
+        Pacjent pacjent = session.get(Pacjent.class, pesel);
+
+        if(pacjent == null){
+            throw new RuntimeException("Pacjent z następującym peselem nie został znaleziony: " + pesel);
+        }
+        return session.get(Pacjent.class, pesel);
+    }
+
+    @Override
+    public void save(Pacjent pacjent) {
+        Session session = entityManager.unwrap(Session.class);
+
+        session.saveOrUpdate(pacjent);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        Session session = entityManager.unwrap(Session.class);
+
+        //delete object with primary key
+        Pacjent pacjent = session.get(Pacjent.class, id);
+        if(pacjent == null){
+            throw new RuntimeException("Nie znaleziono pacjenta o podanym peselu: " + id);
+        }
+        session.delete(pacjent);
+    }
 }

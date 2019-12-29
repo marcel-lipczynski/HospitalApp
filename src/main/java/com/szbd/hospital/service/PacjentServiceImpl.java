@@ -23,4 +23,22 @@ public class PacjentServiceImpl implements PacjentService {
     public List<Pacjent> findAll() {
         return pacjentDAO.findAll();
     }
+
+    @Override
+    @Transactional
+    public Pacjent findById(String id) {
+        return pacjentDAO.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public void save(Pacjent pacjent) {
+        pacjentDAO.save(pacjent);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(String id) {
+        pacjentDAO.deleteById(id);
+    }
 }
