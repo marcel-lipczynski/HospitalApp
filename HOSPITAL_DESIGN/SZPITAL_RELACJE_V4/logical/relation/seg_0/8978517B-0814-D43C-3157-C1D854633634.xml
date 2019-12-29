@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="KartyPobytu_Lekarze" directorySegmentName="seg_0" id="8978517B-0814-D43C-3157-C1D854633634">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:58:10 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<sourcePk>219FD413-AC37-4BEB-F68D-883154540506</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>zawiera informacje o</nameOnSource>
+<nameOnTarget>jest zawarty</nameOnTarget>
+<optionalSource>false</optionalSource>
+<optionalTarget>true</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>DF77879B-F5D3-B464-2295-23AE549410AF</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>9953D632-38B0-D5EE-BB44-69341C26730E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

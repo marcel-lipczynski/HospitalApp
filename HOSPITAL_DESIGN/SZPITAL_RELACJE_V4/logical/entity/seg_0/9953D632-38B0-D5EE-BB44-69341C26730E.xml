@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="9953D632-38B0-D5EE-BB44-69341C26730E" name="Lekarz">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:39:56 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_lekarza" id="5E3E4B8D-4DD0-E8C5-ADA0-FD5DB06222E1">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:40:16 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="imie" id="85448B93-572C-E809-7686-B7E89F69B78C">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:40:23 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazwisko" id="960D7C7B-0B38-E5DD-C00E-BF360A2FB80A">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:40:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="placa_pod" id="E8E3508B-C41C-0D92-1B96-B544F5FE0BA9">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:18:09 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>7</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,7,2</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="429E5877-6B10-0807-58F8-65597D293391" name="Lekarz PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:40:21 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="false"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5E3E4B8D-4DD0-E8C5-ADA0-FD5DB06222E1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

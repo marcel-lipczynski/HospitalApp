@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="DF77879B-F5D3-B464-2295-23AE549410AF" name="Karta pobytu">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:25:48 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_karty" id="1FC5C06E-B66E-A5DF-EA4D-170E349D7300">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:48:57 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data_przyjecia" id="8B0B7DFC-737D-AA69-D0FE-639A2FC64015">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:28:31 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="godzina_przyjecia" id="9D4044F1-1C74-D82E-15B0-485BA212D55E">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:29:30 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="data_wypisu" id="E507980A-64DF-C647-F9EE-98DA13D74C9E">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:50:34 UTC</createdTime>
+<generatorID>74438428-53FF-7C98-AFE8-CC716C88DF43</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>E3AC01D4-D703-F401-0D28-9CB247B8C722</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nr_sali" id="C722FC4D-CD37-BD11-DA4B-3F2F2D231D3E">
+<createdBy>Komp</createdBy>
+<createdTime>2019-11-18 20:44:40 UTC</createdTime>
+<generatorID>D02A727B-9DFE-6904-EB0A-C6B640C9FBC3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<referedAttribute>4BC55091-7697-A582-1E78-11427D57BBC6</referedAttribute>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PESEL" id="5FC9FF02-34EE-791F-B319-E71F453F3082">
+<createdBy>Komp</createdBy>
+<createdTime>2019-11-18 20:46:36 UTC</createdTime>
+<generatorID>BC697D76-E80B-5D65-5EBF-9A36EFC666CE</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<referedAttribute>0089ADF2-3392-E4BB-6BF2-F0B89EAECA21</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="219FD413-AC37-4BEB-F68D-883154540506" name="Pacjent PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:29:10 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="false"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5FC9FF02-34EE-791F-B319-E71F453F3082</attributeRef>
+<attributeRef>1FC5C06E-B66E-A5DF-EA4D-170E349D7300</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2348B704-266A-8504-34BA-D5844C1D6246" name="Lek">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>AB14F42F-15C5-EC1D-0B53-368AE5835C79</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nazwa_leku" id="7AE60D66-E3C4-E7C0-166A-4267D365C0F4">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>C228A216-866E-9B80-6819-D65ADEBE8018</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="rodzaj_leku" id="3F9B08E3-916F-C431-B5C5-52BCB33F300A">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>B4E59CAC-D53C-EBA0-AC99-970D4D624A4B</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E354840B-016E-6BCE-AB5B-93F295280CDA" name="Lek_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>55ABB7C3-9784-A86A-1DC5-35BE2927BED0</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7AE60D66-E3C4-E7C0-166A-4267D365C0F4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

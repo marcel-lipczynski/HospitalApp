@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9BB7090F-7B45-83E1-0624-9DB198632477" name="Lekarze_SpecjalizacjeLekarskie">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Specjalizacja_lekarska_nazwa_specjalizacji" id="492B6485-9950-2DD7-66AE-EA83167CD618">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="836A2D95-3EDF-965B-E590-15CB53936291" referredColumn="2312B812-F455-00C9-5BC2-79A18DC4B3E6"/>
+</associations>
+</Column>
+<Column name="Lekarz_id_lekarza" id="09246486-98CE-FC64-E422-1D18CE055F71">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT057</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7842FF95-B16E-03BF-77BD-E59F11B348EE" referredColumn="3BEECBFB-67AF-FD35-6023-6820E18E4158"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1478BBDC-A6A3-197C-83F2-95CB3B841134" name="Lekarze_SpecjalizacjeLekarskie_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="492B6485-9950-2DD7-66AE-EA83167CD618"/>
+<colUsage columnID="09246486-98CE-FC64-E422-1D18CE055F71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AB857BA0-F081-BAEA-A74B-529BF7720C1B" name="Lekarze_SpecjalizacjeLekarskie_Specjalizacja_lekarska_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>18FD4745-2B3E-4EAB-595C-ED41A0F7C0C5</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="492B6485-9950-2DD7-66AE-EA83167CD618"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3768A023-03D6-F52A-FFDE-7C3DB666A370" name="Lekarze_SpecjalizacjeLekarskie_Lekarz_FK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>18FD4745-2B3E-4EAB-595C-ED41A0F7C0C5</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="09246486-98CE-FC64-E422-1D18CE055F71"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

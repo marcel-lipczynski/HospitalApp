@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AAB02E48-D002-5E8F-9A49-3DC284F65B12" name="Sala">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>269E816B-AF89-0165-0A58-6831A396D53D</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="nr_sali" id="A5E35520-6BAD-2302-4F2E-A405B00EE7F9">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>4BC55091-7697-A582-1E78-11427D57BBC6</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pojemność" id="8D0949CF-B206-CB7E-3C32-A7D8604672B3">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>323128F9-0C97-F28A-E10A-76797AEB8AB3</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>2</dataTypePrecision>
+<ownDataTypeParameters>,2,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="oddział" id="83A2B3DD-FD97-2D96-EEDA-0EC2D54E3497">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>63FE5F99-BBAD-07FB-BCBB-6AB662F64EFD</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="736313A9-4B8B-F0D1-8D4C-021A2016CD10" name="Sala_PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-12-03 16:53:23 UTC</createdTime>
+<generatorID>3CE2344C-EED4-096A-C9F3-EEF90DBFD049</generatorID>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5E35520-6BAD-2302-4F2E-A405B00EE7F9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

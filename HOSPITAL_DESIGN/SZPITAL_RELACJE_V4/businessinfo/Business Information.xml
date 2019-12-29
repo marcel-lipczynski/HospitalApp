@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="E10C0108-B53E-BAE4-A73F-8FE248DAB6A8">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 09:37:02 UTC</createdTime>
+<ownerDesignName>szpital_zwiazek_encji</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

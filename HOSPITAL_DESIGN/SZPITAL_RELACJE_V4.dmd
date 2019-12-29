@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="SZPITAL_RELACJE_V4" id="1A5FFCA9-C4EE-61C3-B8FF-877523247E67" version="3.5">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 09:37:02 UTC</createdTime>
+<ownerDesignName>szpital_zwiazek_encji</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>1A5FFCA9-C4EE-61C3-B8FF-877523247E67</designId>
+</OSDM_Design>

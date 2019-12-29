@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="A9E9CCC3-5A00-676B-56DD-84B9E2EE9EAB" name="Pielegniarka">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:41:16 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_pielegniarki" id="B2E0D4C2-6492-ABA4-F096-3EBB80956558">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:41:29 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="imie" id="366CACAF-441B-E3DE-815F-632AB14C5D94">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:41:36 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nazwisko" id="BBFAB494-CAB5-0EE6-C9E9-50E3A4013F9A">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:41:42 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="placa" id="D607648A-08CF-108C-EFFE-64BEEF092B1B">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 11:25:20 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="true"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>6</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,6,2</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DC9EBA76-DC06-57D9-C7C5-8684AB348E56" name="Pielegniarka PK">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 10:41:35 UTC</createdTime>
+<ownerDesignName>SZPITAL_RELACJE_V4</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="4315741D-F2CE-D645-1FF8-4C82946FB930" value="false"/>
+<item key="381EDDE7-ABC8-3DCA-759C-D818A59C7ECD" value="true"/>
+<item key="0F029F1B-8AA4-1EE5-0ED2-1425FE366AB1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>B2E0D4C2-6492-ABA4-F096-3EBB80956558</newElementsIDs>
+<usedAttributes>
+<attributeRef>B2E0D4C2-6492-ABA4-F096-3EBB80956558</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="633E8C2F-097D-715F-55E5-E4BCFA5042D9" mainViewID="F13136D9-84D5-A275-1B54-994A3E275AFE">
+<createdBy>marcellipczynski</createdBy>
+<createdTime>2019-11-02 09:37:02 UTC</createdTime>
+<ownerDesignName>szpital_zwiazek_encji</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>
