@@ -33,7 +33,7 @@ public class PacjentController {
     public void save(@RequestBody Pacjent pacjent){
         for(Pacjent hospitalPacjent: pacjentService.findAll()){
             if(hospitalPacjent.getPesel().equals(pacjent.getPesel())){
-                throw new RuntimeException("Istnieje pacjent o podanym peselu!" + pacjent.getPesel());
+                throw new RuntimeException("Istnieje pacjent o podanym peselu: " + pacjent.getPesel());
             }
         }
         pacjentService.save(pacjent);

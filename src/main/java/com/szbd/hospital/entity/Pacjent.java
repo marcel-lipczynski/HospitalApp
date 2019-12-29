@@ -1,19 +1,20 @@
 package com.szbd.hospital.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pacjent")
 public class Pacjent {
 
     @Id
-    @Column(name = "pesel")
+    @Column(name = "pesel", nullable = false)
     private String pesel;
 
-    @Column(name = "imie")
+    @Column(name = "imie", nullable = false)
     private String imie;
 
-    @Column(name = "nazwisko")
+    @Column(name = "nazwisko", nullable = false)
     private String nazwisko;
 
     public Pacjent() {
