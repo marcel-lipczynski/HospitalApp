@@ -27,7 +27,7 @@ public class Pielegniarka {
     @Column(name = "placa")
     private int placa;
 
-    
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,
             CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
