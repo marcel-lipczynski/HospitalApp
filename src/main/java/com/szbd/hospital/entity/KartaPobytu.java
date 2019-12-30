@@ -1,5 +1,7 @@
 package com.szbd.hospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +19,7 @@ public class KartaPobytu {
     private int id_karty;
 
     @Column(name = "data_przyjecia", nullable = false)
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "UTC")
     @Temporal(TemporalType.DATE)
     private Date data_przyjecia;
 
@@ -24,8 +27,22 @@ public class KartaPobytu {
     private String godzina_przyjecia;
 
     @Column(name = "data_wypisu")
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "UTC")
     @Temporal(TemporalType.DATE)
     private Date data_wypisu;
+
+    @Column(name = "pesel")
+    private String pesel;
+
+    @Column(name = "nr_sali")
+    private int nr_sali;
+
+
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
+            CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "pesel", insertable = false, updatable = false)
+    private Pacjent pacjent;
 
     //TODO
     //Add mapping for SALA and PACJENT(OneToMany)

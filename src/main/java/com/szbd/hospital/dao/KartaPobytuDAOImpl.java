@@ -1,6 +1,7 @@
 package com.szbd.hospital.dao;
 
 import com.szbd.hospital.entity.KartaPobytu;
+import com.szbd.hospital.entity.Pacjent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,31 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO{
     public void saveKarta(KartaPobytu kartaPobytu) {
         //Koniecznie sprawdz czy Karta nie ma podobnej godziny, daty i peselu do ktorejs
         // z istniejacych kart. Jedno z tych pol musi sie roznic!!!
+        KartaPobytu kartaPobytuDB = entityManager.find(KartaPobytu.class,kartaPobytu.getId_karty());
+        Pacjent pacjent = entityManager.find(Pacjent.class, kartaPobytu.getPesel());
+        if(kartaPobytuDB == null){
+            if(pacjent == null){
+                //nie ma pacjenta o peselu podanym na karcie!
+                return;
+            }
+
+            List<KartaPobytu> kartyPobytu = entityManager.createQuery(
+                    "from KartaPobytu", KartaPobytu.class).getResultList();
+
+            //sprawdzanie czy istnieje karta o takiej samej godzinie, dacie i peselu jednoczesnie
+            for(KartaPobytu kar: kartyPobytu){
+                if(kar.getData_przyjecia() == kartaPobytu.getData_przyjecia()
+                        && kar.getPesel().equals(kartaPobytu.getPesel())
+                        && kar.getGodzina_przyjecia().equals(kartaPobytu.getGodzina_przyjecia())){
+                    return;
+                }
+            }
+        }
+        //ustaw pacjenta o takim peselu jaki jest w karcie
+        kartaPobytu.setPacjent(pacjent);
+        //dodaj temu pacjentowi ta karte pobytu
+        pacjent.addKartaPobytu(kartaPobytu);
+
         entityManager.merge(kartaPobytu);
 
     }
