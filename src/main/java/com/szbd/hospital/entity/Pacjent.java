@@ -1,14 +1,11 @@
 package com.szbd.hospital.entity;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "pacjent")
 public class Pacjent {
