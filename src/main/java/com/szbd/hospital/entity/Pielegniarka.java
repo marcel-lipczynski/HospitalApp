@@ -1,5 +1,6 @@
 package com.szbd.hospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Pielegniarka {
     @Column(name = "placa")
     private int placa;
 
+    
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,
             CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
@@ -51,6 +53,11 @@ public class Pielegniarka {
             sale = new ArrayList<>();
         }
         sale.add(sala);
+    }
+
+    public void removeSala(Sala sala){
+        sale.remove(sala);
+        sala.getPielegniarki().remove(this);
     }
 
 
