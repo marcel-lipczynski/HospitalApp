@@ -11,7 +11,7 @@ import java.util.Date;
 public class KartaPobytu {
 
     @Id
-    @SequenceGenerator(name = "seq1", sequenceName = "karta_pobytu_id_karty_seq")
+    @SequenceGenerator(name = "seq1", sequenceName = "karta_pobytu_id_karty_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq1")
     @Column(name = "id_karty", nullable = false, unique = true)
     private int id_karty;
@@ -28,5 +28,5 @@ public class KartaPobytu {
     private Date data_wypisu;
 
     //TODO
-    //Add mapping for SALA and PESEL
+    //Add mapping for SALA and PACJENT(OneToMany)
 }
