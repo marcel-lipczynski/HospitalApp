@@ -44,6 +44,19 @@ public class KartaPobytu {
     @JoinColumn(name = "pesel", insertable = false, updatable = false)
     private Pacjent pacjent;
 
+    public KartaPobytu() {
+    }
+
+    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali, Pacjent pacjent) {
+        this.data_przyjecia = data_przyjecia;
+        this.godzina_przyjecia = godzina_przyjecia;
+        this.data_wypisu = data_wypisu;
+        this.pesel = pesel;
+        this.nr_sali = nr_sali;
+        this.pacjent = pacjent;
+    }
+
+
     //TODO
     //Add mapping for SALA (One to many)
 

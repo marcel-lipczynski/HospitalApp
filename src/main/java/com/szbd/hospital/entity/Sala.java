@@ -33,6 +33,16 @@ public class Sala {
     )
     private List<Pielegniarka> pielegniarki;
 
+
+    public Sala() {
+    }
+
+    public Sala(int pojemnosc, String oddzial, List<Pielegniarka> pielegniarki) {
+        this.pojemnosc = pojemnosc;
+        this.oddzial = oddzial;
+        this.pielegniarki = pielegniarki;
+    }
+
     public void addPielegniarka(Pielegniarka pielegniarka){
         if(pielegniarki == null){
             pielegniarki = new ArrayList<>();
