@@ -45,5 +45,10 @@ public class KartaPobytu {
     private Pacjent pacjent;
 
     //TODO
-    //Add mapping for SALA and PACJENT(OneToMany)
+    //Add mapping for SALA (One to many)
+
+    //WAZNE!
+    //Zmienic w bazie klucze unikatowe dla godziny,daty i peselu. Poniewaz
+    //Podczas updatowania daty wypisu nie da sie tego zrobic bo zapisuje sie
+    //te pola z takimi samymi wartosciami. Trzeba to w backu kontrolowac i tyle :)
 }
