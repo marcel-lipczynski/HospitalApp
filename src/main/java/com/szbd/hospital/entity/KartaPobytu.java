@@ -20,7 +20,7 @@ public class KartaPobytu {
     @Temporal(TemporalType.DATE)
     private Date data_przyjecia;
 
-    @Column(name = "godzina_przyjecia",unique = true)
+    @Column(name = "godzina_przyjecia",nullable = false)
     private String godzina_przyjecia;
 
     @Column(name = "data_wypisu")

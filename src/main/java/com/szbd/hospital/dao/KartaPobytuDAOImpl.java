@@ -21,4 +21,26 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO{
     public List<KartaPobytu> findAll() {
         return entityManager.createQuery("from KartaPobytu", KartaPobytu.class).getResultList();
     }
+
+    @Override
+    public KartaPobytu findById(int id) {
+        return entityManager.find(KartaPobytu.class,id);
+    }
+
+    @Override
+    public void saveKarta(KartaPobytu kartaPobytu) {
+        //Koniecznie sprawdz czy Karta nie ma podobnej godziny, daty i peselu do ktorejs
+        // z istniejacych kart. Jedno z tych pol musi sie roznic!!!
+        entityManager.merge(kartaPobytu);
+
+    }
+
+    @Override
+    public void deleteKartaById(int id) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class,id);
+        if(kartaPobytu != null){
+            entityManager.remove(kartaPobytu);
+        }
+
+    }
 }
