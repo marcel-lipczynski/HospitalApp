@@ -3,7 +3,6 @@ package com.szbd.hospital.entity;
 import lombok.Data;
 import javax.persistence.*;
 
-
 @Data
 @Entity
 @Table(name = "pacjent")
