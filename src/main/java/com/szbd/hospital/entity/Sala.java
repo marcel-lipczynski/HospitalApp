@@ -1,6 +1,8 @@
 package com.szbd.hospital.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @Data
 @Entity
 @Table
+//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="nr_sali")
 public class Sala {
 
     @Id

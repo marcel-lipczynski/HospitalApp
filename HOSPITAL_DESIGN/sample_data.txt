@@ -1,5 +1,5 @@
 -- PACJENCI 1
-INSERT INTO pacjent(PESEL,imie,nazwisko) VALUES('98040302077','Marcel','Zielinski');
+INSERT INTO pacjent(PESEL,imie,nazwisko) VALUES('98040203077','Marcel','Zielinski');
 INSERT INTO pacjent(PESEL,imie,nazwisko) VALUES('92040302077','Mateusz','Ratajski');
 INSERT INTO pacjent(PESEL,imie,nazwisko) VALUES('88040305071','Grzegorz','Krakowski');
 -------
@@ -56,15 +56,15 @@ INSERT INTO karta_pobytu(data_przyjecia,godzina_przyjecia,nr_sali,PESEL)
 VALUES('19/12/29', '11:55', 1, '88040305071');
 ---------------
 --DIAGNOZY 10
-INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA RAKA',1,3);
-INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA OSPE',1,4);
-INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA GRYPE',2,7);
+INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA RAKA',1,1);
+INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA OSPE',1,2);
+INSERT INTO diagnoza(data_wystawienia,opis,id_lekarza,id_karty) VALUES('19/01/23','PACJENT MA GRYPE',2,3);
 -------
 
 --RECEPTY 11
-INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',3,1); 
-INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',4,2); 
-INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',7,3); 
+INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',1,1); 
+INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',2,2); 
+INSERT INTO recepta(data_wystawienia,id_karty,id_lekarza) VALUES('19/12/28',3,3); 
 
 --RECEPTA LEKI 12
 INSERT INTO recepty_leki(id_recepty,nazwa_leku) VALUES(1,'IBUPROM');
@@ -74,12 +74,12 @@ INSERT INTO recepty_leki(id_recepty,nazwa_leku) VALUES(2,'ASERTIN');
 INSERT INTO recepty_leki(id_recepty,nazwa_leku) VALUES(3,'APAP');
 
 --OPERACJE 13
-INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/01/01','OPERACJA SERCA',1,3);
-INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/06/01','OPERACJA MÓZGU',2,4);
-INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/01/01','OPERACJA SERCA',3,7);
+INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/01/01','OPERACJA SERCA',1,1);
+INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/06/01','OPERACJA MÓZGU',2,2);
+INSERT INTO operacja(termin,nazwa_operacji,id_lekarza,id_karty) VALUES('20/01/01','OPERACJA SERCA',3,3);
 
 --KARTYPOBYTU_LEKARZE 14
-INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(3,1);
-INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(4,2);
-INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(7,1);
+INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(1,1);
+INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(2,2);
+INSERT INTO kartypobytu_lekarze(id_karty,id_lekarza) VALUES(3,3);
 
