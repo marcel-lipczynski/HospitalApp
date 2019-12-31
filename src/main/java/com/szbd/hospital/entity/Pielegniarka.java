@@ -30,13 +30,15 @@ public class Pielegniarka {
     private int placa;
 
 
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,
+//            CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinTable(
+//            name = "pielegniarki_sale",
+//            joinColumns = @JoinColumn(name = "id_pielegniarki"),
+//            inverseJoinColumns = @JoinColumn(name = "nr_sali")
+//    )
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,
-            CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(
-            name = "pielegniarki_sale",
-            joinColumns = @JoinColumn(name = "id_pielegniarki"),
-            inverseJoinColumns = @JoinColumn(name = "nr_sali")
-    )
+            CascadeType.PERSIST,CascadeType.REFRESH},mappedBy = "pielegniarki")
     private List<Sala> sale;
 
 
