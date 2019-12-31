@@ -48,8 +48,8 @@ public class SalaController {
 
     @DeleteMapping("/{nr_sali}/pielegniarka/{idPielegniarki}")
     public void deletePielegniarkaFromSala(@PathVariable int idPielegniarki,
-                                           @PathVariable int nrSali) {
-        salaService.deletePielegniarkaFromSala(idPielegniarki, nrSali);
+                                           @PathVariable int nr_sali) {
+        salaService.deletePielegniarkaFromSala(idPielegniarki, nr_sali);
     }
 
     @DeleteMapping("/{id}")
