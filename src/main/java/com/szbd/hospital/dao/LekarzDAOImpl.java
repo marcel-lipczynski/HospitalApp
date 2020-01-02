@@ -10,12 +10,12 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class LekarzaDAOImpl implements LekarzDAO {
+public class LekarzDAOImpl implements LekarzDAO {
 
     private EntityManager entityManager;
 
     @Autowired
-    public LekarzaDAOImpl(EntityManager entityManager) {
+    public LekarzDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

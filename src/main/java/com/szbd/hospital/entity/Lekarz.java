@@ -2,15 +2,17 @@ package com.szbd.hospital.entity;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name = "lekarz")
 public class Lekarz {
 
+
+    @Id
+    @SequenceGenerator(name = "seq4", sequenceName = "lekarz_id_lekarza_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq4")
     @Column(name = "id_lekarza")
     private int id_lekarza;
 
