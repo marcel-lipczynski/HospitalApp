@@ -44,6 +44,13 @@ public class KartaPobytu {
     @JoinColumn(name = "pesel", insertable = false, updatable = false)
     private Pacjent pacjent;
 
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
+            CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "nr_sali", insertable = false, updatable = false)
+    private Sala sala;
+
+
+
     public KartaPobytu() {
     }
 

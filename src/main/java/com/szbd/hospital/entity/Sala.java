@@ -2,6 +2,7 @@ package com.szbd.hospital.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import org.springframework.stereotype.Repository;
@@ -38,7 +39,13 @@ public class Sala {
     )
     private List<Pielegniarka> pielegniarki;
 
-
+    //mapowanie kart pobytu
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "sala",
+            cascade = CascadeType.ALL)
+    private List<KartaPobytu> kartyPobytu;
+    
     public Sala() {
     }
 
