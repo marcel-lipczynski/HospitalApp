@@ -37,10 +37,11 @@ public class LekarzDAOImpl implements LekarzDAO {
 
         //jesli nie ma takiego lekarza to sprawdzamy czy jest taki
         //co ma takie samo imie i nazwisko, wtedy nie dodajemy go
-        if(lekarzDB == null){
+        if(lekarzDB == null || lekarzDB.getId_lekarza() == lekarz.getId_lekarza()){
             for(Lekarz lek: findAll()){
                 if(lek.getImie().equals(lekarz.getImie()) &&
-                        lek.getNazwisko().equals(lekarz.getNazwisko())){
+                        lek.getNazwisko().equals(lekarz.getNazwisko()) &&
+                lek.getId_lekarza() != lekarz.getId_lekarza()){
                     return;
                 }
             }
