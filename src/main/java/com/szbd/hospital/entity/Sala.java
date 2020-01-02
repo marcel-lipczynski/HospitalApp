@@ -30,8 +30,8 @@ public class Sala {
     private String oddzial;
 
     @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH,CascadeType.MERGE,
-            CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "pielegniarki_sale",
             joinColumns = @JoinColumn(name = "nr_sali"),
@@ -45,7 +45,8 @@ public class Sala {
             mappedBy = "sala",
             cascade = CascadeType.ALL)
     private List<KartaPobytu> kartyPobytu;
-    
+
+
     public Sala() {
     }
 
@@ -55,14 +56,14 @@ public class Sala {
         this.pielegniarki = pielegniarki;
     }
 
-    public void addPielegniarka(Pielegniarka pielegniarka){
-        if(pielegniarki == null){
+    public void addPielegniarka(Pielegniarka pielegniarka) {
+        if (pielegniarki == null) {
             pielegniarki = new ArrayList<>();
         }
         pielegniarki.add(pielegniarka);
     }
 
-    public void removePielegniarka(Pielegniarka pielegniarka){
+    public void removePielegniarka(Pielegniarka pielegniarka) {
         pielegniarki.remove(pielegniarka);
         pielegniarka.getSale().remove(this);
     }

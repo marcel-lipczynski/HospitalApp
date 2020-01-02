@@ -19,15 +19,15 @@ public class KartaPobytu {
     private int id_karty;
 
     @Column(name = "data_przyjecia", nullable = false)
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     @Temporal(TemporalType.DATE)
     private Date data_przyjecia;
 
-    @Column(name = "godzina_przyjecia",nullable = false)
+    @Column(name = "godzina_przyjecia", nullable = false)
     private String godzina_przyjecia;
 
     @Column(name = "data_wypisu")
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     @Temporal(TemporalType.DATE)
     private Date data_wypisu;
 
@@ -39,16 +39,16 @@ public class KartaPobytu {
 
 
     @JsonBackReference
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
-            CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "pesel", insertable = false, updatable = false)
     private Pacjent pacjent;
 
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,
-            CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "nr_sali", insertable = false, updatable = false)
     private Sala sala;
-
 
 
     public KartaPobytu() {
