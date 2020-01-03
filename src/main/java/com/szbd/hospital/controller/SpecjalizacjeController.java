@@ -23,7 +23,7 @@ public class SpecjalizacjeController {
         return specjalizacjeService.findAll();
     }
 
-   @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Specjalizacje findById(@PathVariable String id) {
         return specjalizacjeService.findById(id.toUpperCase());
     }

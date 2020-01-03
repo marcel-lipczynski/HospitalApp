@@ -1,8 +1,11 @@
 package com.szbd.hospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -26,16 +29,39 @@ public class Lekarz {
     private int placa_pod;
 
 
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "lekarze_specjalizacjelekarskie",
+            joinColumns = @JoinColumn(name = "id_lekarza"),
+            inverseJoinColumns = @JoinColumn(name = "nazwa_specjalizacji")
+    )
+    private List<Specjalizacje> specjalizacje;
+
+
     public Lekarz() {
     }
 
-    public Lekarz(int id_lekarza, String imie, String nazwisko, int placa_pod) {
-        this.id_lekarza = id_lekarza;
+
+    public Lekarz(String imie, String nazwisko, int placa_pod, List<Specjalizacje> specjalizacje) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.placa_pod = placa_pod;
+        this.specjalizacje = specjalizacje;
     }
 
+    public void addSpecjalizacja(Specjalizacje specjalizacja) {
+        if (specjalizacje == null) {
+            specjalizacje = new ArrayList<>();
+        }
+        specjalizacje.add(specjalizacja);
+    }
+
+    public void removeSpecjalizacje(Specjalizacje specjalizacja) {
+        specjalizacje.remove(specjalizacja);
+        specjalizacja.getLekarze().remove(this);
+    }
 
 
 }
