@@ -35,7 +35,7 @@ public class SpecjalizacjeController {
 
     @DeleteMapping("/{id}")
     public void deleteSpecjalizacjeById(@PathVariable String id) {
-        specjalizacjeService.deleteSpecjalizacjeById(id);
+        specjalizacjeService.deleteSpecjalizacjeById(id.toUpperCase());
     }
 
 
