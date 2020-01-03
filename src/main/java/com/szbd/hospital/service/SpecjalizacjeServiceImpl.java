@@ -39,7 +39,7 @@ public class SpecjalizacjeServiceImpl implements SpecjalizacjeService {
 
     @Override
     @Transactional
-    public void deleteSpecjalizacjeById(int id) {
+    public void deleteSpecjalizacjeById(String id) {
         specjalizacjeDAO.deleteSpecjalizacjeById(id);
     }
 }

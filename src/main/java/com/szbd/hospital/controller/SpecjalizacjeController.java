@@ -25,7 +25,7 @@ public class SpecjalizacjeController {
 
    @GetMapping("/{id}")
     public Specjalizacje findById(@PathVariable String id) {
-        return specjalizacjeService.findById(id);
+        return specjalizacjeService.findById(id.toUpperCase());
     }
 
     @PostMapping("")
@@ -34,7 +34,7 @@ public class SpecjalizacjeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteSpecjalizacjeById(@PathVariable int id) {
+    public void deleteSpecjalizacjeById(@PathVariable String id) {
         specjalizacjeService.deleteSpecjalizacjeById(id);
     }
 

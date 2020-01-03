@@ -9,6 +9,6 @@ public interface SpecjalizacjeService {
     List<Specjalizacje> findAll();
     Specjalizacje findById(String id);
     void saveSpecjalizacje(Specjalizacje specjalizacje);
-    void deleteSpecjalizacjeById(int id);
+    void deleteSpecjalizacjeById(String id);
 
 }

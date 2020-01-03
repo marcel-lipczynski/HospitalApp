@@ -35,7 +35,7 @@ public class SpecjalizacjeDAOImpl implements SpecjalizacjeDAO {
     }
 
     @Override
-    public void deleteSpecjalizacjeById(int id) {
+    public void deleteSpecjalizacjeById(String id) {
         Specjalizacje specjalizacje = entityManager.find(Specjalizacje.class, id);
         if (specjalizacje != null) {
             entityManager.remove(specjalizacje);
