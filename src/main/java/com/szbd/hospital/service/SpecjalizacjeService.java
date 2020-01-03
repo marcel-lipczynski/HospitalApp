@@ -7,7 +7,7 @@ import java.util.List;
 public interface SpecjalizacjeService {
 
     List<Specjalizacje> findAll();
-    Specjalizacje findById(int id);
+    Specjalizacje findById(String id);
     void saveSpecjalizacje(Specjalizacje specjalizacje);
     void deleteSpecjalizacjeById(int id);
 

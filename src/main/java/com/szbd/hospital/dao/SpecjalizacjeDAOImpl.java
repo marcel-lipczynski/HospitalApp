@@ -24,7 +24,7 @@ public class SpecjalizacjeDAOImpl implements SpecjalizacjeDAO {
     }
 
     @Override
-    public Specjalizacje findById(int id) {
+    public Specjalizacje findById(String id) {
         return entityManager.find(Specjalizacje.class, id);
     }
 
