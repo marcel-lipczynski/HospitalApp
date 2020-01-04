@@ -1,8 +1,10 @@
 package com.szbd.hospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,6 +19,10 @@ public class Lek {
     private String rodzaj_leku;
 
 
-    //MAPOWANIE ManyToMany - LEK
-    
+    //MAPOWANIE ManyToMany - Recepta
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "leki")
+    private List<Recepta> recepty;
+
 }

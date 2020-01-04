@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -32,6 +33,16 @@ public class Recepta {
 
 
     //mapowanie ManyToMany LEK
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "recepty_leki",
+            joinColumns = @JoinColumn(name = "id_recepty"),
+            inverseJoinColumns = @JoinColumn(name = "nazwa_leku")
+    )
+    private List<Lek> leki;
+
+
 
     //mapowanie OneToMany LEKARZ
 
