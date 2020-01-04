@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,5 +25,20 @@ public class Lek {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "leki")
     private List<Recepta> recepty;
+
+    public void addRecepta(Recepta recepta) {
+        if (recepty == null) {
+            recepty = new ArrayList<>();
+        }
+        recepty.add(recepta);
+    }
+
+    public void removeRecepta(Recepta recepta) {
+        recepty.remove(recepty);
+        recepta.getLeki().remove(this);
+    }
+
+
+
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +48,21 @@ public class Recepta {
     //mapowanie OneToMany LEKARZ
 
     //mapowanie OneToMany KARTA_POBYTU
+
+
+
+    //methods for adding and removing from leki list
+    public void addLek(Lek lek) {
+        if (leki == null) {
+            leki = new ArrayList<>();
+        }
+        leki.add(lek);
+    }
+
+    public void removeLek(Lek lek) {
+        leki.remove(lek);
+        lek.getRecepty().remove(this);
+    }
 
 
 }
