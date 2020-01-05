@@ -2,10 +2,13 @@ package com.szbd.hospital.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -51,24 +54,44 @@ public class KartaPobytu {
     private Sala sala;
 
 
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "kartaPobytu",
+            cascade = CascadeType.ALL)
+    private List<Recepta> recepty;
+
+
     public KartaPobytu() {
     }
 
-    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali, Pacjent pacjent) {
+    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali, Pacjent pacjent, Sala sala, List<Recepta> recepty) {
         this.data_przyjecia = data_przyjecia;
         this.godzina_przyjecia = godzina_przyjecia;
         this.data_wypisu = data_wypisu;
         this.pesel = pesel;
         this.nr_sali = nr_sali;
         this.pacjent = pacjent;
+        this.sala = sala;
+        this.recepty = recepty;
     }
 
 
     //TODO
-    //Add mapping for SALA (One to many)
+
 
     //WAZNE!
     //Zmienic w bazie klucze unikatowe dla godziny,daty i peselu. Poniewaz
     //Podczas updatowania daty wypisu nie da sie tego zrobic bo zapisuje sie
     //te pola z takimi samymi wartosciami. Trzeba to w backu kontrolowac i tyle :)
+
+
+    //metoda dodajaca do listy nowa recepta
+    //do recepty karte pobytu!
+    public void addRecepta(Recepta recepta){
+        if(recepty == null){
+            recepty = new ArrayList<>();
+        }
+        recepty.add(recepta);
+        recepta.setKartaPobytu(this);
+    }
 }

@@ -1,6 +1,7 @@
 package com.szbd.hospital.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -45,9 +46,20 @@ public class Recepta {
 
 
 
-    //mapowanie OneToMany LEKARZ
+    //mapowanie ManyToOne LEKARZ
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "id_lekarza", insertable = false, updatable = false)
+    private Lekarz lekarz;
 
-    //mapowanie OneToMany KARTA_POBYTU
+
+    //mapowanie ManyToOne KARTA_POBYTU
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "id_karty", insertable = false, updatable = false)
+    private KartaPobytu kartaPobytu;
 
 
 
