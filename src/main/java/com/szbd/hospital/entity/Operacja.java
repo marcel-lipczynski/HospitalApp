@@ -12,8 +12,6 @@ import java.util.Date;
 public class Operacja {
 
 
-//    operacja_id_operacji_seq
-
     @Id
     @SequenceGenerator(name = "seq7", sequenceName = "operacja_id_operacji_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq7")
@@ -37,6 +35,8 @@ public class Operacja {
     @Column(name = "id_karty")
     private int id_karty;
 
+    //dodac mapping od karty pobytu i lekarza
 
+    //potem dodac konstruktor
 
 }

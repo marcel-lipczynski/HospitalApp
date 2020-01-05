@@ -34,4 +34,9 @@ public class Diagnoza {
     private int id_karty;
 
 
+    //dodac mapping z karta pobytu i lekarzem
+
+    //nastepnie dodac konstruktor! 
+
+
 }
