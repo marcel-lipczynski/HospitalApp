@@ -8,30 +8,35 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "diagnoza")
-public class Diagnoza {
+@Table(name = "operacja")
+public class Operacja {
+
+
+//    operacja_id_operacji_seq
 
     @Id
-    @SequenceGenerator(name = "seq6", sequenceName = "diagnoza_id_diagnozy_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq6")
+    @SequenceGenerator(name = "seq7", sequenceName = "operacja_id_operacji_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq7")
     @Column(name = "id_diagnozy")
-    private int id_diagnozy;
+    private int id_operacji;
 
 
-    @Column(name = "data_wystawienia", nullable = false)
+    @Column(name = "nazwa_operacji")
+    private String nazwa_operacji;
+
+
+    @Column(name = "termin", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     @Temporal(TemporalType.DATE)
-    private Date data_wystawienia;
+    private Date termin;
 
-
-    @Column(name = "opis")
-    private String opis;
 
     @Column(name = "id_lekarza")
     private int id_lekarza;
 
     @Column(name = "id_karty")
     private int id_karty;
+
 
 
 }
