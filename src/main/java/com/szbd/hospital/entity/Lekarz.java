@@ -1,6 +1,7 @@
 package com.szbd.hospital.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -40,15 +41,23 @@ public class Lekarz {
     private List<Specjalizacje> specjalizacje;
 
 
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "lekarz",
+            cascade = CascadeType.ALL)
+    private List<Recepta> recepty;
+
+
     public Lekarz() {
     }
 
 
-    public Lekarz(String imie, String nazwisko, int placa_pod, List<Specjalizacje> specjalizacje) {
+    public Lekarz(String imie, String nazwisko, int placa_pod, List<Specjalizacje> specjalizacje, List<Recepta> recepty) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.placa_pod = placa_pod;
         this.specjalizacje = specjalizacje;
+        this.recepty = recepty;
     }
 
     public void addSpecjalizacja(Specjalizacje specjalizacja) {
@@ -61,6 +70,15 @@ public class Lekarz {
     public void removeSpecjalizacje(Specjalizacje specjalizacja) {
         specjalizacje.remove(specjalizacja);
         specjalizacja.getLekarze().remove(this);
+    }
+
+
+    public void addRecepta(Recepta recepta){
+        if(recepty == null){
+            recepty = new ArrayList<>();
+        }
+        recepty.add(recepta);
+        recepta.setLekarz(this);
     }
 
 

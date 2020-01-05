@@ -45,7 +45,6 @@ public class Recepta {
     private List<Lek> leki;
 
 
-
     //mapowanie ManyToOne LEKARZ
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
