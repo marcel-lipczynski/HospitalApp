@@ -67,7 +67,7 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
         Sala sala = entityManager.find(Sala.class, nrSali);
         if(pielegniarka != null && sala != null && pielegniarka.getSale().indexOf(sala) != -1){
             pielegniarka.removeSala(sala);
-//            sala.removePielegniarka(pielegniarka);
+            sala.removePielegniarka(pielegniarka);
         }
     }
 

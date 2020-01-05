@@ -1,6 +1,7 @@
 package com.szbd.hospital.dao;
 
 import com.szbd.hospital.entity.KartaPobytu;
+import com.szbd.hospital.entity.Lek;
 import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Recepta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class ReceptaDAOImpl implements ReceptaDAO {
     @Override
     public Recepta findById(int id) {
         return entityManager.find(Recepta.class, id);
+    }
+
+    @Override
+    public List<Lek> findLekiOfRecepta(int id_recepty) {
+        return entityManager.find(Recepta.class, id_recepty).getLeki();
     }
 
     @Override
@@ -57,10 +63,38 @@ public class ReceptaDAOImpl implements ReceptaDAO {
     }
 
     @Override
+    public void addLekToRecepta(int id_recepty, String nazwa_leku) {
+        Recepta recepta = entityManager.find(Recepta.class, id_recepty);
+        Lek lek = entityManager.find(Lek.class, nazwa_leku);
+
+        if(recepta != null && lek != null){
+            for(Lek recLek: recepta.getLeki()){
+                if(recLek.getNazwa_leku().equals(lek.getNazwa_leku())){
+                    return;
+                }
+            }
+            recepta.addLek(lek);
+            lek.addRecepta(recepta);
+        }
+    }
+
+    @Override
     public void deleteReceptaById(int id) {
         Recepta recepta = entityManager.find(Recepta.class, id);
         if (recepta != null) {
             entityManager.remove(recepta);
         }
+    }
+
+    @Override
+    public void deleteLekFromRecepta(int id_recepty, String nazwa_leku) {
+        Recepta recepta = entityManager.find(Recepta.class, id_recepty);
+        Lek lek = entityManager.find(Lek.class, nazwa_leku);
+
+        if(recepta != null && lek != null && recepta.getLeki().indexOf(lek) != -1){
+            recepta.removeLek(lek);
+            lek.removeRecepta(recepta);
+        }
+
     }
 }
