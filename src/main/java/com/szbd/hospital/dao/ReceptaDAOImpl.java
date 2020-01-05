@@ -47,29 +47,42 @@ public class ReceptaDAOImpl implements ReceptaDAO {
 
         List<Recepta> recepty = entityManager.createQuery("from Recepta", Recepta.class).getResultList();
         //jesli znajde recepte o takim samym id lekarza i id karty to nie dodaje ani nie updatuje bo po co do tego samego
-        for(Recepta rec: recepty){
-            if(rec.getId_lekarza() == recepta.getId_lekarza() &&
-            rec.getId_karty() == recepta.getId_karty()){
+        for (Recepta rec : recepty) {
+            if (rec.getId_lekarza() == recepta.getId_lekarza() &&
+                    rec.getId_karty() == recepta.getId_karty()) {
                 return;
             }
         }
 
+        //TODO
+        //NALEZY TUTAJ WROCIC KIEDy getLEKARZ bedzie zaiplementowany!!!!
 
-        lekarz.addRecepta(recepta);
-        kartaPobytu.addRecepta(recepta);
+        boolean isLekarzOnKartaPobytu = false;
+        //sprawdz czy dany lekarz obsluguje w ogole karte pobytu!
+//        for (Lekarz lekarzDB : kartaPobytu.getLekarz()) {
+//            if (lekarzDB.getId_lekarza() == lekarz.getId_lekarza()) {
+//                isLekarzOnKartaPobytu = true;
+//                break;
+//            }
 
-        entityManager.merge(recepta);
+        if (!isLekarzOnKartaPobytu) {
+            lekarz.addRecepta(recepta);
+            kartaPobytu.addRecepta(recepta);
+
+            entityManager.merge(recepta);
+        }
 
     }
+
 
     @Override
     public void addLekToRecepta(int id_recepty, String nazwa_leku) {
         Recepta recepta = entityManager.find(Recepta.class, id_recepty);
         Lek lek = entityManager.find(Lek.class, nazwa_leku);
 
-        if(recepta != null && lek != null){
-            for(Lek recLek: recepta.getLeki()){
-                if(recLek.getNazwa_leku().equals(lek.getNazwa_leku())){
+        if (recepta != null && lek != null) {
+            for (Lek recLek : recepta.getLeki()) {
+                if (recLek.getNazwa_leku().equals(lek.getNazwa_leku())) {
                     return;
                 }
             }
@@ -91,7 +104,7 @@ public class ReceptaDAOImpl implements ReceptaDAO {
         Recepta recepta = entityManager.find(Recepta.class, id_recepty);
         Lek lek = entityManager.find(Lek.class, nazwa_leku);
 
-        if(recepta != null && lek != null && recepta.getLeki().indexOf(lek) != -1){
+        if (recepta != null && lek != null && recepta.getLeki().indexOf(lek) != -1) {
             recepta.removeLek(lek);
             lek.removeRecepta(recepta);
         }
