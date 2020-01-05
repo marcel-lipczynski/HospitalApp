@@ -44,7 +44,7 @@ public class LekController {
 
     @DeleteMapping("/{id}")
     public void deleteLekById(@PathVariable String id){
-        lekService.deleteLekById(id);
+        lekService.deleteLekById(id.toUpperCase());
     }
 
 
