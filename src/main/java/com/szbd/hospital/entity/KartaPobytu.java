@@ -41,6 +41,16 @@ public class KartaPobytu {
     private int nr_sali;
 
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "kartypobytu_lekarze",
+            joinColumns = @JoinColumn(name = "id_karty"),
+            inverseJoinColumns = @JoinColumn(name = "id_lekarza")
+    )
+    private List<Lekarz> lekarze;
+
+
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
@@ -76,17 +86,20 @@ public class KartaPobytu {
     public KartaPobytu() {
     }
 
-
-    //updatowac karte pobytu!!!
-    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali, Pacjent pacjent, Sala sala, List<Recepta> recepty) {
+    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali,
+                       List<Lekarz> lekarze, Pacjent pacjent, Sala sala, List<Recepta> recepty,
+                       List<Operacja> operacje, List<Diagnoza> diagnozy) {
         this.data_przyjecia = data_przyjecia;
         this.godzina_przyjecia = godzina_przyjecia;
         this.data_wypisu = data_wypisu;
         this.pesel = pesel;
         this.nr_sali = nr_sali;
+        this.lekarze = lekarze;
         this.pacjent = pacjent;
         this.sala = sala;
         this.recepty = recepty;
+        this.operacje = operacje;
+        this.diagnozy = diagnozy;
     }
 
 
@@ -101,6 +114,19 @@ public class KartaPobytu {
 
     //metoda dodajaca do listy nowa recepta
     //do recepty karte pobytu!
+    public void addLekarz(Lekarz lekarz) {
+        if (lekarze == null) {
+            lekarze = new ArrayList<>();
+        }
+        lekarze.add(lekarz);
+    }
+
+    public void removeLekarz(Lekarz lekarz) {
+        lekarze.remove(lekarz);
+        lekarz.getKartyPobytu().remove(this);
+    }
+
+
     public void addRecepta(Recepta recepta) {
         if (recepty == null) {
             recepty = new ArrayList<>();

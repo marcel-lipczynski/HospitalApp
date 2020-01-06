@@ -54,11 +54,9 @@ public class ReceptaDAOImpl implements ReceptaDAO {
             }
         }
 
-        //TODO
-        //NALEZY TUTAJ WROCIC KIEDy getLEKARZ bedzie zaiplementowany!!!!
 
         boolean isLekarzOnKartaPobytu = false;
-        //sprawdz czy dany lekarz obsluguje w ogole karte pobytu!
+////        sprawdz czy dany lekarz obsluguje w ogole karte pobytu!
 //        for (Lekarz lekarzDB : kartaPobytu.getLekarz()) {
 //            if (lekarzDB.getId_lekarza() == lekarz.getId_lekarza()) {
 //                isLekarzOnKartaPobytu = true;

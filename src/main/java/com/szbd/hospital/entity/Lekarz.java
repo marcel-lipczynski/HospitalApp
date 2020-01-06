@@ -40,6 +40,12 @@ public class Lekarz {
     private List<Specjalizacje> specjalizacje;
 
 
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "lekarze")
+    private List<KartaPobytu> kartyPobytu;
+
+
     @JsonManagedReference
     @OneToMany(
             mappedBy = "lekarz",
@@ -63,13 +69,17 @@ public class Lekarz {
     }
 
 
-    //update constructor!!!!
-    public Lekarz(String imie, String nazwisko, int placa_pod, List<Specjalizacje> specjalizacje, List<Recepta> recepty) {
+    public Lekarz(String imie, String nazwisko, int placa_pod,
+                  List<Specjalizacje> specjalizacje, List<KartaPobytu> kartyPobytu,
+                  List<Recepta> recepty, List<Operacja> operacje, List<Diagnoza> diagnozy) {
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.placa_pod = placa_pod;
         this.specjalizacje = specjalizacje;
+        this.kartyPobytu = kartyPobytu;
         this.recepty = recepty;
+        this.operacje = operacje;
+        this.diagnozy = diagnozy;
     }
 
     public void addSpecjalizacja(Specjalizacje specjalizacja) {
@@ -82,6 +92,18 @@ public class Lekarz {
     public void removeSpecjalizacje(Specjalizacje specjalizacja) {
         specjalizacje.remove(specjalizacja);
         specjalizacja.getLekarze().remove(this);
+    }
+
+    public void addKartaPobytu(KartaPobytu kartaPobytu) {
+        if (kartyPobytu == null) {
+            kartyPobytu = new ArrayList<>();
+        }
+        kartyPobytu.add(kartaPobytu);
+    }
+
+    public void removeKartaPobytu(KartaPobytu kartaPobytu) {
+        kartyPobytu.remove(kartyPobytu);
+        kartaPobytu.getLekarze().remove(this);
     }
 
 
