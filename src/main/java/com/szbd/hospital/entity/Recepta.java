@@ -46,7 +46,7 @@ public class Recepta {
 
 
     //mapowanie ManyToOne LEKARZ
-    @JsonBackReference
+    @JsonBackReference(value = "lekarze_recepty")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_lekarza", insertable = false, updatable = false)
@@ -54,7 +54,7 @@ public class Recepta {
 
 
     //mapowanie ManyToOne KARTA_POBYTU
-    @JsonBackReference
+    @JsonBackReference(value = "karty_recepty")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_karty", insertable = false, updatable = false)

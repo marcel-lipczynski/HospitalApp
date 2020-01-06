@@ -34,7 +34,7 @@ public class Pacjent {
     //One Pacjent has few KartaPobytu
     //CascadeType.ALL -> usuniecie pacjenta = usuniecie jego kart;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "pacjenci_karty")
     @OneToMany(
             mappedBy = "pacjent",
             cascade = CascadeType.ALL)

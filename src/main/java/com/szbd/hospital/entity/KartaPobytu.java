@@ -51,32 +51,32 @@ public class KartaPobytu {
     private List<Lekarz> lekarze;
 
 
-    @JsonBackReference
+    @JsonBackReference(value = "pacjenci_karty")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "pesel", insertable = false, updatable = false)
     private Pacjent pacjent;
 
-    @JsonBackReference
+    @JsonBackReference(value = "sale_karty")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "nr_sali", insertable = false, updatable = false)
     private Sala sala;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "karty_recepty")
     @OneToMany(
             mappedBy = "kartaPobytu",
             cascade = CascadeType.ALL)
     private List<Recepta> recepty;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "karty_operacje")
     @OneToMany(
             mappedBy = "kartaPobytu",
             cascade = CascadeType.ALL)
     private List<Operacja> operacje;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "karty_diagnozy")
     @OneToMany(
             mappedBy = "kartaPobytu",
             cascade = CascadeType.ALL)
@@ -84,6 +84,14 @@ public class KartaPobytu {
 
 
     public KartaPobytu() {
+    }
+
+    public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali) {
+        this.data_przyjecia = data_przyjecia;
+        this.godzina_przyjecia = godzina_przyjecia;
+        this.data_wypisu = data_wypisu;
+        this.pesel = pesel;
+        this.nr_sali = nr_sali;
     }
 
     public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali,

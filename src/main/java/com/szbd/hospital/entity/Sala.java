@@ -40,7 +40,7 @@ public class Sala {
     private List<Pielegniarka> pielegniarki;
 
     //mapowanie kart pobytu
-    @JsonManagedReference
+    @JsonManagedReference(value = "sale_karty")
     @OneToMany(
             mappedBy = "sala",
             cascade = CascadeType.ALL)

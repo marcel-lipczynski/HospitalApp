@@ -35,13 +35,13 @@ public class Diagnoza {
     private int id_karty;
 
 
-    @JsonBackReference
+    @JsonBackReference(value = "karty_diagnozy")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_karty", insertable = false, updatable = false)
     private KartaPobytu kartaPobytu;
 
-    @JsonBackReference
+    @JsonBackReference(value = "lekarze_diagnozy")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_lekarza", insertable = false, updatable = false)

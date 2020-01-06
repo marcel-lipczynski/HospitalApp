@@ -16,7 +16,7 @@ public class Operacja {
     @Id
     @SequenceGenerator(name = "seq7", sequenceName = "operacja_id_operacji_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq7")
-    @Column(name = "id_diagnozy")
+    @Column(name = "id_operacji")
     private int id_operacji;
 
 
@@ -37,13 +37,13 @@ public class Operacja {
     private int id_karty;
 
 
-    @JsonBackReference
+    @JsonBackReference(value = "karty_operacje")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_karty", insertable = false, updatable = false)
     private KartaPobytu kartaPobytu;
 
-    @JsonBackReference
+    @JsonBackReference(value = "lekarze_operacje")
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_lekarza", insertable = false, updatable = false)

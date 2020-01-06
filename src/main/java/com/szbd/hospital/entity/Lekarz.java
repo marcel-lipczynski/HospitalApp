@@ -46,19 +46,19 @@ public class Lekarz {
     private List<KartaPobytu> kartyPobytu;
 
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "lekarze_recepty")
     @OneToMany(
             mappedBy = "lekarz",
             cascade = CascadeType.ALL)
     private List<Recepta> recepty;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "lekarze_operacje")
     @OneToMany(
             mappedBy = "lekarz",
             cascade = CascadeType.ALL)
     private List<Operacja> operacje;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "lekarze_diagnozy")
     @OneToMany(
             mappedBy = "lekarz",
             cascade = CascadeType.ALL)
