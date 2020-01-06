@@ -38,5 +38,5 @@ public class OperacjaController {
     public void deleteOperacjaById(@PathVariable int id){
         operacjaService.deleteOperacjaById(id);
     }
-    
+
 }
