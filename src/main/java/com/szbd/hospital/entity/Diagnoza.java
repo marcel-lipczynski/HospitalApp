@@ -1,5 +1,6 @@
 package com.szbd.hospital.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -34,9 +35,31 @@ public class Diagnoza {
     private int id_karty;
 
 
-    //dodac mapping z karta pobytu i lekarzem
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "id_karty", insertable = false, updatable = false)
+    private KartaPobytu kartaPobytu;
 
-    //nastepnie dodac konstruktor! 
+    @JsonBackReference
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "id_lekarza", insertable = false, updatable = false)
+    private Lekarz lekarz;
+
+
+    public Diagnoza() {
+    }
+
+
+    public Diagnoza(Date data_wystawienia, String opis, int id_lekarza, int id_karty, KartaPobytu kartaPobytu, Lekarz lekarz) {
+        this.data_wystawienia = data_wystawienia;
+        this.opis = opis;
+        this.id_lekarza = id_lekarza;
+        this.id_karty = id_karty;
+        this.kartaPobytu = kartaPobytu;
+        this.lekarz = lekarz;
+    }
 
 
 }

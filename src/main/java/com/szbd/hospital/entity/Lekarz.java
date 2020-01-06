@@ -30,7 +30,6 @@ public class Lekarz {
     private int placa_pod;
 
 
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
@@ -47,11 +46,24 @@ public class Lekarz {
             cascade = CascadeType.ALL)
     private List<Recepta> recepty;
 
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "lekarz",
+            cascade = CascadeType.ALL)
+    private List<Operacja> operacje;
+
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "lekarz",
+            cascade = CascadeType.ALL)
+    private List<Diagnoza> diagnozy;
+
 
     public Lekarz() {
     }
 
 
+    //update constructor!!!!
     public Lekarz(String imie, String nazwisko, int placa_pod, List<Specjalizacje> specjalizacje, List<Recepta> recepty) {
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -73,12 +85,28 @@ public class Lekarz {
     }
 
 
-    public void addRecepta(Recepta recepta){
-        if(recepty == null){
+    public void addRecepta(Recepta recepta) {
+        if (recepty == null) {
             recepty = new ArrayList<>();
         }
         recepty.add(recepta);
         recepta.setLekarz(this);
+    }
+
+    public void addOperacja(Operacja operacja) {
+        if (operacje == null) {
+            operacje = new ArrayList<>();
+        }
+        operacje.add(operacja);
+        operacja.setLekarz(this);
+    }
+
+    public void addDiagnoza(Diagnoza diagnoza) {
+        if (diagnozy == null) {
+            diagnozy = new ArrayList<>();
+        }
+        diagnozy.add(diagnoza);
+        diagnoza.setLekarz(this);
     }
 
 

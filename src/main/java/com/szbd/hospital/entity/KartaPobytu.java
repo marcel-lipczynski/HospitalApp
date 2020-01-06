@@ -60,10 +60,24 @@ public class KartaPobytu {
             cascade = CascadeType.ALL)
     private List<Recepta> recepty;
 
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "kartaPobytu",
+            cascade = CascadeType.ALL)
+    private List<Operacja> operacje;
+
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "kartaPobytu",
+            cascade = CascadeType.ALL)
+    private List<Diagnoza> diagnozy;
+
 
     public KartaPobytu() {
     }
 
+
+    //updatowac karte pobytu!!!
     public KartaPobytu(Date data_przyjecia, String godzina_przyjecia, Date data_wypisu, String pesel, int nr_sali, Pacjent pacjent, Sala sala, List<Recepta> recepty) {
         this.data_przyjecia = data_przyjecia;
         this.godzina_przyjecia = godzina_przyjecia;
@@ -87,11 +101,29 @@ public class KartaPobytu {
 
     //metoda dodajaca do listy nowa recepta
     //do recepty karte pobytu!
-    public void addRecepta(Recepta recepta){
-        if(recepty == null){
+    public void addRecepta(Recepta recepta) {
+        if (recepty == null) {
             recepty = new ArrayList<>();
         }
         recepty.add(recepta);
         recepta.setKartaPobytu(this);
     }
+
+    public void addOperacja(Operacja operacja) {
+        if (operacje == null) {
+            operacje = new ArrayList<>();
+        }
+        operacje.add(operacja);
+        operacja.setKartaPobytu(this);
+    }
+
+    public void addDiagnoza(Diagnoza diagnoza) {
+        if (diagnozy == null) {
+            diagnozy = new ArrayList<>();
+        }
+        diagnozy.add(diagnoza);
+        diagnoza.setKartaPobytu(this);
+    }
+
+
 }

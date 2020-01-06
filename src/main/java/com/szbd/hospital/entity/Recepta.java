@@ -61,7 +61,6 @@ public class Recepta {
     private KartaPobytu kartaPobytu;
 
 
-
     //methods for adding and removing from leki list
     public void addLek(Lek lek) {
         if (leki == null) {
