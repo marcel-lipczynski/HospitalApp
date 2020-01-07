@@ -12,6 +12,7 @@ import {Observable} from "rxjs";
 export class PacjenciListaComponent implements OnInit {
 
   pacjenci: Pacjent[];
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient,
               private pacjentService: PacjentService) { }
@@ -24,7 +25,9 @@ export class PacjenciListaComponent implements OnInit {
     //subscribe działa tak że przy "next" zmianie danych zwroc je do pacjenci
     //i jak zawrocisz to przypisz do moich pacjentow! :D
     this.pacjentService.findAllPacjenci().subscribe(pacjenci => {
+      this.isLoading = true;
       this.pacjenci = pacjenci;
+      this.isLoading = false;
     })
   }
 
