@@ -1,0 +1,147 @@
+<div class="container">
+
+  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    +Dodaj
+  </button>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th>id_diagnozy</th>
+        <th>opis</th>
+        <th>data wystawienia</th>
+        <th>id lekarza wystawiającego</th>
+        <th>id karty pobytu pacjenta</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>1</td>
+        <td>Zapalenie płuc</td>
+        <td>23.05.2019</td>
+        <td>2</td>
+        <td>5</td>
+        <td class="text-right">
+          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj diagnozę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="id_diagnozy">ID diagnozy</label>
+            <input type="text" class="form-control" id="id_diagnozy">
+          </div>
+
+          <div class="form-group">
+            <label for="opis">Opis</label>
+            <input type="text" class="form-control" id="opis">
+          </div>
+
+          <div class="form-group">
+            <label for="data_wystawienia">Data wystawienia</label>
+            <input type="text" class="form-control" id="data_wystawienia">
+          </div>
+
+          <div class="form-group">
+            <label for="id_lek">ID lekarza wystawiającego</label>
+            <input type="text" class="form-control" id="id_lek">
+          </div>
+
+
+          <div class="form-group">
+            <label for="id_karty_pacjenta">Id Karty Pacjenta</label>
+            <input type="text" class="form-control" id="id_karty_pacjenta">
+          </div>
+
+
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle2">Edytuj diagnozę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="id_diagnozy_update">ID diagnozy</label>
+            <input type="text" class="form-control" id="id_diagnozy_update">
+          </div>
+
+          <div class="form-group">
+            <label for="opis2">Opis</label>
+            <input type="text" class="form-control" id="opis2">
+          </div>
+
+          <div class="form-group">
+            <label for="data_wystawienia_update">Data wystawienia</label>
+            <input type="text" class="form-control" id="data_wystawienia_update">
+          </div>
+
+          <div class="form-group">
+            <label for="id_lek_update">ID lekarza wystawiającego</label>
+            <input type="text" class="form-control" id="id_lek_update">
+          </div>
+
+
+          <div class="form-group">
+            <label for="id_karty_pacjenta_update">Id Karty Pacjenta</label>
+            <input type="text" class="form-control" id="id_karty_pacjenta_update">
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

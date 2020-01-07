@@ -1,0 +1,117 @@
+<div class="container">
+
+  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    +Dodaj
+  </button>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th>PESEL</th>
+        <th>imie</th>
+        <th>nazwisko</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>1,001</td>
+        <td>Lorem</td>
+        <td>ipsum</td>
+
+        <td class="text-right">
+          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj pacjenta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="pesel_pacjenta">PESEL</label>
+            <input type="text" class="form-control" id="pesel_pacjenta">
+          </div>
+
+          <div class="form-group">
+            <label for="imie_pacjenta">Imie</label>
+            <input type="text" class="form-control" id="imie_pacjenta">
+          </div>
+
+          <div class="form-group">
+            <label for="nazwisko_pacjenta">Nazwisko</label>
+            <input type="text" class="form-control" id="nazwisko_pacjenta">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle2">Edytuj pacjenta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="pesel_pacjenta_update">PESEL</label>
+            <input type="text" class="form-control" id="pesel_pacjenta_update">
+          </div>
+
+          <div class="form-group">
+            <label for="imie_pacjenta_update">Imie</label>
+            <input type="text" class="form-control" id="imie_pacjenta_update">
+          </div>
+
+          <div class="form-group">
+            <label for="nazwisko_pacjenta_update">Nazwisko</label>
+            <input type="text" class="form-control" id="nazwisko_pacjenta_update">
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

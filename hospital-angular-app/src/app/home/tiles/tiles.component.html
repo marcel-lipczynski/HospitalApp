@@ -1,0 +1,154 @@
+<section class="page-section bg-primary padding-header" id="entities">
+
+<!--  THIS IS TITLE WITH DESCRIPTION-->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="text-white mt-0">Jednostki szpitala</h2>
+        <hr class="divider my-4">
+        <p class="text-white-50 mb-4">Wybierz jedną z jednostek do edycji</p>
+      </div>
+    </div>
+
+<!-- HERE COME TILES WITH ENTITIES-->
+
+    <div class="row">
+
+<!--      Karta pobytu pacjenta-->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['karty']"><img class="card-img-top" src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['karty']">Karty pobytu</a>
+            </h4>
+            <p class="card-text">Zarządzaj kartami pobytu pacjentów przebywających w szpitalu aktualnie bądź w przeszłości.</p>
+          </div>
+        </div>
+      </div>
+
+<!--    Pacjenci -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['pacjenci']"><img class="card-img-top" src="https://images.unsplash.com/photo-1538043224072-a1cb7a1122f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1091&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['pacjenci']">Pacjenci</a>
+            </h4>
+            <p class="card-text">Zarządzaj pacjentami dostępnymi w bazie szpitala. Dodaj pacjenta, edytuj dane osobowe, bądź
+            usuń pacjenta z bazy danych.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Lekarze   -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['lekarze']"><img class="card-img-top" src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['lekarze']">Lekarze</a>
+            </h4>
+            <p class="card-text">Zarządzaj learzami dostępnymi w bazie szpitala. Dodaj lekarza, edytuj dane osobowe, bądź
+              usuń lekarza z bazy danych.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Pielęgniarki -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['pielegniarki']"><img class="card-img-top" src="https://previews.123rf.com/images/stocking/stocking1208/stocking120800150/14663471-portrait-of-a-beautiful-smiling-nurse.jpg"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['pielegniarki']">Pielęgniarki</a>
+            </h4>
+            <p class="card-text">Zarządzaj pielęgniarkami dostępnymi w bazie szpitala. Dodaj pielęgniarkę, edytuj dane osobowe, bądź
+              usuń pielęgniarkę z bazy danych.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Sale -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['sale']"><img class="card-img-top" src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['sale']">Sale</a>
+            </h4>
+            <p class="card-text">Przeglądaj dostępne w szpitalu sale, zarządzaj ich dostępnością.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Operacje -->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['operacje']"><img class="card-img-top" src="https://images.unsplash.com/photo-1550831107-1553da8c8464?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['operacje']">Operacje</a>
+            </h4>
+            <p class="card-text">Zarządzaj operacjami. Przeglądaj dane o przeprowadzonych operacjach. Wprowadź
+            termin operacji dla pacjenta.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Diagnozy-->
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['diagnozy']"><img class="card-img-top" src="https://images.unsplash.com/photo-1560582861-45078880e48e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['diagnozy']">Diagnozy</a>
+            </h4>
+            <p class="card-text">Zarządzaj diagnozami. Przeglądaj wystawione dla pacjenta diagnozy. Dodaj
+            nową diagnozę dla pacjenta.</p>
+          </div>
+        </div>
+      </div>
+
+<!--      Recepty-->
+
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['recepty']"><img class="card-img-top" src="https://thumbs.dreamstime.com/b/ubezpieczenie-zdrowotne-schowek-z-medycznym-krzy%C5%BCem-kliniczny-rejestr-recepta-%C5%BC%C4%85danie-raport-medyczny-ubezpiecze%C5%84-zdrowotnych-130823830.jpg"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['recepty']">Recepty</a>
+            </h4>
+            <p class="card-text">Zarządzaj receptami. Przeglądaj wystawione dla pacjenta recepty. Wystaw
+              nową receptę dla pacjenta.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-6 mb-4">
+        <div class="card h-100">
+          <a [routerLink]="['leki']"><img class="card-img-top" src="https://images.unsplash.com/photo-1573823062558-f93608871c3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=962&q=80"
+                           alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a [routerLink]="['leki']">Leki</a>
+            </h4>
+            <p class="card-text">Sprawdź dostępne w szpitalu leki. Dodaj nowy lek do listy dostępnych leków.
+            Usuń lek, który jest niedostępny.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</section>
