@@ -1,0 +1,108 @@
+<div class="container">
+
+  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    +Dodaj
+  </button>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+      <tr>
+        <th>nazwa leku</th>
+        <th>rodzaj leku</th>
+
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>Ibuprom</td>
+        <td>Przeciwbólowy</td>
+
+
+        <td class="text-right">
+          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj lek</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="nazwa_leku">Nazwa leku</label>
+            <input type="text" class="form-control" id="nazwa_leku">
+          </div>
+
+          <div class="form-group">
+            <label for="rodzaj_leku">Rodzaj leku</label>
+            <input type="text" class="form-control" id="rodzaj_leku">
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle2">Edytuj lek</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="submit">
+
+          <div class="form-group">
+            <label for="nazwa_leku_update">Nazwa leku</label>
+            <input type="text" class="form-control" id="nazwa_leku_update">
+          </div>
+
+          <div class="form-group">
+            <label for="rodzaj_leku_update">Rodzaj leku</label>
+            <input type="text" class="form-control" id="rodzaj_leku_update">
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
