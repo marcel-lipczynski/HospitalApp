@@ -25,6 +25,7 @@ import { ReceptyComponent } from './recepty/recepty.component';
 import { ReceptyLekiComponent } from './recepty/recepty-leki/recepty-leki.component';
 import { LekiComponent } from './leki/leki.component';
 import { LekiListaComponent } from './leki/leki-lista/leki-lista.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { LekiListaComponent } from './leki/leki-lista/leki-lista.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
