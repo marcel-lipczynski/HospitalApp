@@ -31,4 +31,14 @@ export class PacjenciListaComponent implements OnInit {
     })
   }
 
+  saveOrUpdatePacjent(pacjent: Pacjent){
+    this.pacjentService.saveOrUpdatePacjent(pacjent);
+    this.reloadData();
+  }
+
+  deletePacjentByPesel(pesel: string){
+    this.pacjentService.deletePacjentByPesel(pesel).subscribe();
+    this.reloadData();
+  }
+
 }
