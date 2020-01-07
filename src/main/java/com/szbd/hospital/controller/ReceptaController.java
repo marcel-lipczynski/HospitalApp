@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/recepty")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ReceptaController {
 
     private ReceptaService receptaService;

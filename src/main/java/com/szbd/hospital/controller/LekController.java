@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/leki")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LekController {
 
     private LekService lekService;

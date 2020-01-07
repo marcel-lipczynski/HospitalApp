@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/specjalizacje")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SpecjalizacjeController {
 
     private SpecjalizacjeService specjalizacjeService;
@@ -37,9 +38,6 @@ public class SpecjalizacjeController {
     public void deleteSpecjalizacjeById(@PathVariable String id) {
         specjalizacjeService.deleteSpecjalizacjeById(id.toUpperCase());
     }
-
-
-
 
 
 }
