@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lek")
+@RequestMapping("/leki")
 public class LekController {
 
     private LekService lekService;
