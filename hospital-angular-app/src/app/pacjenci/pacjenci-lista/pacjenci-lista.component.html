@@ -15,10 +15,11 @@
       </thead>
 
       <tbody>
-      <tr>
-        <td>1,001</td>
-        <td>Lorem</td>
-        <td>ipsum</td>
+      <tr *ngFor = "let pacjent of pacjenci">
+        <td>{{pacjent.pesel}}</td>
+        <td>{{pacjent.imie}}</td>
+        <td>{{pacjent.nazwisko}}</td>
+
 
         <td class="text-right">
           <button class="btn btn-danger">Usuń</button>

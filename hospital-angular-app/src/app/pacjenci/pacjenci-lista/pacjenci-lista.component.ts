@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {PacjentService} from "../pacjent.service";
+import {Pacjent} from "../pacjent.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-pacjenci-lista',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PacjenciListaComponent implements OnInit {
 
-  constructor() { }
+  pacjenci: Pacjent[];
+
+  constructor(private http: HttpClient,
+              private pacjentService: PacjentService) { }
 
   ngOnInit() {
+    this.reloadData();
+  }
+
+  reloadData(){
+    //subscribe działa tak że przy "next" zmianie danych zwroc je do pacjenci
+    //i jak zawrocisz to przypisz do moich pacjentow! :D
+    this.pacjentService.findAllPacjenci().subscribe(pacjenci => {
+      this.pacjenci = pacjenci;
+    })
   }
 
 }
