@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PacjentService} from "../pacjent.service";
 import {Pacjent} from "../pacjent.model";
 import {Observable} from "rxjs";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-pacjenci-lista',
@@ -13,6 +14,20 @@ export class PacjenciListaComponent implements OnInit {
 
   pacjenci: Pacjent[];
   isLoading: boolean = false;
+
+
+  //tworzymy controle dla pól w pacjencie!
+  peselControl = new FormControl('');
+  imieControl = new FormControl('');
+  nazwiskoControl = new FormControl('');
+
+
+  //tworzymy form grupe dla controli!
+  formPacjent = new FormGroup({
+    imie: this.imieControl,
+    nazwisko: this.nazwiskoControl,
+    pesel: this.peselControl
+  });
 
   constructor(private http: HttpClient,
               private pacjentService: PacjentService) { }
@@ -32,8 +47,12 @@ export class PacjenciListaComponent implements OnInit {
   }
 
   saveOrUpdatePacjent(pacjent: Pacjent){
-    this.pacjentService.saveOrUpdatePacjent(pacjent);
+    this.pacjentService.saveOrUpdatePacjent(pacjent).subscribe();
     this.reloadData();
+  }
+
+  onSubmit(){
+    this.saveOrUpdatePacjent(this.formPacjent.value);
   }
 
   deletePacjentByPesel(pesel: string){

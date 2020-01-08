@@ -54,28 +54,31 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+        <form (ngSubmit)="onSubmit()" [formGroup]="formPacjent">
 
           <div class="form-group">
             <label for="pesel_pacjenta">PESEL</label>
-            <input type="text" class="form-control" id="pesel_pacjenta">
+            <input type="text" class="form-control" formControlName="pesel" id="pesel_pacjenta">
           </div>
 
           <div class="form-group">
             <label for="imie_pacjenta">Imie</label>
-            <input type="text" class="form-control" id="imie_pacjenta">
+            <input type="text" class="form-control"formControlName="imie"  id="imie_pacjenta" >
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta">Nazwisko</label>
-            <input type="text" class="form-control" id="nazwisko_pacjenta">
+            <input type="text" class="form-control" formControlName="nazwisko" id="nazwisko_pacjenta">
+          </div>
+
+          <div class="modal-footer">
+            <div class="form-group">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+              <button type="submit" class="btn btn-primary" >Zapisz</button>
+            </div>
           </div>
 
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
       </div>
     </div>
   </div>

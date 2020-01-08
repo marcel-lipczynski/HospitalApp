@@ -32,7 +32,7 @@ public class PacjentController {
 
     @PostMapping("")
     public void save(@RequestBody Pacjent pacjent){
-
+        System.out.println(pacjent);
         pacjentService.save(pacjent);
     }
 
