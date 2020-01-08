@@ -55,6 +55,7 @@ export class PacjenciListaComponent implements OnInit {
   //submitting form
   onSubmit(){
     this.saveOrUpdatePacjent(this.formPacjent.value);
+    this.resetForm();
   }
 
   //Deleting pacjent by pesel
@@ -68,6 +69,10 @@ export class PacjenciListaComponent implements OnInit {
     if(confirm("Are you sure you want to delete?")){
       this.deletePacjentByPesel(pesel);
     }
+  }
+
+  resetForm(){
+    this.formPacjent.reset();
   }
 
 }
