@@ -46,18 +46,28 @@ export class PacjenciListaComponent implements OnInit {
     })
   }
 
+  //saving or updating pacjent
   saveOrUpdatePacjent(pacjent: Pacjent){
-    this.pacjentService.saveOrUpdatePacjent(pacjent).subscribe();
-    this.reloadData();
+    this.pacjentService.saveOrUpdatePacjent(pacjent).subscribe(() =>
+    this.reloadData());
   }
 
+  //submitting form
   onSubmit(){
     this.saveOrUpdatePacjent(this.formPacjent.value);
   }
 
+  //Deleting pacjent by pesel
   deletePacjentByPesel(pesel: string){
-    this.pacjentService.deletePacjentByPesel(pesel).subscribe();
-    this.reloadData();
+    this.pacjentService.deletePacjentByPesel(pesel).subscribe(() =>
+    this.reloadData());
+  }
+
+  //confirm delete Pacjent
+  onConfirmDelete(pesel: string){
+    if(confirm("Are you sure you want to delete?")){
+      this.deletePacjentByPesel(pesel);
+    }
   }
 
 }

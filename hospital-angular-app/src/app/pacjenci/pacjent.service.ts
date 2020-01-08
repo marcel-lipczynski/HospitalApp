@@ -21,7 +21,7 @@ export class PacjentService{
   }
 
   deletePacjentByPesel(pesel: string): Observable<Pacjent>{
-    return this.http.delete<Pacjent>(this.PACJENCI_API_URL + pesel)
+    return this.http.delete<Pacjent>(this.PACJENCI_API_URL + `/${pesel}`)
   }
 
 

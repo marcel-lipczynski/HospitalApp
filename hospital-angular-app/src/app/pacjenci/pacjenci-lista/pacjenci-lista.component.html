@@ -31,7 +31,7 @@
 
 
         <td class="text-right">
-          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-danger" (click)="onConfirmDelete(pacjent.pesel)">Usuń</button>
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
         </td>
       </tr>
@@ -74,7 +74,7 @@
           <div class="modal-footer">
             <div class="form-group">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-              <button type="submit" class="btn btn-primary" >Zapisz</button>
+              <button type="button" (click)="onSubmit()" data-dismiss="modal" class="btn btn-primary" >Zapisz</button>
             </div>
           </div>
 
