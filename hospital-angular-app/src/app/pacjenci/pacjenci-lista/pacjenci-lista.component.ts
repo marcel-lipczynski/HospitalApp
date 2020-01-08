@@ -14,26 +14,21 @@ export class PacjenciListaComponent implements OnInit {
 
   pacjenci: Pacjent[];
   isLoading: boolean = false;
+  formPacjent: FormGroup;
 
 
   //tworzymy controle dla pól w pacjencie!
-  peselControl = new FormControl('');
-  imieControl = new FormControl('');
-  nazwiskoControl = new FormControl('');
+  // peselControl = new FormControl('');
+  // imieControl = new FormControl('');
+  // nazwiskoControl = new FormControl('');
 
-
-  //tworzymy form grupe dla controli!
-  formPacjent = new FormGroup({
-    imie: this.imieControl,
-    nazwisko: this.nazwiskoControl,
-    pesel: this.peselControl
-  });
 
   constructor(private http: HttpClient,
               private pacjentService: PacjentService) { }
 
   ngOnInit() {
     this.reloadData();
+    this.setupAddForm();
   }
 
   reloadData(){
@@ -73,6 +68,14 @@ export class PacjenciListaComponent implements OnInit {
 
   resetForm(){
     this.formPacjent.reset();
+  }
+
+  setupAddForm(){
+    this.formPacjent = new FormGroup({
+      imie: new FormControl(''),
+      nazwisko: new FormControl(''),
+      pesel: new FormControl()
+    });
   }
 
 }
