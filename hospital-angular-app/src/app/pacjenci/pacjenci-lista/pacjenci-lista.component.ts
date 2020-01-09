@@ -13,10 +13,11 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 export class PacjenciListaComponent implements OnInit {
 
   // @Output() pacjentPesel = new EventEmitter<string>();
-  pacjenci: Pacjent[];
+  pacjenci: Pacjent[] = [];
   isLoading: boolean = false;
   formPacjent: FormGroup;
   formPacjentEdit: FormGroup;
+  pesels: string[] = [];
 
 
 
@@ -34,6 +35,10 @@ export class PacjenciListaComponent implements OnInit {
     this.pacjentService.findAllPacjenci().subscribe(pacjenci => {
       this.isLoading = true;
       this.pacjenci = pacjenci;
+      pacjenci.forEach(element =>
+      {
+        this.pesels.push(element.pesel);
+      });
       this.isLoading = false;
     })
   }
@@ -74,7 +79,7 @@ export class PacjenciListaComponent implements OnInit {
       nazwisko: new FormControl(null,[Validators.required,Validators.maxLength(20)]),
       pesel: new FormControl(null,
         [Validators.required,Validators.pattern(/^\d+$/),
-          Validators.minLength(11),Validators.maxLength(11), ])
+          Validators.minLength(11),Validators.maxLength(11), this.checkIfPeselExists.bind(this)])
     });
 
     this.formPacjentEdit = new FormGroup({
@@ -93,14 +98,15 @@ export class PacjenciListaComponent implements OnInit {
     });
   }
 
-  // checkIfPeselExists(control: AbstractControl): {[peselExists: string] : boolean}{
-  //   for(let peselOfPacjent of this.pacjenci){
-  //     if(peselOfPacjent.pesel === control.value){
-  //       return {'peselExists': true};
-  //     }
-  //   }
-  //   return null;
-  // }
+  checkIfPeselExists(control: AbstractControl): {[peselExists: string] : boolean}{
+    for(let i=0; i < this.pesels.length; i++){
+      if(this.pesels[i] === control.value){
+        return {'peselExists': true};
+      }
+    }
+    return null;
+  }
+
   // onSetPeselInForm(event){
   //   console.log(event.target.value);
   //   this.formPacjentEdit.patchValue({

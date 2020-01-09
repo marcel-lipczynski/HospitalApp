@@ -72,6 +72,9 @@
             <span *ngIf="(formPacjent.get('pesel').hasError('maxlength') || formPacjent.get('pesel').hasError('minlength')) && !pesel.errors?.pattern"
                   class="help-block text-danger">PESEL musi zawierać 11 cyfr</span>
 
+            <span *ngIf="pesel.errors?.peselExists"
+                  class="help-block text-danger">PESEL istnieje w bazie</span>
+
 
 
 
