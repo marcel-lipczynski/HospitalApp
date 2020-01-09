@@ -75,7 +75,6 @@ export class PacjenciListaComponent implements OnInit {
 
   resetForm(){
     this.formPacjent.reset();
-    this.formPacjentEdit.reset();
   }
 
   setupForm(){

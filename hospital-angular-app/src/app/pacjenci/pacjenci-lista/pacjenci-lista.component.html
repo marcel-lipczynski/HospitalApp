@@ -139,20 +139,29 @@
           <div class="form-group">
             <label for="imie_pacjenta_update">Imie</label>
             <input type="text" class="form-control" id="imie_pacjenta_update" formControlName="imie">
-            <span *ngIf="!formPacjentEdit.get('imie').valid && formPacjent.get('imie').touched"
+            <span *ngIf="formPacjentEdit.get('imie').hasError('required')"
                   class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
+
+            <span *ngIf="formPacjentEdit.get('imie').hasError('maxlength')"
+                  class="help-block text-danger"> Imie może zawierać maks. 20 znaków</span>
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta_update">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pacjenta_update" formControlName="nazwisko">
-            <span *ngIf="!formPacjentEdit.get('nazwisko').valid && formPacjent.get('nazwisko').touched"
+
+            <span *ngIf="formPacjentEdit.get('nazwisko').hasError('required')"
                   class="help-block text-danger">Proszę wprowadzić nazwisko pacjenta</span>
+
+            <span *ngIf="formPacjentEdit.get('nazwisko').hasError('maxlength')"
+                  class="help-block text-danger"> Nazwisko może zawierać maks. 20 znaków</span>
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="button" [disabled]="!formPacjentEdit.valid" (click)="onSubmit(formPacjentEdit)" data-dismiss="modal" class="btn btn-primary">Zapisz</button>
+            <button type="button" [disabled]="!formPacjentEdit.valid" (click)="onSubmit(formPacjentEdit)" class="btn btn-primary">Zapisz</button>
           </div>
 
 
