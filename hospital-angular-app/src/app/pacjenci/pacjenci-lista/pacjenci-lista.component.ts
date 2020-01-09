@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PacjentService} from "../pacjent.service";
 import {Pacjent} from "../pacjent.model";
 import {Observable} from "rxjs";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-pacjenci-lista',
@@ -70,14 +70,16 @@ export class PacjenciListaComponent implements OnInit {
 
   setupForm(){
     this.formPacjent = new FormGroup({
-      imie: new FormControl(null,Validators.required),
-      nazwisko: new FormControl(null,Validators.required),
-      pesel: new FormControl(null, Validators.required)
+      imie: new FormControl(null,[Validators.required,Validators.maxLength(20)]),
+      nazwisko: new FormControl(null,[Validators.required,Validators.maxLength(20)]),
+      pesel: new FormControl(null,
+        [Validators.required,Validators.pattern(/^\d+$/),
+          Validators.minLength(11),Validators.maxLength(11), ])
     });
 
     this.formPacjentEdit = new FormGroup({
-      imie: new FormControl(null,Validators.required),
-      nazwisko: new FormControl(null,Validators.required),
+      imie: new FormControl(null,[Validators.required,Validators.maxLength(20)]),
+      nazwisko: new FormControl(null,[Validators.required,Validators.maxLength(20)]),
       pesel: new FormControl({value: null, disabled: true})
     });
   }
@@ -91,12 +93,32 @@ export class PacjenciListaComponent implements OnInit {
     });
   }
 
-  onSetPeselInForm(event){
-    console.log(event.target.value);
-    this.formPacjentEdit.patchValue({
-      'pesel': event.target.value
-    });
-  }
+  // checkIfPeselExists(control: AbstractControl): {[peselExists: string] : boolean}{
+  //   for(let peselOfPacjent of this.pacjenci){
+  //     if(peselOfPacjent.pesel === control.value){
+  //       return {'peselExists': true};
+  //     }
+  //   }
+  //   return null;
+  // }
+  // onSetPeselInForm(event){
+  //   console.log(event.target.value);
+  //   this.formPacjentEdit.patchValue({
+  //     'pesel': event.target.value
+  //   });
+  // }
   ////(change)="onSetPeselInForm($event)"
+
+  //  onlyNumbers(control: AbstractControl): {[invalidPattern: string] : boolean}{
+  //   const valid = /^\d+$/.test(control.value);
+  //   if(valid === false && control.value != null && control.value != '' ){
+  //     return {'invalidPattern': true};
+  //   }
+  //   return null;
+  // }
+
+  get pesel(){
+    return this.formPacjent.get('pesel');
+  }
 
 }

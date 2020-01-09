@@ -52,7 +52,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj pacjenta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -62,28 +62,47 @@
           <div class="form-group ">
             <label for="pesel_pacjenta">PESEL</label>
             <input type="text" class="form-control" formControlName="pesel" id="pesel_pacjenta">
-            <span *ngIf="!formPacjent.get('pesel').valid && formPacjent.get('pesel').touched"
+
+            <span *ngIf="formPacjent.get('pesel').hasError('required') && formPacjent.get('pesel').touched"
                   class="help-block text-danger">Proszę wprowadzić numer PESEL</span>
+
+            <span *ngIf="pesel.errors?.pattern"
+                  class="help-block text-danger">PESEL może zawierać liczby 0-9</span>
+
+            <span *ngIf="(formPacjent.get('pesel').hasError('maxlength') || formPacjent.get('pesel').hasError('minlength')) && !pesel.errors?.pattern"
+                  class="help-block text-danger">PESEL musi zawierać 11 cyfr</span>
+
+
+
+
           </div>
 
           <div class="form-group">
             <label for="imie_pacjenta">Imie</label>
             <input type="text" class="form-control"formControlName="imie" id="imie_pacjenta" >
-            <span *ngIf="!formPacjent.get('imie').valid && formPacjent.get('imie').touched"
+            <span *ngIf="formPacjent.get('imie').hasError('required') && formPacjent.get('imie').touched"
                   class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
+
+            <span *ngIf="formPacjent.get('imie').hasError('maxlength')"
+                  class="help-block text-danger"> Imie może zawierać maks. 20 znaków</span>
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta">Nazwisko</label>
             <input type="text" class="form-control" formControlName="nazwisko" id="nazwisko_pacjenta">
-            <span *ngIf="!formPacjent.get('nazwisko').valid && formPacjent.get('nazwisko').touched"
+            <span *ngIf="formPacjent.get('nazwisko').hasError('required') && formPacjent.get('nazwisko').touched"
                   class="help-block text-danger">Proszę wprowadzić nazwisko pacjenta</span>
+
+            <span *ngIf="formPacjent.get('nazwisko').hasError('maxlength')"
+                  class="help-block text-danger"> Nazwisko może zawierać maks. 20 znaków</span>
+
           </div>
 
           <div class="modal-footer">
             <div class="form-group">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-              <button type="button" (click)="onSubmit(formPacjent)" data-dismiss="modal" class="btn btn-primary" >Zapisz</button>
+              <button type="button" [disabled]="!formPacjent.valid" (click)="onSubmit(formPacjent)" data-dismiss="modal" class="btn btn-primary" >Zapisz</button>
             </div>
           </div>
 
@@ -100,7 +119,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle2">Edytuj pacjenta</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -117,16 +136,20 @@
           <div class="form-group">
             <label for="imie_pacjenta_update">Imie</label>
             <input type="text" class="form-control" id="imie_pacjenta_update" formControlName="imie">
+            <span *ngIf="!formPacjentEdit.get('imie').valid && formPacjent.get('imie').touched"
+                  class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta_update">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pacjenta_update" formControlName="nazwisko">
+            <span *ngIf="!formPacjentEdit.get('nazwisko').valid && formPacjent.get('nazwisko').touched"
+                  class="help-block text-danger">Proszę wprowadzić nazwisko pacjenta</span>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="button" (click)="onSubmit(formPacjentEdit)" data-dismiss="modal" class="btn btn-primary">Zapisz</button>
+            <button type="button" [disabled]="!formPacjentEdit.valid" (click)="onSubmit(formPacjentEdit)" data-dismiss="modal" class="btn btn-primary">Zapisz</button>
           </div>
 
 
