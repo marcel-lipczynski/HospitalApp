@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PacjentService} from "../pacjent.service";
 import {Pacjent} from "../pacjent.model";
 import {Observable} from "rxjs";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-pacjenci-lista',
@@ -12,15 +12,12 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class PacjenciListaComponent implements OnInit {
 
+  // @Output() pacjentPesel = new EventEmitter<string>();
   pacjenci: Pacjent[];
   isLoading: boolean = false;
   formPacjent: FormGroup;
+  formPacjentEdit: FormGroup;
 
-
-  //tworzymy controle dla pól w pacjencie!
-  // peselControl = new FormControl('');
-  // imieControl = new FormControl('');
-  // nazwiskoControl = new FormControl('');
 
 
   constructor(private http: HttpClient,
@@ -28,7 +25,7 @@ export class PacjenciListaComponent implements OnInit {
 
   ngOnInit() {
     this.reloadData();
-    this.setupAddForm();
+    this.setupForm();
   }
 
   reloadData(){
@@ -48,8 +45,8 @@ export class PacjenciListaComponent implements OnInit {
   }
 
   //submitting form
-  onSubmit(){
-    this.saveOrUpdatePacjent(this.formPacjent.value);
+  onSubmit(form: FormGroup){
+    this.saveOrUpdatePacjent(form.getRawValue());
     this.resetForm();
   }
 
@@ -68,14 +65,38 @@ export class PacjenciListaComponent implements OnInit {
 
   resetForm(){
     this.formPacjent.reset();
+    this.formPacjentEdit.reset();
   }
 
-  setupAddForm(){
+  setupForm(){
     this.formPacjent = new FormGroup({
-      imie: new FormControl(''),
-      nazwisko: new FormControl(''),
-      pesel: new FormControl()
+      imie: new FormControl(null,Validators.required),
+      nazwisko: new FormControl(null,Validators.required),
+      pesel: new FormControl(null, Validators.required)
+    });
+
+    this.formPacjentEdit = new FormGroup({
+      imie: new FormControl(null,Validators.required),
+      nazwisko: new FormControl(null,Validators.required),
+      pesel: new FormControl({value: null, disabled: true})
     });
   }
+
+  onEditPacjent(pesel: string, imie:string, nazwisko: string){
+    // this.pacjentPesel.emit(pesel);
+    this.formPacjentEdit.patchValue({
+      'pesel': pesel,
+      'imie': imie,
+      'nazwisko' : nazwisko
+    });
+  }
+
+  onSetPeselInForm(event){
+    console.log(event.target.value);
+    this.formPacjentEdit.patchValue({
+      'pesel': event.target.value
+    });
+  }
+  ////(change)="onSetPeselInForm($event)"
 
 }

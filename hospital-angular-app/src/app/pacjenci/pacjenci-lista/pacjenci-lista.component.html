@@ -32,8 +32,9 @@
 
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(pacjent.pesel)">Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
-          <button class="btn btn-secondary">Szczegóły</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
+                  (click)="onEditPacjent(pacjent.pesel,pacjent.imie,pacjent.nazwisko)">Edytuj</button>
+          <button class="btn btn-secondary" >Szczegóły</button>
 
         </td>
       </tr>
@@ -56,27 +57,33 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="formPacjent">
+        <form (ngSubmit)="onSubmit(formPacjent)" [formGroup]="formPacjent">
 
-          <div class="form-group">
+          <div class="form-group ">
             <label for="pesel_pacjenta">PESEL</label>
             <input type="text" class="form-control" formControlName="pesel" id="pesel_pacjenta">
+            <span *ngIf="!formPacjent.get('pesel').valid && formPacjent.get('pesel').touched"
+                  class="help-block text-danger">Proszę wprowadzić numer PESEL</span>
           </div>
 
           <div class="form-group">
             <label for="imie_pacjenta">Imie</label>
-            <input type="text" class="form-control"formControlName="imie"  id="imie_pacjenta" >
+            <input type="text" class="form-control"formControlName="imie" id="imie_pacjenta" >
+            <span *ngIf="!formPacjent.get('imie').valid && formPacjent.get('imie').touched"
+                  class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta">Nazwisko</label>
             <input type="text" class="form-control" formControlName="nazwisko" id="nazwisko_pacjenta">
+            <span *ngIf="!formPacjent.get('nazwisko').valid && formPacjent.get('nazwisko').touched"
+                  class="help-block text-danger">Proszę wprowadzić nazwisko pacjenta</span>
           </div>
 
           <div class="modal-footer">
             <div class="form-group">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-              <button type="button" (click)="onSubmit()" data-dismiss="modal" class="btn btn-primary" >Zapisz</button>
+              <button type="button" (click)="onSubmit(formPacjent)" data-dismiss="modal" class="btn btn-primary" >Zapisz</button>
             </div>
           </div>
 
@@ -98,32 +105,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+
+
+        <form (ngSubmit)="onSubmit(formPacjentEdit)" [formGroup]="formPacjentEdit">
 
           <div class="form-group">
             <label for="pesel_pacjenta_update">PESEL</label>
-            <input type="text" class="form-control" id="pesel_pacjenta_update" >
+            <input type="text" class="form-control" id="pesel_pacjenta_update" formControlName="pesel">
           </div>
 
           <div class="form-group">
             <label for="imie_pacjenta_update">Imie</label>
-            <input type="text" class="form-control" id="imie_pacjenta_update">
+            <input type="text" class="form-control" id="imie_pacjenta_update" formControlName="imie">
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pacjenta_update">Nazwisko</label>
-            <input type="text" class="form-control" id="nazwisko_pacjenta_update">
+            <input type="text" class="form-control" id="nazwisko_pacjenta_update" formControlName="nazwisko">
           </div>
 
-
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="button" (click)="onSubmit(formPacjentEdit)" data-dismiss="modal" class="btn btn-primary">Zapisz</button>
+          </div>
 
 
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
-      </div>
+
     </div>
   </div>
 </div>
