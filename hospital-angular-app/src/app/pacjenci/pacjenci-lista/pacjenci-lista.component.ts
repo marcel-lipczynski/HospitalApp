@@ -4,6 +4,8 @@ import {PacjentService} from "../pacjent.service";
 import {Pacjent} from "../pacjent.model";
 import {Observable} from "rxjs";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import * as $AB from "jquery";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-pacjenci-lista',
@@ -47,6 +49,9 @@ export class PacjenciListaComponent implements OnInit {
   saveOrUpdatePacjent(pacjent: Pacjent){
     this.pacjentService.saveOrUpdatePacjent(pacjent).subscribe(() =>
     this.reloadData());
+    $("#exampleModalCenter").modal("hide");
+    $("#exampleModalCenter2").modal("hide");
+
   }
 
   //submitting form
