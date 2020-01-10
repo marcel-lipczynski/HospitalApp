@@ -1,30 +1,31 @@
 <div class="container">
 
-  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     +Dodaj
   </button>
   <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
       <tr>
-        <th>ID lekarza</th>
-        <th>imie</th>
-        <th>nazwisko</th>
-        <th>placa_podstawowa</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Płaca</th>
         <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr>
-        <td>1,001</td>
-        <td>Lorem</td>
-        <td>ipsum</td>
-        <td>1234</td>
+      <tr *ngFor="let lekarz of lekarze">
+
+        <td>{{ lekarz.imie }}</td>
+        <td>{{ lekarz.nazwisko }}</td>
+        <td>{{ lekarz.placa_pod }}</td>
 
         <td class="text-right">
-          <button class="btn btn-danger">Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+          <button class="btn btn-danger" (click)="onConfirmDelete(lekarz.id_lekarza)">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
+                  (click)="onEditLekarz(lekarz.id_lekarza, lekarz.imie, lekarz.nazwisko, lekarz.placa_pod)">Edytuj
+          </button>
         </td>
       </tr>
 
@@ -36,51 +37,51 @@
 
 <!-- Modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj lekarza</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+
+        <form (ngSubmit)="onSubmit(formAddLekarz)" [formGroup]="formAddLekarz">
 
           <div class="form-group">
-            <label for="id_lekarza">ID lekarza</label>
-            <input type="text" class="form-control" id="id_lekarza">
-          </div>
-
-          <div class="form-group">
-            <label for="imie_lekarza">Imie</label>
-            <input type="text" class="form-control" id="imie_lekarza">
+            <label for="imie_lekarza">Imię</label>
+            <input type="text" class="form-control" id="imie_lekarza" formControlName="imie">
           </div>
 
           <div class="form-group">
             <label for="nazwisko_lekarza">Nazwisko</label>
-            <input type="text" class="form-control" id="nazwisko_lekarza">
+            <input type="text" class="form-control" id="nazwisko_lekarza" formControlName="nazwisko">
           </div>
 
           <div class="form-group">
-            <label for="placa_podstawowa">Placa podstawowa</label>
-            <input type="text" class="form-control" id="placa_podstawowa">
+            <label for="placa_podstawowa">Płaca</label>
+            <input type="text" class="form-control" id="placa_podstawowa" formControlName="placa_pod">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
 
         </form>
+
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
-      </div>
+
     </div>
   </div>
 </div>
 
 
-
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,36 +91,32 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+        <form (ngSubmit)="onSubmit(fromEditLekarz)" [formGroup]="fromEditLekarz">
 
           <div class="form-group">
-            <label for="id_lekarza_update">ID lekarza</label>
-            <input type="text" class="form-control" id="id_lekarza_update">
-          </div>
-
-          <div class="form-group">
-            <label for="imie_lekarza_update">Imie</label>
-            <input type="text" class="form-control" id="imie_lekarza_update">
+            <label for="imie_lekarza_update">Imię</label>
+            <input type="text" class="form-control" id="imie_lekarza_update" formControlName="imie">
           </div>
 
           <div class="form-group">
             <label for="nazwisko_lekarza_update">Nazwisko</label>
-            <input type="text" class="form-control" id="nazwisko_lekarza_update">
+            <input type="text" class="form-control" id="nazwisko_lekarza_update" formControlName="nazwisko">
           </div>
 
           <div class="form-group">
-            <label for="placa_podstawowa_update">Placa podstawowa</label>
-            <input type="text" class="form-control" id="placa_podstawowa_update">
+            <label for="placa_podstawowa_update">Płaca</label>
+            <input type="text" class="form-control" id="placa_podstawowa_update" formControlName="placa_pod">
           </div>
 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+          </div>
 
 
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
-      </div>
+
     </div>
   </div>
 </div>

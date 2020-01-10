@@ -21,11 +21,11 @@ export class LekarzService{
     return this.http.get<Lekarz>(this.LEKARZE_API_URL + `/${id_lekarza}`)
   }
 
-  saveOrPostLekarz(lekarz: Lekarz){
+  saveOrUpdateLekarz(lekarz: Lekarz){
     return this.http.post<Lekarz>(this.LEKARZE_API_URL, lekarz);
   }
 
-  deleteLekarzById(id_lekarza: string){
+  deleteLekarzById(id_lekarza: number){
     return this.http.delete(this.LEKARZE_API_URL + `/${id_lekarza}`)
   }
 

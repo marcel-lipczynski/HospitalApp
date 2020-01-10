@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {LekarzService} from "../lekarz.service";
+import {Lekarz} from "../lekarz.model";
+import {FormControl, FormGroup} from "@angular/forms";
+import * as $AB from "jquery";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-lekarze-lista',
@@ -7,9 +13,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LekarzeListaComponent implements OnInit {
 
-  constructor() { }
+  lekarze: Lekarz[] = [];
+  isLoading: boolean = true;
+  formAddLekarz: FormGroup;
+  fromEditLekarz: FormGroup;
+
+
+  constructor(private http: HttpClient,
+              private lekarzService: LekarzService) { }
 
   ngOnInit() {
+    this.reloadData();
+    this.setupForm();
+  }
+
+
+  reloadData(){
+    this.lekarzService.findAllLekarze().subscribe(lekarze =>{
+      this.lekarze = lekarze;
+      this.isLoading = false;
+    });
+  }
+
+  setupForm(){
+    this.formAddLekarz = new FormGroup({
+      'imie' : new FormControl(null),
+      'nazwisko' : new FormControl(null),
+      'placa_pod' : new FormControl(null)
+    });
+
+    this.fromEditLekarz = new FormGroup({
+      'id_lekarza' : new FormControl(null),
+      'imie' : new FormControl(null),
+      'nazwisko' : new FormControl(null),
+      'placa_pod' : new FormControl(null)
+    });
+  }
+
+  onSubmit(form: FormGroup){
+    this.saveOrUpdateLekarz(form.getRawValue());
+    this.resetForm();
+  }
+
+  resetForm(){
+    this.formAddLekarz.reset();
+  }
+
+  onEditLekarz(id_lekarza: number, imie: string, nazwisko: string, placa_pod: number){
+    this.fromEditLekarz.patchValue({
+      'id_lekarza' : id_lekarza,
+      'imie' : imie,
+      'nazwisko' : nazwisko,
+      'placa_pod' : placa_pod
+    });
+  }
+
+  saveOrUpdateLekarz(lekarz: Lekarz){
+    this.lekarzService.saveOrUpdateLekarz(lekarz).subscribe(() =>{
+      this.reloadData();
+    });
+    $("#exampleModalCenter").modal("hide");
+    $("#exampleModalCenter2").modal("hide");
+  }
+
+  onConfirmDelete(id_lekarza: number){
+    if(confirm("Are you sure you want to delete?")){
+      this.deleteLekarzById(id_lekarza);
+    }
+  }
+
+  deleteLekarzById(id_lekarza: number){
+    this.lekarzService.deleteLekarzById(id_lekarza).subscribe(() =>{
+      this.reloadData();
+    });
   }
 
 }
