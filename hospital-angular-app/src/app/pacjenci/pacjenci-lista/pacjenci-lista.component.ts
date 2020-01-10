@@ -111,13 +111,6 @@ export class PacjenciListaComponent implements OnInit {
     return null;
   }
 
-  // onSetPeselInForm(event){
-  //   console.log(event.target.value);
-  //   this.formPacjentEdit.patchValue({
-  //     'pesel': event.target.value
-  //   });
-  // }
-  ////(change)="onSetPeselInForm($event)"
 
   //  onlyNumbers(control: AbstractControl): {[invalidPattern: string] : boolean}{
   //   const valid = /^\d+$/.test(control.value);
