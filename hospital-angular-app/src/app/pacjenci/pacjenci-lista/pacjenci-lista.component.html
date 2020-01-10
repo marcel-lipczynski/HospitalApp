@@ -82,7 +82,7 @@
 
           <div class="form-group">
             <label for="imie_pacjenta">Imie</label>
-            <input type="text" class="form-control"formControlName="imie" id="imie_pacjenta" >
+            <input type="text" class="form-control" formControlName="imie" id="imie_pacjenta" >
             <span *ngIf="formPacjent.get('imie').hasError('required') && formPacjent.get('imie').touched"
                   class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
 
@@ -105,7 +105,7 @@
           <div class="modal-footer">
             <div class="form-group">
               <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-              <button type="button" [disabled]="!formPacjent.valid" (click)="onSubmit(formPacjent)"  class="btn btn-primary" >Zapisz</button>
+              <button type="submit" [disabled]="!formPacjent.valid" class="btn btn-primary" >Zapisz</button>
             </div>
           </div>
 
@@ -161,7 +161,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="button" [disabled]="!formPacjentEdit.valid" (click)="onSubmit(formPacjentEdit)" class="btn btn-primary">Zapisz</button>
+            <button type="submit" [disabled]="!formPacjentEdit.valid"  class="btn btn-primary">Zapisz</button>
           </div>
 
 

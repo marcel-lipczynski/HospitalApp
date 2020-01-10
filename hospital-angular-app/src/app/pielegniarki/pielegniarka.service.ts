@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class PacjentService {
+export class PielegniarkaService {
 
   readonly PIELEGNIARKI_API_URL = '/api/pielegniarki';
 

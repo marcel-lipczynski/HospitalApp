@@ -42,7 +42,7 @@ export class PacjenciListaComponent implements OnInit {
         this.pesels.push(element.pesel);
       });
       this.isLoading = false;
-    })
+    });
   }
 
   //saving or updating pacjent
