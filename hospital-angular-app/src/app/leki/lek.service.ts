@@ -18,16 +18,16 @@ export class LekService {
     return this.http.get<Lek[]>(this.LEKI_API_URL);
   }
 
-  findLekById(id_leku: number): Observable<Lek> {
-    return this.http.get<Lek>(this.LEKI_API_URL + `/${id_leku}`)
+  findLekById(nazwa_leku: string): Observable<Lek> {
+    return this.http.get<Lek>(this.LEKI_API_URL + `/${nazwa_leku}`)
   }
 
   saveOrUpdateLek(lek: Lek){
     return this.http.post<Lek>(this.LEKI_API_URL, lek);
   }
 
-  deleteLekById(id_leku: number){
-    return this.http.delete(this.LEKI_API_URL + `/${id_leku}`);1
+  deleteLekByNazwa(nazwa_leku: string){
+    return this.http.delete(this.LEKI_API_URL + `/${nazwa_leku}`);1
   }
 
 

@@ -14,9 +14,8 @@ import * as bootstrap from "bootstrap";
 })
 export class PacjenciListaComponent implements OnInit {
 
-  // @Output() pacjentPesel = new EventEmitter<string>();
   pacjenci: Pacjent[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   formPacjent: FormGroup;
   formPacjentEdit: FormGroup;
   pesels: string[] = [];

@@ -16,7 +16,7 @@ export class PielegniarkiListaComponent implements OnInit {
   formAddPielegniarka: FormGroup;
   formEditPielegniarka: FormGroup;
   pielegniarki: Pielegniarka[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
 
   constructor(private pielegniarkaService: PielegniarkaService,
@@ -54,7 +54,6 @@ export class PielegniarkiListaComponent implements OnInit {
       nazwisko: new FormControl(null),
       placa: new FormControl(null)
     });
-
 
 
   }

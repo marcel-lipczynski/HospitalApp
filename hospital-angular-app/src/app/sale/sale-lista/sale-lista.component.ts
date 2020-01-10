@@ -14,7 +14,7 @@ import * as bootstrap from "bootstrap";
 export class SaleListaComponent implements OnInit {
 
   sale: Sala[] = [];
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   formAddSala: FormGroup;
   formEditSala: FormGroup;
 
