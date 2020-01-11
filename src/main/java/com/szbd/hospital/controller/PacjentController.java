@@ -1,9 +1,11 @@
 package com.szbd.hospital.controller;
 
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pacjent;
 import com.szbd.hospital.service.PacjentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,12 +34,6 @@ public class PacjentController {
 
     @PostMapping("")
     public void save(@RequestBody Pacjent pacjent){
-        System.out.println(pacjent);
-        pacjentService.save(pacjent);
-    }
-
-    @PutMapping("")
-    public void update(@RequestBody Pacjent pacjent){
         pacjentService.save(pacjent);
     }
 
@@ -45,5 +41,22 @@ public class PacjentController {
     public void deleteById(@PathVariable String pesel){
         pacjentService.deleteById(pesel);
     }
+
+    @GetMapping("/{pesel}/karty")
+    public List<KartaPobytu> findAllKartyPobytuOfPacjent(@PathVariable String pesel) {
+        return pacjentService.findAllKartyPobytuOfPacjent(pesel);
+    }
+
+    @PostMapping("/{pesel}/karty")
+    public void saveKartaPobytuForPacjent(@RequestBody KartaPobytu kartaPobytu, @PathVariable String pesel) {
+        pacjentService.saveKartaPobytuForPacjent(kartaPobytu, pesel);
+    }
+
+    @DeleteMapping("/{pesel}/karty/{id_karty}")
+    public void deleteKartaPobytuFromPacjent(@PathVariable String pesel, @PathVariable int id_karty) {
+        pacjentService.deleteKartaPobytuFromPacjent(pesel, id_karty);
+    }
+
+
 
 }

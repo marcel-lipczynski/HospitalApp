@@ -1,6 +1,7 @@
 package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.PacjentDAO;
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pacjent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,23 @@ public class PacjentServiceImpl implements PacjentService {
     @Transactional
     public void deleteById(String id) {
         pacjentDAO.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<KartaPobytu> findAllKartyPobytuOfPacjent(String pesel) {
+        return pacjentDAO.findAllKartyPobytuOfPacjent(pesel);
+    }
+
+    @Override
+    @Transactional
+    public void saveKartaPobytuForPacjent(KartaPobytu kartaPobytu, String pesel) {
+        pacjentDAO.saveKartaPobytuForPacjent(kartaPobytu, pesel);
+    }
+
+    @Override
+    @Transactional
+    public void deleteKartaPobytuFromPacjent(String pesel, int id_karty) {
+        pacjentDAO.deleteKartaPobytuFromPacjent(pesel, id_karty);
     }
 }
