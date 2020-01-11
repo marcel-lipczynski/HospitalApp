@@ -10,6 +10,7 @@ import {OperacjeComponent} from "./operacje/operacje.component";
 import {DiagnozyComponent} from "./diagnozy/diagnozy.component";
 import {ReceptyComponent} from "./recepty/recepty.component";
 import {LekiComponent} from "./leki/leki.component";
+import {SpecjalizacjeComponent} from "./specjalizacje/specjalizacje.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
   {path: 'lekarze', component: LekarzeComponent},
   {path: 'pielegniarki', component: PielegniarkiComponent},
   {path: 'sale', component: SaleComponent},
-  {path: 'leki', component:LekiComponent}
+  {path: 'leki', component:LekiComponent},
+  {path: 'specjalizacje', component:SpecjalizacjeComponent}
 
 ];
 

@@ -30,6 +30,8 @@ import { LekiListaComponent } from './leki/leki-lista/leki-lista.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import { SpecjalizacjeComponent } from './specjalizacje/specjalizacje.component';
+import { SpecjalizacjeListaComponent } from './specjalizacje/specjalizacje-lista/specjalizacje-lista.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import {RouterModule} from "@angular/router";
     ReceptyLekiComponent,
     LekiComponent,
     LekiListaComponent,
+    SpecjalizacjeComponent,
+    SpecjalizacjeListaComponent,
   ],
   imports: [
     BrowserModule,
