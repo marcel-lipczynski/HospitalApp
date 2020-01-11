@@ -88,9 +88,20 @@
           </div>
 
 
+<!--          <div class="form-group">-->
+<!--            <label for="nr_sali">Numer sali</label>-->
+<!--            <input type="text" class="form-control" id="nr_sali" formControlName="nr_sali">-->
+
+
+<!--          </div>-->
+
           <div class="form-group">
             <label for="nr_sali">Numer sali</label>
-            <input type="text" class="form-control" id="nr_sali" formControlName="nr_sali">
+            <select class="form-control" id="nr_sali" formControlName="nr_sali">
+              <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
+
+            </select>
+
           </div>
 
           <div class="modal-footer">

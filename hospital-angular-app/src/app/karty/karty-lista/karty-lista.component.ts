@@ -7,6 +7,8 @@ import {ActivatedRoute} from "@angular/router";
 import {PacjentService} from "../../pacjenci/pacjent.service";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {SalaService} from "../../sale/sala.service";
+import {Sala} from "../../sale/sala.model";
 
 @Component({
   selector: 'app-karty-lista',
@@ -16,17 +18,21 @@ import * as bootstrap from "bootstrap";
 export class KartyListaComponent implements OnInit {
 
   karty: Karta[] = [];
+  sale: Sala[] = [];
   isLoading: boolean = true;
   formAddKarta: FormGroup;
   formEditKarta: FormGroup;
   pesel: string;
   imie: string;
   nazwisko: string;
+  numery_sal: number[] = [];
+
 
 
   constructor(private http: HttpClient,
               private kartaService: KartaService,
               private pacjentService: PacjentService,
+              private salaService: SalaService,
               private route: ActivatedRoute) {
   }
 
@@ -34,20 +40,31 @@ export class KartyListaComponent implements OnInit {
     this.pesel = this.route.snapshot.params['pesel'];
     this.reloadData();
     this.setupForm();
-
+    this.loadPacjent();
+    this.loadAvailableSale();
   }
 
   loadPacjent() {
     this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent => {
+      this.isLoading = true;
       this.imie = pacjent.imie;
       this.nazwisko = pacjent.nazwisko;
+      this.isLoading = false;
+    });
+  }
+
+  loadAvailableSale(){
+    this.salaService.findAllSale().subscribe(sale =>{
+      this.isLoading = true;
+      this.sale = sale;
+      this.isLoading = false;
     });
   }
 
   reloadData() {
     this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty => {
       this.karty = karty;
-      this.loadPacjent();
+      // this.loadPacjent();
       this.isLoading = false;
     });
   }
