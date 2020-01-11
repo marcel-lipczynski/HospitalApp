@@ -1,6 +1,7 @@
 package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.PacjentDAO;
+import com.szbd.hospital.entity.Diagnoza;
 import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pacjent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,23 @@ public class PacjentServiceImpl implements PacjentService {
     @Transactional
     public void deleteKartaPobytuFromPacjent(String pesel, int id_karty) {
         pacjentDAO.deleteKartaPobytuFromPacjent(pesel, id_karty);
+    }
+
+    @Override
+    @Transactional
+    public List<Diagnoza> findAllDiagnozaForKartaPobytu(int id_karty) {
+        return pacjentDAO.findAllDiagnozaForKartaPobytu(id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void saveDiagnozaForKartaPobytu(Diagnoza diagnoza, int id_karty) {
+        pacjentDAO.saveDiagnozaForKartaPobytu(diagnoza, id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void deleteDiagnozaFromKartaPobytu(int id_karty, int id_diagnozy) {
+        pacjentDAO.deleteDiagnozaFromKartaPobytu(id_karty, id_diagnozy);
     }
 }
