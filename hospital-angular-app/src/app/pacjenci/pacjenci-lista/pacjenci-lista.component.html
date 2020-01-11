@@ -18,6 +18,7 @@
         <th>PESEL</th>
         <th>imię</th>
         <th>nazwisko</th>
+        <th class="text-center">Informacje o pacjencie</th>
         <th></th>
       </tr>
       </thead>
@@ -28,14 +29,14 @@
         <td>{{pacjent.pesel}}</td>
         <td>{{pacjent.imie}}</td>
         <td>{{pacjent.nazwisko}}</td>
-
+        <td class="text-center">
+          <button class="btn btn-outline-secondary" [routerLink] = "[pacjent.pesel, 'karty']" >Karty pobytu</button>
+        </td>
 
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(pacjent.pesel)">Usuń</button>
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
                   (click)="onEditPacjent(pacjent.pesel,pacjent.imie,pacjent.nazwisko)">Edytuj</button>
-          <button class="btn btn-outline-secondary" [routerLink] = "[pacjent.pesel, 'karty']" >Karty pobytu</button>
-
         </td>
       </tr>
 
