@@ -13,14 +13,14 @@ import {LekiComponent} from "./leki/leki.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'karty', component: KartyComponent},
+  {path: 'pacjenci/:pesel/karty/:id/operacje', component:OperacjeComponent},
+  {path: 'pacjenci/:pesel/karty/:id/diagnozy', component:DiagnozyComponent},
+  {path: 'pacjenci/:pesel/karty/:id/recepty', component:ReceptyComponent},
+  {path: 'pacjenci/:pesel/karty', component: KartyComponent},
   {path: 'pacjenci', component: PacjenciComponent},
   {path: 'lekarze', component: LekarzeComponent},
   {path: 'pielegniarki', component: PielegniarkiComponent},
   {path: 'sale', component: SaleComponent},
-  {path: 'operacje', component:OperacjeComponent},
-  {path: 'diagnozy', component:DiagnozyComponent},
-  {path: 'recepty', component:ReceptyComponent},
   {path: 'leki', component:LekiComponent}
 
 ];
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports:[
-    RouterModule
+    RouterModule,
   ]
 
 })
