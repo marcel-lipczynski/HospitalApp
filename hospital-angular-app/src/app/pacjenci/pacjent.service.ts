@@ -16,6 +16,10 @@ export class PacjentService{
     return this.http.get<Pacjent[]>(this.PACJENCI_API_URL);
   }
 
+  findPacjentByPesel(pesel: string): Observable<Pacjent>{
+    return this.http.get<Pacjent>(this.PACJENCI_API_URL + `/${pesel}`);
+  }
+
   saveOrUpdatePacjent(pacjent: Pacjent){
     return this.http.post<Pacjent>(this.PACJENCI_API_URL, pacjent);
   }
