@@ -38,9 +38,9 @@
         <td class="text-center">{{karta.pesel}}</td>
 
         <td class="text-right">
-          <button class="btn btn-outline-secondary"> Diagnozy</button>
-          <button class="btn btn-outline-secondary"> Recepty</button>
-          <button class="btn btn-outline-secondary"> Operacje</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'diagnozy']" > Diagnozy</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'recepty']"> Recepty</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'operacje']"> Operacje</button>
         </td>
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(karta.id_karty)">Usuń</button>
@@ -150,7 +150,6 @@
             <label for="nr_sali_update">Numer sali</label>
             <select class="form-control" id="nr_sali_update" formControlName="nr_sali">
               <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
-
             </select>
 
           </div>
