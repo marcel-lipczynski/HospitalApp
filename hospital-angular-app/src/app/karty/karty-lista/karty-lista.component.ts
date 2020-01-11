@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Karta} from "../karta.model";
 import {FormControl, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {KartaService} from "../karta.service";
 import {ActivatedRoute} from "@angular/router";
-import {Pacjent} from "../../pacjenci/pacjent.model";
 import {PacjentService} from "../../pacjenci/pacjent.service";
+import * as $AB from "jquery";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-karty-lista',
@@ -15,17 +16,19 @@ import {PacjentService} from "../../pacjenci/pacjent.service";
 export class KartyListaComponent implements OnInit {
 
   karty: Karta[] = [];
-  pacjent: Pacjent;
   isLoading: boolean = true;
   formAddKarta: FormGroup;
   formEditKarta: FormGroup;
   pesel: string;
+  imie: string;
+  nazwisko: string;
 
 
   constructor(private http: HttpClient,
               private kartaService: KartaService,
               private pacjentService: PacjentService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.pesel = this.route.snapshot.params['pesel'];
@@ -34,39 +37,79 @@ export class KartyListaComponent implements OnInit {
 
   }
 
-  loadPacjent(){
-    this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent =>{
-      this.pacjent = pacjent;
+  loadPacjent() {
+    this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent => {
+      this.imie = pacjent.imie;
+      this.nazwisko = pacjent.nazwisko;
     });
   }
 
-  reloadData(){
-    this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty =>{
+  reloadData() {
+    this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty => {
       this.karty = karty;
       this.loadPacjent();
       this.isLoading = false;
     });
   }
 
-  setupForm(){
+  setupForm() {
     this.formAddKarta = new FormGroup({
-      id_karty : new FormControl(null),
       data_przyjecia: new FormControl(null),
-      godzina_przyjecia : new FormControl(null),
-      data_wypisu : new FormControl(null),
-      nr_sali : new FormControl(null),
-      pesel: new FormControl(null)
+      godzina_przyjecia: new FormControl(null),
+      data_wypisu: new FormControl(null),
+      nr_sali: new FormControl(null),
+      pesel: new FormControl(this.pesel)
     });
 
     this.formEditKarta = new FormGroup({
-      id_karty : new FormControl(null),
+      id_karty: new FormControl(null),
       data_przyjecia: new FormControl(null),
-      godzina_przyjecia : new FormControl(null),
-      data_wypisu : new FormControl(null),
-      nr_sali : new FormControl(null),
-      pesel: new FormControl(null)
+      godzina_przyjecia: new FormControl(null),
+      data_wypisu: new FormControl(null),
+      nr_sali: new FormControl(null),
+      pesel: new FormControl(this.pesel)
     });
-
   }
+
+  onEditKarta(id_karty: number, data_przyjecia: string, godzina_przyjecia: string,
+              data_wypisu: string, nr_sali: number) {
+      this.formEditKarta.patchValue({
+        'id_karty': id_karty,
+        'data_przyjecia' : data_przyjecia,
+        'godzina_przyjecia' : godzina_przyjecia,
+        'data_wypisu' : data_wypisu,
+        'nr_sali' : nr_sali
+      });
+  }
+
+  resetForm() {
+    this.formAddKarta.reset();
+  }
+
+  saveOrUpdateKarta(karta: Karta) {
+    this.kartaService.saveOrUpdateKartaForPacjent(karta, this.pesel).subscribe(() => {
+      this.reloadData();
+    });
+    $("#exampleModalCenter").modal("hide");
+    $("#exampleModalCenter2").modal("hide");
+  }
+
+  onSubmit(form: FormGroup) {
+    this.saveOrUpdateKarta(form.getRawValue());
+    this.resetForm();
+  }
+
+  deleteKartaFromPacjent(id_karty: number) {
+    this.kartaService.deleteKartaFromPacjent(id_karty, this.pesel).subscribe(() => {
+      this.reloadData();
+    });
+  }
+
+  onConfirmDelete(id_karty: number) {
+    if (confirm("Are you sure you want to delete?")) {
+      this.deleteKartaFromPacjent(id_karty);
+    }
+  }
+
 
 }

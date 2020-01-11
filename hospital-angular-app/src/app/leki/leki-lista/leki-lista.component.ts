@@ -42,7 +42,7 @@ export class LekiListaComponent implements OnInit {
     });
 
     this.formEditLek = new FormGroup({
-      'nazwa_leku': new FormControl(null),
+      'nazwa_leku': new FormControl({value: null, disable: true}),
       'rodzaj_leku': new FormControl(null)
     });
   }

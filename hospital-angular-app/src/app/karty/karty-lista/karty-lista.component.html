@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <h1 class="text-center text-info" *ngIf="!isLoading">Karty pobytu pacjenta {{pacjent.imie}} {{pacjent.nazwisko}}</h1>
+  <h1 class="text-center text-info" *ngIf="!isLoading">Karty pobytu pacjenta {{imie}} {{nazwisko}}</h1>
 
 
   <div class="table-responsive" *ngIf="!isLoading">
@@ -43,8 +43,10 @@
           <button class="btn btn-outline-secondary"> Operacje</button>
         </td>
         <td class="text-right">
-          <button class="btn btn-danger">Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+          <button class="btn btn-danger" (click)="onConfirmDelete(karta.id_karty)">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
+          (click)="onEditKarta(karta.id_karty,karta.data_przyjecia,karta.godzina_przyjecia,
+          karta.data_wypisu, karta.nr_sali)">Edytuj</button>
 
         </td>
 
@@ -56,59 +58,48 @@
 </div>
 
 
-<!-- Modal -->
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj kartę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
-
-          <div class="form-group">
-            <label for="id_karty">ID Karty</label>
-            <input type="text" class="form-control" id="id_karty">
-          </div>
+        <form (ngSubmit)="onSubmit(formAddKarta)" [formGroup]="formAddKarta">
 
           <div class="form-group">
             <label for="data_przyjecia">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia">
+            <input type="text" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
           </div>
 
           <div class="form-group">
             <label for="godzina_przyjecia">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia">
+            <input type="text" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia">
           </div>
 
           <div class="form-group">
             <label for="data_wypisu">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu">
+            <input type="text" class="form-control" id="data_wypisu" formControlName="data_wypisu">
           </div>
 
 
           <div class="form-group">
-            <label for="nr_sali">Nr sali</label>
-            <input type="text" class="form-control" id="nr_sali">
+            <label for="nr_sali">Numer sali</label>
+            <input type="text" class="form-control" id="nr_sali" formControlName="nr_sali">
           </div>
 
-          <div class="form-group">
-            <label for="pesel">pesel</label>
-            <input type="text" class="form-control" id="pesel">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
-
-
-
 
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
+
       </div>
     </div>
   </div>
@@ -126,48 +117,38 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
-
-          <div class="form-group">
-            <label for="id_karty_update">ID Karty</label>
-            <input type="text" class="form-control" id="id_karty_update">
-          </div>
+        <form (ngSubmit)="onSubmit(formEditKarta)" [formGroup]="formEditKarta">
 
           <div class="form-group">
             <label for="data_przyjecia_update">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia_update">
+            <input type="text" class="form-control" id="data_przyjecia_update" formControlName="data_przyjecia">
           </div>
 
           <div class="form-group">
             <label for="godzina_przyjecia_update">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia_update">
+            <input type="text" class="form-control" id="godzina_przyjecia_update" formControlName="godzina_przyjecia">
           </div>
 
           <div class="form-group">
             <label for="data_wypisu_update">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu_update">
+            <input type="text" class="form-control" id="data_wypisu_update" formControlName="data_wypisu">
           </div>
 
 
           <div class="form-group">
             <label for="nr_sali_update">Nr sali</label>
-            <input type="text" class="form-control" id="nr_sali_update">
+            <input type="text" class="form-control" id="nr_sali_update" formControlName="nr_sali">
           </div>
 
-          <div class="form-group">
-            <label for="pesel_update">pesel</label>
-            <input type="text" class="form-control" id="pesel_update">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
-
-
 
 
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
-      </div>
+
     </div>
   </div>
 </div>
