@@ -10,6 +10,7 @@
         <th>Imię</th>
         <th>Nazwisko</th>
         <th>Płaca</th>
+        <th class="text-center">Informacje o lekarzach</th>
         <th></th>
       </tr>
       </thead>
@@ -20,13 +21,16 @@
         <td>{{ lekarz.imie }}</td>
         <td>{{ lekarz.nazwisko }}</td>
         <td>{{ lekarz.placa_pod }}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-secondary" >Specjalizacje</button>
+        </td>
 
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(lekarz.id_lekarza)">Usuń</button>
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
                   (click)="onEditLekarz(lekarz.id_lekarza, lekarz.imie, lekarz.nazwisko, lekarz.placa_pod)">Edytuj
           </button>
-          <button class="btn btn-outline-secondary">Specjalizacje</button>
+
         </td>
       </tr>
 

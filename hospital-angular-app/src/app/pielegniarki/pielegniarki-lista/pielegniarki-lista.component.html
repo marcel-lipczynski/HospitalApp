@@ -20,6 +20,7 @@
         <th>Imię</th>
         <th>Nazwisko</th>
         <th>Płaca (zł)</th>
+        <th class="text-center">Informacje o pielęgniarce</th>
         <th></th>
       </tr>
       </thead>
@@ -29,12 +30,14 @@
         <td>{{pielegniarka.imie}}</td>
         <td>{{pielegniarka.nazwisko}}</td>
         <td>{{pielegniarka.placa}}</td>
-
+        <td class="text-center">
+          <button class="btn btn-outline-secondary" > Sale </button>
+        </td>
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(pielegniarka.id_pielegniarki)">Usuń</button>
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
                   (click)="onEditPielegniarka(pielegniarka.id_pielegniarki,pielegniarka.imie,pielegniarka.nazwisko,pielegniarka.placa)">Edytuj</button>
-          <button class="btn btn-secondary"> Sale </button>
+
         </td>
       </tr>
 

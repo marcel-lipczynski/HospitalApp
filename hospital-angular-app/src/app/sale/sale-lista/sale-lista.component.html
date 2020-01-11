@@ -20,6 +20,7 @@
         <th>Numer sali</th>
         <th>Pojemność</th>
         <th>Oddział</th>
+        <th class="text-center">Informacje o salach</th>
         <th></th>
       </tr>
       </thead>
@@ -29,12 +30,14 @@
         <td>{{ sala.nr_sali }}</td>
         <td>{{ sala.pojemnosc }}</td>
         <td>{{ sala.oddzial}}</td>
+        <td class="text-center">
+          <button class="btn btn-outline-secondary">Pielęgniarki</button>
+        </td>
 
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(sala.nr_sali)" disabled>Usuń</button>
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
           (click)="onEditSala(sala.nr_sali,sala.pojemnosc,sala.oddzial)">Edytuj</button>
-          <button class="btn btn-outline-secondary">Pielęgniarki</button>
         </td>
       </tr>
 
