@@ -1,9 +1,7 @@
 package com.szbd.hospital.controller;
 
 
-import com.szbd.hospital.entity.Diagnoza;
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import com.szbd.hospital.service.PacjentService;
 import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +57,8 @@ public class PacjentController {
         pacjentService.deleteKartaPobytuFromPacjent(pesel, id_karty);
     }
 
+    //diagnozy
+
     @GetMapping("/{pesel}/karty/{id_karty}/diagnozy")
     public List<Diagnoza> findAllDiagnozaForKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty) {
         return pacjentService.findAllDiagnozaForKartaPobytu(id_karty);
@@ -73,6 +73,43 @@ public class PacjentController {
     public void deleteDiagnozaFromKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty, @PathVariable int id_diagnozy) {
         pacjentService.deleteDiagnozaFromKartaPobytu(id_karty, id_diagnozy);
     }
+
+
+    //operacje
+
+    @GetMapping("/{pesel}/karty/{id_karty}/operacje")
+    public List<Operacja> findAllOperacjeForKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty) {
+        return pacjentService.findAllOperacjeForKartaPobytu(id_karty);
+    }
+
+    @PostMapping("/{pesel}/karty/{id_karty}/operacje")
+    public void saveOperacjaForKartaPobytu(@RequestBody Operacja operacja, @PathVariable int id_karty, @PathVariable String pesel) {
+        pacjentService.saveOperacjaForKartaPobytu(operacja, id_karty);
+    }
+
+    @DeleteMapping("/{pesel}/karty/{id_karty}/operacje/{id_operacji}")
+    public void deleteOperacjaFromKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty, @PathVariable int id_operacji) {
+        pacjentService.deleteOperacjaFromKartaPobytu(id_karty, id_operacji);
+    }
+
+    //recepty
+
+    @GetMapping("/{pesel}/karty/{id_karty}/recepty")
+    public List<Recepta> findAllReceptyForKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty) {
+        return pacjentService.findAllReceptyForKartaPobytu(id_karty);
+    }
+
+    @PostMapping("/{pesel}/karty/{id_karty}/recepty")
+    public void saveReceptaForKartaPobytu(@RequestBody Recepta recepta, @PathVariable int id_karty, @PathVariable String pesel) {
+        pacjentService.saveReceptaForKartaPobytu(recepta, id_karty);
+    }
+
+    @DeleteMapping("/{pesel}/karty/{id_karty}/recepty/{id_recepty}")
+    public void deleteReceptaFromKartaPobytu (@PathVariable String pesel, @PathVariable int id_karty, @PathVariable int id_recepty) {
+        pacjentService.deleteReceptaFromKartaPobytu(id_karty, id_recepty);
+    }
+
+
 
 
 }

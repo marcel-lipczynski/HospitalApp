@@ -1,9 +1,7 @@
 package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.PacjentDAO;
-import com.szbd.hospital.entity.Diagnoza;
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,5 +76,41 @@ public class PacjentServiceImpl implements PacjentService {
     @Transactional
     public void deleteDiagnozaFromKartaPobytu(int id_karty, int id_diagnozy) {
         pacjentDAO.deleteDiagnozaFromKartaPobytu(id_karty, id_diagnozy);
+    }
+
+    @Override
+    @Transactional
+    public List<Operacja> findAllOperacjeForKartaPobytu(int id_karty) {
+        return pacjentDAO.findAllOperacjeForKartaPobytu(id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void saveOperacjaForKartaPobytu(Operacja operacja, int id_karty) {
+        pacjentDAO.saveOperacjaForKartaPobytu(operacja, id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void deleteOperacjaFromKartaPobytu(int id_karty, int id_operacji) {
+        pacjentDAO.deleteOperacjaFromKartaPobytu(id_karty, id_operacji);
+    }
+
+    @Override
+    @Transactional
+    public List<Recepta> findAllReceptyForKartaPobytu(int id_karty) {
+        return pacjentDAO.findAllReceptyForKartaPobytu(id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void saveReceptaForKartaPobytu(Recepta recepta, int id_karty) {
+        pacjentDAO.saveReceptaForKartaPobytu(recepta, id_karty);
+    }
+
+    @Override
+    @Transactional
+    public void deleteReceptaFromKartaPobytu(int id_karty, int id_recepty) {
+        pacjentDAO.deleteReceptaFromKartaPobytu(id_karty, id_recepty);
     }
 }

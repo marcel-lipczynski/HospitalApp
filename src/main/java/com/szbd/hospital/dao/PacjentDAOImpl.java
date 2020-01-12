@@ -1,8 +1,6 @@
 package com.szbd.hospital.dao;
 
-import com.szbd.hospital.entity.Diagnoza;
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -94,8 +92,58 @@ public class PacjentDAOImpl implements PacjentDAO {
     public void deleteDiagnozaFromKartaPobytu(int id_karty, int id_diagnozy) {
         KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
         Diagnoza diagnoza = entityManager.find(Diagnoza.class, id_diagnozy);
-        if(kartaPobytu != null & diagnoza != null){
+        if (kartaPobytu != null & diagnoza != null) {
             entityManager.remove(diagnoza);
+        }
+    }
+
+    @Override
+    public List<Operacja> findAllOperacjeForKartaPobytu(int id_karty) {
+        return entityManager.find(KartaPobytu.class, id_karty).getOperacje();
+    }
+
+    @Override
+    public void saveOperacjaForKartaPobytu(Operacja operacja, int id_karty) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        if (kartaPobytu != null) {
+            operacja.setId_karty(id_karty);
+            operacja.setKartaPobytu(kartaPobytu);
+            kartaPobytu.addOperacja(operacja);
+            entityManager.merge(operacja);
+        }
+    }
+
+    @Override
+    public void deleteOperacjaFromKartaPobytu(int id_karty, int id_operacji) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        Operacja operacja = entityManager.find(Operacja.class, id_operacji);
+        if (kartaPobytu != null & operacja != null) {
+            entityManager.remove(operacja);
+        }
+    }
+
+    @Override
+    public List<Recepta> findAllReceptyForKartaPobytu(int id_karty) {
+        return entityManager.find(KartaPobytu.class, id_karty).getRecepty();
+    }
+
+    @Override
+    public void saveReceptaForKartaPobytu(Recepta recepta, int id_karty) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        if (kartaPobytu != null) {
+            recepta.setId_karty(id_karty);
+            recepta.setKartaPobytu(kartaPobytu);
+            kartaPobytu.addRecepta(recepta);
+            entityManager.merge(recepta);
+        }
+    }
+
+    @Override
+    public void deleteReceptaFromKartaPobytu(int id_karty, int id_recepty) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        Recepta recepta = entityManager.find(Recepta.class, id_recepty);
+        if (kartaPobytu != null & recepta != null) {
+            entityManager.remove(recepta);
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.szbd.hospital.dao;
 
-import com.szbd.hospital.entity.Diagnoza;
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,6 +8,7 @@ import java.util.List;
 
 public interface PacjentDAO {
 
+    //Pacjenci
     List<Pacjent> findAll();
     Pacjent findById(String id);
     void save(Pacjent pacjent);
@@ -24,5 +23,15 @@ public interface PacjentDAO {
     List<Diagnoza> findAllDiagnozaForKartaPobytu(int id_karty);
     void saveDiagnozaForKartaPobytu(Diagnoza diagnoza, int id_karty);
     void deleteDiagnozaFromKartaPobytu(int id_karty, int id_diagnozy);
+
+    //operacje
+    List<Operacja> findAllOperacjeForKartaPobytu(int id_karty);
+    void saveOperacjaForKartaPobytu(Operacja operacja, int id_karty);
+    void deleteOperacjaFromKartaPobytu(int id_karty, int id_operacji);
+
+    //recepty
+    List<Recepta> findAllReceptyForKartaPobytu(int id_karty);
+    void saveReceptaForKartaPobytu(Recepta recepta, int id_karty);
+    void deleteReceptaFromKartaPobytu(int id_karty, int id_recepty);
 
 }
