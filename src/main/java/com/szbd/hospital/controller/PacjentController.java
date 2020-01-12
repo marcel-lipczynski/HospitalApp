@@ -105,11 +105,8 @@ public class PacjentController {
     }
 
     @DeleteMapping("/{pesel}/karty/{id_karty}/recepty/{id_recepty}")
-    public void deleteReceptaFromKartaPobytu (@PathVariable String pesel, @PathVariable int id_karty, @PathVariable int id_recepty) {
+    public void deleteReceptaFromKartaPobytu(@PathVariable String pesel, @PathVariable int id_karty, @PathVariable int id_recepty) {
         pacjentService.deleteReceptaFromKartaPobytu(id_karty, id_recepty);
     }
-
-
-
 
 }
