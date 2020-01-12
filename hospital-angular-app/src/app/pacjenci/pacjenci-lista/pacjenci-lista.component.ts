@@ -111,14 +111,6 @@ export class PacjenciListaComponent implements OnInit {
   }
 
 
-  //  onlyNumbers(control: AbstractControl): {[invalidPattern: string] : boolean}{
-  //   const valid = /^\d+$/.test(control.value);
-  //   if(valid === false && control.value != null && control.value != '' ){
-  //     return {'invalidPattern': true};
-  //   }
-  //   return null;
-  // }
-
   get pesel(){
     return this.formPacjent.get('pesel');
   }

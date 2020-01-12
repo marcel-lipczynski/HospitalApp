@@ -22,11 +22,11 @@ export class SpecjalizacjaService {
   }
 
   saveOrUpdateSpecjalizacja(specjalizacja: Specjalizacja) {
-    this.http.post<Specjalizacja>(this.SPECJALIZACJE_API_URL, specjalizacja);
+    return this.http.post<Specjalizacja>(this.SPECJALIZACJE_API_URL, specjalizacja);
   }
 
   deleteSpecjalizacjaByNazwa(nazwa_specjalizacji: string){
-    this.http.delete(this.SPECJALIZACJE_API_URL + `${nazwa_specjalizacji}`);
+    return this.http.delete(this.SPECJALIZACJE_API_URL + `/${nazwa_specjalizacji}`);
   }
 
 
