@@ -23,6 +23,7 @@ export class DiagnozyListaComponent implements OnInit {
   formEditDiagnoza: FormGroup;
   pesel: string;
   id_karty: number;
+  lekarzDeleted: boolean;
 
 
   constructor(private http: HttpClient,
@@ -36,7 +37,6 @@ export class DiagnozyListaComponent implements OnInit {
 
     this.id_karty = +this.route.snapshot.params['id_karty'];
     this.pesel = this.route.snapshot.params['pesel'];
-
     this.reloadData();
     this.setupForm();
   }
@@ -49,8 +49,8 @@ export class DiagnozyListaComponent implements OnInit {
     });
   }
 
-  findAllLekarzeOnKarta(){
-    return this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarze =>{
+  findAllLekarzeOnKarta() {
+    return this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarze => {
       this.lekarze = lekarze;
     })
   }
@@ -109,6 +109,5 @@ export class DiagnozyListaComponent implements OnInit {
       this.deleteDiagnozaByIdFromKartaPobytu(id_diagnozy);
     }
   }
-
 
 }

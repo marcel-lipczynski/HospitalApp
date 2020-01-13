@@ -35,7 +35,7 @@
         <td>{{diagnoza.data_wystawienia}}</td>
         <span  *ngFor="let lekarz of lekarze">
           <span  *ngIf="lekarz.id_lekarza === diagnoza.id_lekarza">
-            <td  >{{lekarz.imie}} {{lekarz.nazwisko}}</td>
+            <td>{{lekarz.imie}} {{lekarz.nazwisko}}</td>
           </span>
         </span>
 
