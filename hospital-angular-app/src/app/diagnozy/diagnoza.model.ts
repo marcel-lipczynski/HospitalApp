@@ -1,3 +1,5 @@
+import {Lekarz} from "../lekarze/lekarz.model";
+
 export interface Diagnoza{
   id_diagnozy: number,
   opis: string;

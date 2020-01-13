@@ -6,6 +6,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {KartaService} from "../../karty/karta.service";
+import {Lekarz} from "../../lekarze/lekarz.model";
 
 @Component({
   selector: 'app-diagnozy-lista',
@@ -15,6 +17,7 @@ import * as bootstrap from "bootstrap";
 export class DiagnozyListaComponent implements OnInit {
 
   diagnozy: Diagnoza[] = [];
+  lekarze: Lekarz[] = [];
   isLoading: boolean = true;
   formAddDiagnoza: FormGroup;
   formEditDiagnoza: FormGroup;
@@ -24,6 +27,7 @@ export class DiagnozyListaComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private diagnozaService: DiagnozaService,
+              private kartaService: KartaService,
               private route: ActivatedRoute) {
 
   }
@@ -39,18 +43,24 @@ export class DiagnozyListaComponent implements OnInit {
 
   reloadData() {
     this.diagnozaService.findAllDiagnozyForKartaPobytu(this.pesel, this.id_karty).subscribe(diagnozy => {
+      this.findAllLekarzeOnKarta();
       this.diagnozy = diagnozy;
       this.isLoading = false;
     });
   }
 
+  findAllLekarzeOnKarta(){
+    return this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarze =>{
+      this.lekarze = lekarze;
+    })
+  }
+
   setupForm() {
     this.formAddDiagnoza = new FormGroup({
-      id_diagnozy: new FormControl(null),
       opis: new FormControl(null),
       data_wystawienia: new FormControl(null),
       id_lekarza: new FormControl(null),
-      id_karty: new FormControl(null)
+      id_karty: new FormControl(this.id_karty)
     });
 
     this.formEditDiagnoza = new FormGroup({
@@ -58,7 +68,7 @@ export class DiagnozyListaComponent implements OnInit {
       opis: new FormControl(null),
       data_wystawienia: new FormControl(null),
       id_lekarza: new FormControl(null),
-      id_karty: new FormControl(null)
+      id_karty: new FormControl(this.id_karty)
     });
   }
 

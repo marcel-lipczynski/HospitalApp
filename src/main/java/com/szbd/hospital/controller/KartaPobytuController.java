@@ -30,7 +30,7 @@ public class KartaPobytuController {
         return kartaPobytuService.findById(id);
     }
 
-    @GetMapping("/{id_karty}/lekarz")
+    @GetMapping("/{id_karty}/lekarze")
     public List<Lekarz> findLekarzeOnKartaPobytu(@PathVariable int id_karty) {
         return kartaPobytuService.findLekarzeOnKartaPobytu(id_karty);
     }
@@ -42,13 +42,13 @@ public class KartaPobytuController {
     }
 
 
-    @PostMapping("/{id_karty}/lekarz/{id_lekarza}")
+    @PostMapping("/{id_karty}/lekarze/{id_lekarza}")
     public void addLekarzToKartaPobytu(@PathVariable int id_karty, @PathVariable int id_lekarza) {
         kartaPobytuService.addLekarzToKartaPobytu(id_karty, id_lekarza);
     }
 
 
-    @DeleteMapping("/{id_karty}/lekarz/{id_lekarza}")
+    @DeleteMapping("/{id_karty}/lekarze/{id_lekarza}")
     public void deleteLekarzFromKarta(@PathVariable int id_karty, @PathVariable int id_lekarza) {
         kartaPobytuService.deleteLekarzFromKarta(id_karty, id_lekarza);
     }
