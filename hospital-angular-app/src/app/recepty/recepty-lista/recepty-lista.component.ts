@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ReceptaService} from "../recepta.service";
+import {Recepta} from "../recepta.model";
 import {Lekarz} from "../../lekarze/lekarz.model";
 import {FormControl, FormGroup} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {ReceptaService} from "../recepta.service";
 import {KartaService} from "../../karty/karta.service";
 import {ActivatedRoute} from "@angular/router";
-import {Recepta} from "../recepta.model";
-import * as $AB from "jquery";
-import * as bootstrap from "bootstrap";
 
 @Component({
-  selector: 'app-recepty-leki',
-  templateUrl: './recepty-leki.component.html',
-  styleUrls: ['./recepty-leki.component.css']
+  selector: 'app-recepty-lista',
+  templateUrl: './recepty-lista.component.html',
+  styleUrls: ['./recepty-lista.component.css']
 })
-export class ReceptyLekiComponent implements OnInit {
+export class ReceptyListaComponent implements OnInit {
 
   recepty: Recepta[] = [];
   lekarze: Lekarz[] = [];

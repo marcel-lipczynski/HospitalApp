@@ -18,22 +18,31 @@
       <thead>
       <tr>
 
-        <th>Nazwa leku</th>
-        <th>Rodzaj leku</th>
+        <th>Data wystawienia</th>
+        <th>Lekarz wystawiający</th>
+        <th class="text-center">Leki na recepcie</th>
         <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr>
+      <tr *ngFor="let recepta of recepty">
 
-        <td></td>
-        <td></td>
+        <td>{{recepta.data_wystawienia}}</td>
+        <span  *ngFor="let lekarz of lekarze">
+          <span  *ngIf="lekarz.id_lekarza === recepta.id_lekarza">
+            <td  >{{lekarz.imie}} {{lekarz.nazwisko}}</td>
+          </span>
+        </span>
 
+        <td class="text-center">
+          <button class="btn btn-outline-secondary"> Leki </button>
+        </td>
 
         <td class="text-right">
-          <button class="btn btn-danger" >Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+          <button class="btn btn-danger" (click)="onConfirmDelete(recepta.id_recepty)">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
+                  (click)="onEditForm(recepta.id_recepty, recepta.data_wystawienia, recepta.id_lekarza)">
             Edytuj</button>
         </td>
       </tr>
@@ -51,23 +60,30 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj receptę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form >
+        <form (ngSubmit)="onSubmit(formAddRecepta)" [formGroup]="formAddRecepta">
 
 
           <div class="form-group">
             <label for="data_wystawienia">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia">
+            <input type="text" class="form-control" id="data_wystawienia" formControlName="data_wystawienia">
           </div>
 
+          <div class="form-group">
+            <label for="id_lek">Lekarz wystawiający</label>
+            <select class="form-control" id="id_lek" formControlName="id_lekarza">
 
+              <option *ngFor="let lekarz of lekarze" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
+
+            </select>
+          </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
 
@@ -90,14 +106,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form >
+        <form (ngSubmit)="onSubmit(formEditRecepta)" [formGroup]="formEditRecepta" >
 
 
           <div class="form-group">
             <label for="data_wystawienia_update">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia_update" >
+            <input type="text" class="form-control" id="data_wystawienia_update" formControlName="data_wystawienia">
           </div>
 
+          <div class="form-group">
+            <label for="id_lek2">Lekarz wystawiający</label>
+            <select class="form-control" id="id_lek2" formControlName="id_lekarza">
+
+              <option *ngFor="let lekarz of lekarze" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
+
+            </select>
+          </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
@@ -111,6 +135,7 @@
     </div>
   </div>
 </div>
+
 
 
 

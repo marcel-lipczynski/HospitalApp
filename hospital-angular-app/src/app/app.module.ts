@@ -32,6 +32,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { SpecjalizacjeComponent } from './specjalizacje/specjalizacje.component';
 import { SpecjalizacjeListaComponent } from './specjalizacje/specjalizacje-lista/specjalizacje-lista.component';
+import { ReceptyListaComponent } from './recepty/recepty-lista/recepty-lista.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { SpecjalizacjeListaComponent } from './specjalizacje/specjalizacje-lista
     LekiListaComponent,
     SpecjalizacjeComponent,
     SpecjalizacjeListaComponent,
+    ReceptyListaComponent,
   ],
   imports: [
     BrowserModule,

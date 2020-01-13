@@ -41,7 +41,7 @@ public class ReceptaController {
         receptaService.saveRecepta(recepta);
     }
 
-    @PostMapping("/{id_recepty}/lek/{nazwa_leku}")
+    @PostMapping("/{id_recepty}/leki/{nazwa_leku}")
     public void addLekToRecepta(@PathVariable int id_recepty, @PathVariable String nazwa_leku) {
         receptaService.addLekToRecepta(id_recepty, nazwa_leku.toUpperCase());
     }
@@ -52,7 +52,7 @@ public class ReceptaController {
     }
 
 
-    @DeleteMapping("/{id_recepty}/lek/{nazwa_leku}")
+    @DeleteMapping("/{id_recepty}/leki/{nazwa_leku}")
     public void deleteLekFromRecepta(@PathVariable int id_recepty, @PathVariable String nazwa_leku) {
         receptaService.deleteLekFromRecepta(id_recepty, nazwa_leku.toUpperCase());
     }
