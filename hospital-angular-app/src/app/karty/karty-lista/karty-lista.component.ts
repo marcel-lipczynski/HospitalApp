@@ -25,7 +25,7 @@ export class KartyListaComponent implements OnInit {
   pesel: string;
   imie: string;
   nazwisko: string;
-  numery_sal: number[] = [];
+
 
 
 

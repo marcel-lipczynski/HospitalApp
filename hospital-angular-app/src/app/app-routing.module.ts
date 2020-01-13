@@ -14,9 +14,9 @@ import {SpecjalizacjeComponent} from "./specjalizacje/specjalizacje.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'pacjenci/:pesel/karty/:id/operacje', component:OperacjeComponent},
-  {path: 'pacjenci/:pesel/karty/:id/diagnozy', component:DiagnozyComponent},
-  {path: 'pacjenci/:pesel/karty/:id/recepty', component:ReceptyComponent},
+  {path: 'pacjenci/:pesel/karty/:id_karty/operacje', component:OperacjeComponent},
+  {path: 'pacjenci/:pesel/karty/:id_karty/diagnozy', component:DiagnozyComponent},
+  {path: 'pacjenci/:pesel/karty/:id_karty/recepty', component:ReceptyComponent},
   {path: 'pacjenci/:pesel/karty', component: KartyComponent},
   {path: 'pacjenci', component: PacjenciComponent},
   {path: 'lekarze', component: LekarzeComponent},

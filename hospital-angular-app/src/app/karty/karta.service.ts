@@ -8,7 +8,7 @@ import {Karta} from "./karta.model";
 })
 export class KartaService {
 
-  readonly KARTY_API_URL = '/api/pacjenci'
+  readonly KARTY_API_URL = '/api/pacjenci';
 
   constructor(private http: HttpClient) {
   }
