@@ -34,6 +34,7 @@ import { SpecjalizacjeComponent } from './specjalizacje/specjalizacje.component'
 import { SpecjalizacjeListaComponent } from './specjalizacje/specjalizacje-lista/specjalizacje-lista.component';
 import { ReceptyListaComponent } from './recepty/recepty-lista/recepty-lista.component';
 import { LekarzeSpecjalizacjeComponent } from './lekarze/lekarze-specjalizacje/lekarze-specjalizacje.component';
+import { SalePielegniarkiComponent } from './sale/sale-pielegniarki/sale-pielegniarki.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { LekarzeSpecjalizacjeComponent } from './lekarze/lekarze-specjalizacje/l
     SpecjalizacjeListaComponent,
     ReceptyListaComponent,
     LekarzeSpecjalizacjeComponent,
+    SalePielegniarkiComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,7 @@ public class SalaController {
         return salaService.findById(id);
     }
 
-    @GetMapping("/{id}/pielegniarka")
+    @GetMapping("/{id}/pielegniarki")
     public List<Pielegniarka> findAllPielegniarkaOfSala(@PathVariable int id) {
         return salaService.findAllPielegniarkaOfSala(id);
     }
@@ -41,13 +41,13 @@ public class SalaController {
         salaService.saveSala(sala);
     }
 
-    @PostMapping("/{nr_sali}/pielegniarka/{idPielegniarki}")
+    @PostMapping("/{nr_sali}/pielegniarki/{idPielegniarki}")
     public void saveSalaWithIdPielegniarki(@PathVariable int idPielegniarki,
                                            @PathVariable int nr_sali) {
         salaService.saveSalaWithIdPielegniarki(idPielegniarki,nr_sali);
     }
 
-    @DeleteMapping("/{nr_sali}/pielegniarka/{idPielegniarki}")
+    @DeleteMapping("/{nr_sali}/pielegniarki/{idPielegniarki}")
     public void deletePielegniarkaFromSala(@PathVariable int idPielegniarki,
                                            @PathVariable int nr_sali) {
         salaService.deletePielegniarkaFromSala(idPielegniarki, nr_sali);

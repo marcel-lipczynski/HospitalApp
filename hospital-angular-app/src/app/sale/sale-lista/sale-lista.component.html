@@ -31,7 +31,7 @@
         <td>{{ sala.pojemnosc }}</td>
         <td>{{ sala.oddzial}}</td>
         <td class="text-center">
-          <button class="btn btn-outline-secondary">Pielęgniarki</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[sala.nr_sali, 'pielegniarki']">Pielęgniarki</button>
         </td>
 
         <td class="text-right">

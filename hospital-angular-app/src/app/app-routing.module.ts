@@ -15,6 +15,8 @@ import {ReceptyListaComponent} from "./recepty/recepty-lista/recepty-lista.compo
 import {ReceptyLekiComponent} from "./recepty/recepty-leki/recepty-leki.component";
 import {LekarzeListaComponent} from "./lekarze/lekarze-lista/lekarze-lista.component";
 import {LekarzeSpecjalizacjeComponent} from "./lekarze/lekarze-specjalizacje/lekarze-specjalizacje.component";
+import {SaleListaComponent} from "./sale/sale-lista/sale-lista.component";
+import {SalePielegniarkiComponent} from "./sale/sale-pielegniarki/sale-pielegniarki.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -33,7 +35,11 @@ const appRoutes: Routes = [
       {path: ':id_lekarza/specjalizacje', component: LekarzeSpecjalizacjeComponent},
     ]},
   {path: 'pielegniarki', component: PielegniarkiComponent},
-  {path: 'sale', component: SaleComponent},
+  {path: 'sale', component: SaleComponent,
+    children:[
+      {path: '', component: SaleListaComponent, pathMatch: 'full'},
+      {path: ':nr_sali/pielegniarki', component: SalePielegniarkiComponent}
+    ]},
   {path: 'leki', component:LekiComponent},
   {path: 'specjalizacje', component:SpecjalizacjeComponent}
 

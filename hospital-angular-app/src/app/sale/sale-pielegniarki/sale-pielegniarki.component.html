@@ -18,23 +18,25 @@
       <thead>
       <tr>
 
-        <th>Nazwa leku</th>
-        <th>Rodzaj leku</th>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Płaca</th>
         <th></th>
       </tr>
 
       </thead>
 
       <tbody>
-      <tr *ngFor="let lek of lekiOnRecepta">
+      <tr *ngFor = "let pielegniarkaFromSala of pielegniarkiFromSala">
 
-        <td>{{lek.nazwa_leku}}</td>
-        <td>{{lek.rodzaj_leku}}</td>
+        <td>{{pielegniarkaFromSala.imie}}</td>
+        <td>{{pielegniarkaFromSala.nazwisko}}</td>
+        <td>{{pielegniarkaFromSala.placa}}</td>
 
 
 
         <td class="text-right">
-          <button class="btn btn-danger" (click)="onConfirmDelete(lek.nazwa_leku)">Usuń</button>
+          <button class="btn btn-danger" (click)="onConfirmDelete(pielegniarkaFromSala.id_pielegniarki)">Usuń</button>
         </td>
       </tr>
 
@@ -50,20 +52,22 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj lek</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj pielegniarkę</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="onSubmit(formAddLek)" [formGroup]="formAddLek">
+        <form (ngSubmit)="onSubmit(formAddPielegniarka)" [formGroup]="formAddPielegniarka">
 
 
           <div class="form-group">
-            <label for="nazwa_leku">Lek</label>
-            <select class="form-control" id="nazwa_leku" formControlName="nazwa_leku">
+            <label for="id_pielegniarki">Pielęgniarka</label>
+            <select class="form-control" id="id_pielegniarki" formControlName="id_pielegniarki">
 
-              <option *ngFor="let lek of leki" [value]="lek.nazwa_leku">{{lek.nazwa_leku}} - {{lek.rodzaj_leku}}</option>
+              <option *ngFor="let pielegniarka of pielegiarki" [value]="pielegniarka.id_pielegniarki">
+                {{pielegniarka.imie}} {{pielegniarka.nazwisko}}
+              </option>
 
             </select>
           </div>
