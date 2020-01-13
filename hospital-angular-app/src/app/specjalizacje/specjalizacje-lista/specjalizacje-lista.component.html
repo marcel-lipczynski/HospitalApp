@@ -59,21 +59,100 @@
           <div class="form-group">
             <label for="nazwa_specjalizacji">Nazwa specjalizacji</label>
             <input type="text" class="form-control" id="nazwa_specjalizacji" formControlName="nazwa_specjalizacji">
+
+            <span *ngIf="formAddSpecjalizacja.get('nazwa_specjalizacji').hasError('maxlength') && formAddSpecjalizacja.get('nazwa_specjalizacji').touched"
+                  class="help-block text-danger">
+                  Nazwa specjalizacji może zawierać maksymalnie 50 znaków
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('nazwa_specjalizacji').hasError('required') && formAddSpecjalizacja.get('nazwa_specjalizacji').touched"
+                  class="help-block text-danger">
+                  Nazwa specjalizacji jest wymagana
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('nazwa_specjalizacji').hasError('pattern') && formAddSpecjalizacja.get('nazwa_specjalizacji').touched"
+                  class="help-block text-danger">
+                  Nazwa specjalizacji może zawierać tylko litery
+            </span>
+
           </div>
 
           <div class="form-group">
             <label for="placa_min">Płaca minimalna</label>
             <input type="text" class="form-control" id="placa_min" formControlName="placa_min">
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('min') && formAddSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 0
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('max') && formAddSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 99999
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('required') && formAddSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Pole płaca minimalna jest wymagane
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('pattern') && formAddSpecjalizacja.get('placa_min').touched &&
+            !formAddSpecjalizacja.get('placa_min').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('lessThan')
+              && !formAddSpecjalizacja.get('placa_min').hasError('required')
+              && !formAddSpecjalizacja.get('placa_min').hasError('max')"
+                  class="help-block text-danger">
+                  Płaca minimalna musi być mniejsza od płacy maksymalnej
+            </span>
+
+
+
+
           </div>
 
           <div class="form-group">
             <label for="placa_max">Płaca maksymalna</label>
             <input type="text" class="form-control" id="placa_max" formControlName="placa_max">
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('min') && formAddSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 0
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('max') && formAddSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 99999
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('required') && formAddSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Pole płaca maksymalna jest wymagane
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('pattern') && formAddSpecjalizacja.get('placa_max').touched &&
+            !formAddSpecjalizacja.get('placa_max').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+            <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('greaterThan')
+              && !formAddSpecjalizacja.get('placa_max').hasError('required')
+              && !formAddSpecjalizacja.get('placa_max').hasError('max')"
+                  class="help-block text-danger">
+                  Płaca maksymalna musi być większa od płacy minimalnej
+            </span>
+
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary" >Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddSpecjalizacja.valid" >Zapisz</button>
           </div>
         </form>
       </div>
@@ -104,12 +183,75 @@
           <div class="form-group">
             <label for="placa_min2">Płaca minimalna</label>
             <input type="text" class="form-control" id="placa_min2" formControlName="placa_min">
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('min') && formEditSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 0
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('max') && formEditSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 99999
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('required') && formEditSpecjalizacja.get('placa_min').touched"
+                  class="help-block text-danger">
+                  Pole płaca minimalna jest wymagane
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('pattern') && formEditSpecjalizacja.get('placa_min').touched &&
+            !formAddSpecjalizacja.get('placa_min').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('lessThan')
+              && !formEditSpecjalizacja.get('placa_min').hasError('required')
+              && !formEditSpecjalizacja.get('placa_min').hasError('max')"
+                  class="help-block text-danger">
+                  Płaca minimalna musi być mniejsza od płacy maksymalnej
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="placa_max2">Płaca maksymalna</label>
             <input type="text" class="form-control" id="placa_max2" formControlName="placa_max">
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('min') && formEditSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 0
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('max') && formEditSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 99999
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('required') && formEditSpecjalizacja.get('placa_max').touched"
+                  class="help-block text-danger">
+                  Pole płaca maksymalna jest wymagane
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('pattern') && formEditSpecjalizacja.get('placa_max').touched &&
+            !formAddSpecjalizacja.get('placa_max').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+            <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('greaterThan')
+              && !formEditSpecjalizacja.get('placa_max').hasError('required')
+              && !formEditSpecjalizacja.get('placa_max').hasError('max')"
+                  class="help-block text-danger">
+                  Płaca maksymalna musi być większa od płacy minimalnej
+            </span>
+
+
           </div>
+
+
+
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>

@@ -2,9 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SpecjalizacjaService} from "../specjalizacja.service";
 import {Specjalizacja} from "../specjalizacja.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+
+
+
+// const placa_min_placa_max: ValidatorFn = (fg: FormGroup) => {
+//   const placa_min = fg.get('placa_min').value;
+//   const placa_max = fg.get('placa_max').value;
+//
+//   return placa_min && placa_max && placa_min < placa_max ? null : { moreThanError: true };
+// }
+
+
+
 
 @Component({
   selector: 'app-specjalizacje-lista',
@@ -20,33 +32,72 @@ export class SpecjalizacjeListaComponent implements OnInit {
 
 
   constructor(private http: HttpClient,
-              private specjalizacjaService: SpecjalizacjaService) { }
+              private specjalizacjaService: SpecjalizacjaService) {
+
+  }
 
   ngOnInit() {
+
     this.reloadData();
     this.setupForm();
+
+
+
+
   }
+
 
   reloadData(){
     this.specjalizacjaService.findAllSpecjalizacje().subscribe(specjalizacje => {
       this.specjalizacje = specjalizacje;
       this.isLoading = false;
-    })
+    });
   }
 
   setupForm(){
     this.formAddSpecjalizacja = new FormGroup({
-      nazwa_specjalizacji: new FormControl(null),
+      nazwa_specjalizacji: new FormControl(null, [Validators.maxLength(50),Validators.required, Validators.pattern(/^[A-Za-z ]+$/)]),
       placa_min: new FormControl(null),
       placa_max: new FormControl(null)
     });
+
+    this.formAddSpecjalizacja.get('placa_min').setValidators([this.greaterThan('placa_max'), Validators.max(99999), Validators.min(0),Validators.required,Validators.pattern(/^\d+$/)] );
+    this.formAddSpecjalizacja.get('placa_max').setValidators([this.lessThan('placa_min'), Validators.max(99999), Validators.min(0),Validators.required,Validators.pattern(/^\d+$/)] );
+
 
     this.formEditSpecjalizacja = new FormGroup({
       nazwa_specjalizacji: new FormControl({value: null, disabled: true}),
       placa_min: new FormControl(null),
       placa_max: new FormControl(null)
     });
+
+    this.formEditSpecjalizacja.get('placa_min').setValidators([this.greaterThan('placa_max'), Validators.max(99999), Validators.min(0),Validators.required,Validators.pattern(/^\d+$/)] );
+    this.formEditSpecjalizacja.get('placa_max').setValidators([this.lessThan('placa_min'), Validators.max(99999), Validators.min(0),Validators.required,Validators.pattern(/^\d+$/)] );
+
   }
+
+
+
+  greaterThan(field: string): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const group = control.parent;
+      const fieldToCompare = group.get(field);
+      const isLessThan = Number(fieldToCompare.value) < Number(control.value);
+      return isLessThan ? {'lessThan': {value: control.value}} : null;
+    }
+  }
+
+  lessThan(field: string): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const group = control.parent;
+      const fieldToCompare = group.get(field);
+      const isLessThan = Number(fieldToCompare.value) > Number(control.value);
+      return isLessThan ? {'greaterThan': {value: control.value}} : null;
+    }
+  }
+
+
+
 
   onSubmit(form: FormGroup){
     this.saveOrUpdateSpecjalizacja(form.getRawValue());
