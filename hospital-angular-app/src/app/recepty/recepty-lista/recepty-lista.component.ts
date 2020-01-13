@@ -6,6 +6,8 @@ import {HttpClient} from "@angular/common/http";
 import {ReceptaService} from "../recepta.service";
 import {KartaService} from "../../karty/karta.service";
 import {ActivatedRoute} from "@angular/router";
+import * as $AB from "jquery";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-recepty-lista',

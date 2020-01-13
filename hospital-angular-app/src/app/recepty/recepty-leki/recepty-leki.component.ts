@@ -8,6 +8,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Recepta} from "../recepta.model";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {Lek} from "../../leki/lek.model";
+import {LekService} from "../../leki/lek.service";
 
 @Component({
   selector: 'app-recepty-leki',
@@ -16,18 +18,18 @@ import * as bootstrap from "bootstrap";
 })
 export class ReceptyLekiComponent implements OnInit {
 
-  recepty: Recepta[] = [];
-  lekarze: Lekarz[] = [];
+  leki: Lek[] = [];
+  lekiOnRecepta: Lek[] = [];
   isLoading: boolean = true;
-  formAddRecepta: FormGroup;
-  formEditRecepta: FormGroup;
+  formAddLek: FormGroup;
   pesel: string;
   id_karty: number;
+  id_recepty: number;
 
 
   constructor(private http: HttpClient,
+              private lekService: LekService,
               private receptaService: ReceptaService,
-              private kartaService: KartaService,
               private route: ActivatedRoute) {
 
   }
@@ -36,74 +38,60 @@ export class ReceptyLekiComponent implements OnInit {
 
     this.id_karty = +this.route.snapshot.params['id_karty'];
     this.pesel = this.route.snapshot.params['pesel'];
+    this.id_recepty = this.route.snapshot.params['id_recepty'];
 
+    this.fetchAvailableLeki();
     this.reloadData();
     this.setupForm();
   }
 
   reloadData() {
-    this.receptaService.findAllReceptyForKartaPobytu(this.pesel, this.id_karty).subscribe(recepty => {
-      this.findAllLekarzeOnKarta();
-      this.recepty = recepty;
+    this.receptaService.findAllLekiOnRecepta(this.id_recepty).subscribe(lekiOnRecepta => {
+      this.lekiOnRecepta = lekiOnRecepta;
       this.isLoading = false;
     });
   }
 
-  findAllLekarzeOnKarta(){
-    return this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarze =>{
-      this.lekarze = lekarze;
+  fetchAvailableLeki(){
+    this.lekService.findAllLeki().subscribe(leki =>{
+      this.leki = leki;
     })
   }
 
+
+
   setupForm() {
-    this.formAddRecepta = new FormGroup({
-      data_wystawienia: new FormControl(null),
-      id_lekarza: new FormControl(null),
-      id_karty: new FormControl(this.id_karty)
+    this.formAddLek = new FormGroup({
+      nazwa_leku: new FormControl(null)
     });
 
-    this.formEditRecepta = new FormGroup({
-      id_recepty: new FormControl(null),
-      data_wystawienia: new FormControl(null),
-      id_lekarza: new FormControl(null),
-      id_karty: new FormControl(this.id_karty)
-    });
-  }
-
-  onEditForm(id_recepty: number, data_wystawienia: string, id_lekarza: number) {
-    this.formEditRecepta.patchValue({
-      'id_recepty': id_recepty,
-      'data_wystawienia': data_wystawienia,
-      'id_lekarza': id_lekarza
-    });
   }
 
   onSubmit(form: FormGroup) {
-    this.saveOrUpdateReceptaInKartaPobytu(form.getRawValue());
+    this.addLekToRecepta(form.getRawValue());
     this.resetForm();
   }
 
   resetForm() {
-    this.formAddRecepta.reset();
+    this.formAddLek.reset();
   }
 
-  saveOrUpdateReceptaInKartaPobytu(recepta: Recepta) {
-    this.receptaService.saveOrUpdateReceptaInKartaPobytu(recepta, this.pesel, this.id_karty).subscribe(() => {
+  addLekToRecepta(lek: Lek) {
+    this.receptaService.addLekToRecepta(this.id_recepty, lek.nazwa_leku).subscribe(() => {
       this.reloadData()
     });
     $("#exampleModalCenter").modal("hide");
-    $("#exampleModalCenter2").modal("hide");
   }
 
-  deleteReceptaByIdFromKartaPobytu(id_recepty: number) {
-    this.receptaService.deleteReceptaByIdFromKartaPobytu(id_recepty, this.pesel, this.id_karty).subscribe(() => {
+  deleteLekFromRecepta(nazwa_leku: string) {
+    this.receptaService.deleteLekFromRecepta(this.id_recepty, nazwa_leku).subscribe(() => {
       this.reloadData();
     });
   }
 
-  onConfirmDelete(id_recepty: number) {
+  onConfirmDelete(nazwa_leku: string) {
     if (confirm("Are you sure you want to delete?")) {
-      this.deleteReceptaByIdFromKartaPobytu(id_recepty);
+      this.deleteLekFromRecepta(nazwa_leku);
     }
   }
 

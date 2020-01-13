@@ -31,7 +31,7 @@ public class ReceptaController {
         return receptaService.findById(id);
     }
 
-    @GetMapping("/{id_recepty}/lek")
+    @GetMapping("/{id_recepty}/leki")
     public List<Lek> findLekiOfRecepta(@PathVariable int id_recepty) {
         return receptaService.findLekiOfRecepta(id_recepty);
     }

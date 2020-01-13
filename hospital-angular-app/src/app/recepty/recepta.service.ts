@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Recepta} from "./recepta.model";
+import {Lek} from "../leki/lek.model";
 
 
 @Injectable({
@@ -26,14 +27,19 @@ export class ReceptaService{
   }
 
 
-  //adding and deleting lek from recepta
+  //adding and deleting lek from recepty
+
+  findAllLekiOnRecepta(id_recepty: number): Observable<Lek[]> {
+    return this.http.get<Lek[]>('/api/recepty' + `/${id_recepty}` + '/leki');
+  }
 
   addLekToRecepta(id_recepty: number, nazwa_leku: string){
-    return this.http.post('/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`, null);
+    console.log(nazwa_leku);
+    return this.http.post('/api/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`, null);
   }
 
   deleteLekFromRecepta(id_recepty: number, nazwa_leku: string){
-    return this.http.delete('/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`, null);
+    return this.http.delete('/api/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`);
   }
 
 }

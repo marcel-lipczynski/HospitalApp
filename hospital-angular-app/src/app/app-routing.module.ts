@@ -11,12 +11,18 @@ import {DiagnozyComponent} from "./diagnozy/diagnozy.component";
 import {ReceptyComponent} from "./recepty/recepty.component";
 import {LekiComponent} from "./leki/leki.component";
 import {SpecjalizacjeComponent} from "./specjalizacje/specjalizacje.component";
+import {ReceptyListaComponent} from "./recepty/recepty-lista/recepty-lista.component";
+import {ReceptyLekiComponent} from "./recepty/recepty-leki/recepty-leki.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'pacjenci/:pesel/karty/:id_karty/operacje', component:OperacjeComponent},
   {path: 'pacjenci/:pesel/karty/:id_karty/diagnozy', component:DiagnozyComponent},
-  {path: 'pacjenci/:pesel/karty/:id_karty/recepty', component:ReceptyComponent},
+  {path: 'pacjenci/:pesel/karty/:id_karty/recepty', component:ReceptyComponent,
+    children: [
+      {path: '', component: ReceptyListaComponent, pathMatch: 'full'},
+      {path: ':id_recepty/leki', component: ReceptyLekiComponent}
+    ]},
   {path: 'pacjenci/:pesel/karty', component: KartyComponent},
   {path: 'pacjenci', component: PacjenciComponent},
   {path: 'lekarze', component: LekarzeComponent},

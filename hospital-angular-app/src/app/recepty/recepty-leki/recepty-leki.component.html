@@ -22,19 +22,19 @@
         <th>Rodzaj leku</th>
         <th></th>
       </tr>
+
       </thead>
 
       <tbody>
-      <tr>
+      <tr *ngFor="let lek of lekiOnRecepta">
 
-        <td></td>
-        <td></td>
+        <td>{{lek.nazwa_leku}}</td>
+        <td>{{lek.rodzaj_leku}}</td>
+
 
 
         <td class="text-right">
-          <button class="btn btn-danger" >Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
-            Edytuj</button>
+          <button class="btn btn-danger" (click)="onConfirmDelete(lek.nazwa_leku)">Usuń</button>
         </td>
       </tr>
 
@@ -51,23 +51,27 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj receptę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form >
+        <form (ngSubmit)="onSubmit(formAddLek)" [formGroup]="formAddLek">
 
 
           <div class="form-group">
-            <label for="data_wystawienia">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia">
+            <label for="nazwa_leku">Lek</label>
+            <select class="form-control" id="nazwa_leku" formControlName="nazwa_leku">
+
+              <option *ngFor="let lek of leki" [value]="lek.nazwa_leku">{{lek.nazwa_leku}} - {{lek.rodzaj_leku}}</option>
+
+            </select>
           </div>
 
 
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
             <button type="submit" class="btn btn-primary">Zapisz</button>
           </div>
 
@@ -79,38 +83,6 @@
 </div>
 
 
-
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle2">Edytuj receptę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form >
-
-
-          <div class="form-group">
-            <label for="data_wystawienia_update">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia_update" >
-          </div>
-
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
-          </div>
-
-
-
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
