@@ -67,21 +67,79 @@
           <div class="form-group">
             <label for="imie_pielegniarki">Imię </label>
             <input type="text" class="form-control" id="imie_pielegniarki" formControlName="imie">
+
+            <span *ngIf="formAddPielegniarka.get('imie').hasError('maxlength') && formAddPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('imie').hasError('required') && formAddPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię jest wymagane
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('imie').hasError('pattern') && formAddPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pielegniarki">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pielegniarki" formControlName="nazwisko">
+
+            <span *ngIf="formAddPielegniarka.get('nazwisko').hasError('maxlength') && formAddPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('nazwisko').hasError('required') && formAddPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko jest wymagane
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('nazwisko').hasError('pattern') && formAddPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="placa">Płaca</label>
             <input type="text" class="form-control" id="placa" formControlName="placa">
+
+
+            <span *ngIf="formAddPielegniarka.get('placa').hasError('min') && formAddPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('placa').hasError('max') && formAddPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9999
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('placa').hasError('required') && formAddPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Pole płaca jest wymagane
+            </span>
+
+            <span *ngIf="formAddPielegniarka.get('placa').hasError('pattern') && formAddPielegniarka.get('placa').touched &&
+            !formAddPielegniarka.get('placa').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formAddPielegniarka.valid">Zapisz</button>
           </div>
 
         </form>
@@ -110,21 +168,77 @@
           <div class="form-group">
             <label for="imie_pielegniarki_update">Imie</label>
             <input type="text" class="form-control" id="imie_pielegniarki_update" formControlName="imie">
+
+            <span *ngIf="formEditPielegniarka.get('imie').hasError('maxlength') && formEditPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('imie').hasError('required') && formEditPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię jest wymagane
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('imie').hasError('pattern') && formEditPielegniarka.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_pielegniarki_update">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pielegniarki_update" formControlName="nazwisko">
+
+            <span *ngIf="formEditPielegniarka.get('nazwisko').hasError('maxlength') && formEditPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('nazwisko').hasError('required') && formEditPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko jest wymagane
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('nazwisko').hasError('pattern') && formEditPielegniarka.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="placa_podstawowa_update">Placa podstawowa</label>
             <input type="text" class="form-control" id="placa_podstawowa_update" formControlName="placa">
+
+            <span *ngIf="formEditPielegniarka.get('placa').hasError('min') && formEditPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('placa').hasError('max') && formEditPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9999
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('placa').hasError('required') && formEditPielegniarka.get('placa').touched"
+                  class="help-block text-danger">
+                  Pole płaca jest wymagane
+            </span>
+
+            <span *ngIf="formEditPielegniarka.get('placa').hasError('pattern') && formEditPielegniarka.get('placa').touched &&
+            !formEditPielegniarka.get('placa').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditPielegniarka.valid">Zapisz</button>
           </div>
 
         </form>

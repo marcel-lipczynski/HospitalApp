@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Pielegniarka} from "../pielegniarka.model";
 import {PielegniarkaService} from "../pielegniarka.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 
@@ -20,73 +20,75 @@ export class PielegniarkiListaComponent implements OnInit {
 
 
   constructor(private pielegniarkaService: PielegniarkaService,
-              private http: HttpClient) { }
+              private http: HttpClient) {
+  }
 
   ngOnInit() {
     this.reloadData();
     this.setupForm();
   }
 
-  reloadData(){
-    this.pielegniarkaService.findAllPielegniarki().subscribe(pielegniarki =>{
+  reloadData() {
+    this.pielegniarkaService.findAllPielegniarki().subscribe(pielegniarki => {
       this.isLoading = true;
       this.pielegniarki = pielegniarki;
       this.isLoading = false;
     })
   }
 
-  deletePielegniarkaById(id_pielegniarki: number){
+  deletePielegniarkaById(id_pielegniarki: number) {
     this.pielegniarkaService.deletePielegniarkaById(id_pielegniarki).subscribe(() => {
       this.reloadData();
     });
   }
 
-  setupForm(){
+  setupForm() {
     this.formAddPielegniarka = new FormGroup({
-      imie: new FormControl(null),
-      nazwisko: new FormControl(null),
-      placa: new FormControl(null)
+      imie: new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      nazwisko: new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      placa: new FormControl(null, [Validators.required,Validators.max(9999), Validators.min(1), Validators.pattern(/^\d+$/)])
     });
 
     this.formEditPielegniarka = new FormGroup({
       id_pielegniarki: new FormControl(null),
-      imie: new FormControl(null),
-      nazwisko: new FormControl(null),
-      placa: new FormControl(null)
+      imie: new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      nazwisko: new FormControl(null, [Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      placa: new FormControl(null, [Validators.required,Validators.max(9999), Validators.min(1), Validators.pattern(/^\d+$/)])
+
     });
 
 
   }
 
-  resetForm(){
+  resetForm() {
     this.formEditPielegniarka.reset();
     this.formAddPielegniarka.reset();
   }
 
-  onSubmit(form: FormGroup){
+  onSubmit(form: FormGroup) {
     this.saveOrUpdatePielegniarka(form.getRawValue());
     this.resetForm();
   }
 
-  saveOrUpdatePielegniarka(pielegniarka: Pielegniarka){
+  saveOrUpdatePielegniarka(pielegniarka: Pielegniarka) {
     this.pielegniarkaService.saveOrUpdatePielegniarka(pielegniarka).subscribe(() =>
-    this.reloadData());
+      this.reloadData());
     $("#exampleModalCenter").modal("hide");
     $("#exampleModalCenter2").modal("hide");
   }
 
-  onConfirmDelete(id: number){
-    if(confirm("Are you sure you want to delete?")){
+  onConfirmDelete(id: number) {
+    if (confirm("Are you sure you want to delete?")) {
       this.deletePielegniarkaById(id);
     }
   }
 
-  onEditPielegniarka(id:number, imie: string, nazwisko: string, placa:number){
+  onEditPielegniarka(id: number, imie: string, nazwisko: string, placa: number) {
     this.formEditPielegniarka.patchValue({
-      'id_pielegniarki' : id,
-      'imie' : imie,
-      'nazwisko' : nazwisko,
-      'placa' : placa
+      'id_pielegniarki': id,
+      'imie': imie,
+      'nazwisko': nazwisko,
+      'placa': placa
     });
   }
 
