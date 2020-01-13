@@ -36,6 +36,7 @@ import { ReceptyListaComponent } from './recepty/recepty-lista/recepty-lista.com
 import { LekarzeSpecjalizacjeComponent } from './lekarze/lekarze-specjalizacje/lekarze-specjalizacje.component';
 import { SalePielegniarkiComponent } from './sale/sale-pielegniarki/sale-pielegniarki.component';
 import { PielegniarkiSaleComponent } from './pielegniarki/pielegniarki-sale/pielegniarki-sale.component';
+import { KartyLekarzeComponent } from './karty/karty-lekarze/karty-lekarze.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { PielegniarkiSaleComponent } from './pielegniarki/pielegniarki-sale/piel
     LekarzeSpecjalizacjeComponent,
     SalePielegniarkiComponent,
     PielegniarkiSaleComponent,
+    KartyLekarzeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,6 @@
 package com.szbd.hospital.dao;
 
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Lekarz;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -99,7 +97,34 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
         KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
         Lekarz lekarz = entityManager.find(Lekarz.class, id_lekarza);
         if (kartaPobytu != null && lekarz != null && kartaPobytu.getLekarze().indexOf(lekarz) != -1) {
+
+            List<Recepta> recepty = kartaPobytu.getRecepty();
+            List<Diagnoza> diagnozy = kartaPobytu.getDiagnozy();
+            List<Operacja> operacje = kartaPobytu.getOperacje();
+
+            for(Operacja operacja: operacje){
+
+                if(operacja.getId_lekarza() == id_lekarza){
+                    entityManager.remove(operacja);
+                }
+            }
+
+            for(Recepta recepta: recepty){
+
+                if(recepta.getId_lekarza() == id_lekarza){
+                    entityManager.remove(recepta);
+                }
+            }
+
+            for(Diagnoza diagnoza: diagnozy){
+
+                if(diagnoza.getId_lekarza() == id_lekarza){
+                    entityManager.remove(diagnoza);
+                }
+            }
+
             kartaPobytu.removeLekarz(lekarz);
+
         }
     }
 }

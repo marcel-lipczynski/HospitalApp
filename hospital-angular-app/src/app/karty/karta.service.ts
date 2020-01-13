@@ -22,12 +22,24 @@ export class KartaService {
     return this.http.post<Karta>(this.KARTY_API_URL + `/${pesel}` + '/karty', karta);
   }
 
-  deleteKartaFromPacjent(id_karty : number, pesel: string){
+  deleteKartaFromPacjent(id_karty: number, pesel: string) {
     return this.http.delete(this.KARTY_API_URL + `/${pesel}` + '/karty' + `/${id_karty}`)
   }
 
-  findAllLekarzeOnKarta(id_karty: number): Observable<Lekarz[]>{
+
+  // lekarze
+
+
+  findAllLekarzeOnKarta(id_karty: number): Observable<Lekarz[]> {
     return this.http.get<Lekarz[]>('/api/karty' + `/${id_karty}` + '/lekarze');
+  }
+
+  addLekarzToKarta(id_karty: number, id_lekarza: number) {
+    return this.http.post('/api/karty' + `/${id_karty}` + '/lekarze' + `/${id_lekarza}`, null);
+  }
+
+  deleteLekarzFromKarta(id_karty: number, id_lekarza: number) {
+    return this.http.delete('/api/karty' + `/${id_karty}` + '/lekarze' + `/${id_lekarza}`);
   }
 
 

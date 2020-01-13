@@ -6,6 +6,8 @@ import {SalaService} from "../../sale/sala.service";
 import {PielegniarkaService} from "../pielegniarka.service";
 import {ActivatedRoute} from "@angular/router";
 import {Sala} from "../../sale/sala.model";
+import * as $AB from "jquery";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-pielegniarki-sale',

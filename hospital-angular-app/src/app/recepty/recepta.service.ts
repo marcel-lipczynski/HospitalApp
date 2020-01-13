@@ -23,7 +23,7 @@ export class ReceptaService{
   }
 
   deleteReceptaByIdFromKartaPobytu(id_recepty: number, pesel: string, id_karty: number) {
-    return this.http.delete(this.RECEPTY_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/diagnozy' + `/${id_recepty}`);
+    return this.http.delete(this.RECEPTY_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/recepty' + `/${id_recepty}`);
   }
 
 
