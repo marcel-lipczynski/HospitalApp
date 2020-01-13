@@ -10,7 +10,7 @@
 
         <th>Opis</th>
         <th>Data wystawienia</th>
-        <th class="text-center">Lekarz wystawiający</th>
+        <th>Lekarz wystawiający</th>
         <th></th>
 
       </tr>
@@ -21,7 +21,12 @@
 
         <td>{{diagnoza.opis}}</td>
         <td>{{diagnoza.data_wystawienia}}</td>
-        <td class="text-center">{{diagnoza.id_lekarza}}</td>
+        <span class="text-center" *ngFor="let lekarz of lekarze">
+          <span class="text-center" *ngIf="lekarz.id_lekarza === diagnoza.id_lekarza">
+            <td class="text-right" >{{lekarz.imie}} {{lekarz.nazwisko}}</td>
+          </span>
+        </span>
+
 
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(diagnoza.id_diagnozy)">Usuń</button>
