@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {LekService} from "../lek.service";
 import {Lek} from "../lek.model";
 import * as $AB from "jquery";
@@ -37,13 +37,13 @@ export class LekiListaComponent implements OnInit {
 
   setupForm() {
     this.formAddLek = new FormGroup({
-      'nazwa_leku': new FormControl(null),
-      'rodzaj_leku': new FormControl(null)
+      'nazwa_leku': new FormControl(null, [Validators.maxLength(20),Validators.required]),
+      'rodzaj_leku': new FormControl(null,[Validators.maxLength(50), Validators.required])
     });
 
     this.formEditLek = new FormGroup({
-      'nazwa_leku': new FormControl({value: null, disable: true}),
-      'rodzaj_leku': new FormControl(null)
+      'nazwa_leku': new FormControl({value: null, disabled: true}),
+      'rodzaj_leku': new FormControl(null,[Validators.maxLength(50), Validators.required])
     });
   }
 

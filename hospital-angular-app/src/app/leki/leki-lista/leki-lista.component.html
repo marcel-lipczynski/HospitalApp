@@ -61,16 +61,39 @@
           <div class="form-group">
             <label for="nazwa_leku">Nazwa leku</label>
             <input type="text" class="form-control" id="nazwa_leku" formControlName="nazwa_leku">
+
+            <span *ngIf="formAddLek.get('nazwa_leku').hasError('maxlength') && formAddLek.get('nazwa_leku').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formAddLek.get('nazwa_leku').hasError('required') && formAddLek.get('nazwa_leku').touched"
+                  class="help-block text-danger">
+                  Pole Nazwa leku wymagane
+            </span>
+
           </div>
 
           <div class="form-group">
             <label for="rodzaj_leku">Rodzaj leku</label>
             <input type="text" class="form-control" id="rodzaj_leku" formControlName="rodzaj_leku">
+
+            <span *ngIf="formAddLek.get('rodzaj_leku').hasError('maxlength') && formAddLek.get('rodzaj_leku').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 50 znaków
+            </span>
+
+            <span *ngIf="formAddLek.get('rodzaj_leku').hasError('required') && formAddLek.get('rodzaj_leku').touched"
+                  class="help-block text-danger">
+                  Pole Rodzaj leku wymagane
+            </span>
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddLek.valid">Zapisz</button>
           </div>
 
 
@@ -100,16 +123,40 @@
           <div class="form-group">
             <label for="nazwa_leku_update">Nazwa leku</label>
             <input type="text" class="form-control" id="nazwa_leku_update" formControlName="nazwa_leku">
+
+            <span *ngIf="formEditLek.get('nazwa_leku').hasError('maxlength') && formEditLek.get('nazwa_leku').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formEditLek.get('nazwa_leku').hasError('required') && formEditLek.get('nazwa_leku').touched"
+                  class="help-block text-danger">
+                  Pole Nazwa leku wymagane
+            </span>
+
           </div>
 
           <div class="form-group">
             <label for="rodzaj_leku_update">Rodzaj leku</label>
             <input type="text" class="form-control" id="rodzaj_leku_update" formControlName="rodzaj_leku">
+
+            <span *ngIf="formEditLek.get('rodzaj_leku').hasError('maxlength') && formEditLek.get('rodzaj_leku').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 50 znaków
+            </span>
+
+            <span *ngIf="formEditLek.get('rodzaj_leku').hasError('required') && formEditLek.get('rodzaj_leku').touched"
+                  class="help-block text-danger">
+                  Pole Rodzaj leku wymagane
+            </span>
+
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditLek.valid">Zapisz</button>
           </div>
 
 

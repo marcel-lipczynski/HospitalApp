@@ -69,16 +69,56 @@
           <div class="form-group">
             <label for="pojemnosc">Pojemność</label>
             <input type="text" class="form-control" id="pojemnosc" formControlName="pojemnosc">
+
+            <span *ngIf="formAddSala.get('pojemnosc').hasError('min') && formAddSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="formAddSala.get('pojemnosc').hasError('max') && formAddSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9
+            </span>
+
+            <span *ngIf="formAddSala.get('pojemnosc').hasError('required') && formAddSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Pole pojemność jest wymagane
+            </span>
+
+            <span *ngIf="formAddSala.get('pojemnosc').hasError('pattern') && formAddSala.get('pojemnosc').touched &&
+            !formAddSala.get('pojemnosc').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="oddzial">Oddział</label>
             <input type="text" class="form-control" id="oddzial" formControlName="oddzial">
+
+            <span *ngIf="formAddSala.get('oddzial').hasError('maxlength') && formAddSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 50 znaków
+            </span>
+
+            <span *ngIf="formAddSala.get('oddzial').hasError('required') && formAddSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Pole oddzial jest wymagane
+            </span>
+
+            <span *ngIf="formAddSala.get('oddzial').hasError('pattern') && formAddSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Dozwolone znaki A-Z i a-z
+            </span>
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary"> Zapisz </button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddSala.valid"> Zapisz </button>
           </div>
 
         </form>
@@ -110,16 +150,54 @@
           <div class="form-group">
             <label for="pojemnosc_update">Pojemność</label>
             <input type="text" class="form-control" id="pojemnosc_update" formControlName="pojemnosc">
+
+            <span *ngIf="formEditSala.get('pojemnosc').hasError('min') && formEditSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="formEditSala.get('pojemnosc').hasError('max') && formEditSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9
+            </span>
+
+            <span *ngIf="formEditSala.get('pojemnosc').hasError('required') && formEditSala.get('pojemnosc').touched"
+                  class="help-block text-danger">
+                  Pole pojemność jest wymagane
+            </span>
+
+            <span *ngIf="formEditSala.get('pojemnosc').hasError('pattern') && formEditSala.get('pojemnosc').touched &&
+            !formEditSala.get('pojemnosc').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
           </div>
 
           <div class="form-group">
             <label for="oddzial_update">Oddział</label>
             <input type="text" class="form-control" id="oddzial_update" formControlName="oddzial">
+
+            <span *ngIf="formEditSala.get('oddzial').hasError('maxlength') && formEditSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Pole może zawierać maksymalnie 50 znaków
+            </span>
+
+            <span *ngIf="formEditSala.get('oddzial').hasError('required') && formEditSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Pole oddzial jest wymagane
+            </span>
+
+            <span *ngIf="formEditSala.get('oddzial').hasError('pattern') && formEditSala.get('oddzial').touched"
+                  class="help-block text-danger">
+                  Dozwolone znaki A-Z i a-z
+            </span>
+
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Zamknij</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditSala.valid">Zapisz</button>
           </div>
 
         </form>

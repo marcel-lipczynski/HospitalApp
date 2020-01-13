@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SalaService} from "../sala.service";
 import {Sala} from "../sala.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 
@@ -37,15 +37,20 @@ export class SaleListaComponent implements OnInit {
 
   setupForm(){
     this.formAddSala = new FormGroup({
-      pojemnosc : new FormControl(null),
-      oddzial : new FormControl(null)
-    })
+      pojemnosc : new FormControl(null, [Validators.required, Validators.max(9)
+      ,Validators.min(1),Validators.pattern(/^\d+$/)]),
+      oddzial : new FormControl(null,[Validators.required,
+        Validators.maxLength(50),Validators.pattern(/^[A-Za-z ]+$/)])
+
+    });
 
     this.formEditSala = new FormGroup({
-      nr_sali : new FormControl(null),
-      pojemnosc : new FormControl(null),
-      oddzial : new FormControl(null)
-    })
+      nr_sali : new FormControl({value: null, disabled: true}),
+      pojemnosc : new FormControl(null, [Validators.required, Validators.max(9)
+        ,Validators.min(1),Validators.pattern(/^\d+$/)]),
+      oddzial : new FormControl(null,[Validators.required,
+        Validators.maxLength(50),Validators.pattern(/^[A-Za-z ]+$/)])
+    });
   }
 
   resetForm(){
