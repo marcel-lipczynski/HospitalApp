@@ -38,19 +38,19 @@ public class PielegniarkaController {
     }
 
     //w detailsach pobierz wszystkie sale
-    @GetMapping("/{idPielegniarki}/sala")
+    @GetMapping("/{idPielegniarki}/sale")
     public List<Sala> findAllSalaOfPielegniarka(@PathVariable int idPielegniarki) {
         return pielegniarkaService.findAllSalaOfPielegniarka(idPielegniarki);
     }
 
     //podajemy jako parametr nr_sali istniejacej
 
-    @PostMapping("/{idPielegniarki}/sala/{nr_sali}")
+    @PostMapping("/{idPielegniarki}/sale/{nr_sali}")
     public void savePielegniarkaWitNrSali(@PathVariable int idPielegniarki, @PathVariable int nr_sali) {
         pielegniarkaService.savePielegniarkaWitNrSali(idPielegniarki, nr_sali);
     }
 
-    @DeleteMapping("/{idPielegniarki}/sala/{nrSali}")
+    @DeleteMapping("/{idPielegniarki}/sale/{nrSali}")
     public void deleteSalaFromPielegniarka(@PathVariable int idPielegniarki,@PathVariable int nrSali) {
         pielegniarkaService.deleteSalaFromPielegniarka(idPielegniarki,nrSali);
     }

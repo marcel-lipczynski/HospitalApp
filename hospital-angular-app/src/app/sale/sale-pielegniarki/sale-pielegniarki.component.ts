@@ -78,7 +78,7 @@ export class SalePielegniarkiComponent implements OnInit {
     $("#exampleModalCenter").modal("hide");
   }
 
-  deleteLekFromRecepta(id_pielegniarki: number) {
+  deletePielegniarkaFromSala(id_pielegniarki: number) {
     this.salaService.deletePielegniarkaFromSala(this.nr_sali, id_pielegniarki).subscribe(() => {
       this.reloadData();
     });
@@ -86,7 +86,7 @@ export class SalePielegniarkiComponent implements OnInit {
 
   onConfirmDelete(id_pielegniarki: number) {
     if (confirm("Are you sure you want to delete?")) {
-      this.deleteLekFromRecepta(id_pielegniarki);
+      this.deletePielegniarkaFromSala(id_pielegniarki);
     }
   }
 

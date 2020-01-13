@@ -31,7 +31,7 @@
         <td>{{pielegniarka.nazwisko}}</td>
         <td>{{pielegniarka.placa}}</td>
         <td class="text-center">
-          <button class="btn btn-outline-secondary" > Sale </button>
+          <button class="btn btn-outline-secondary" [routerLink]="[pielegniarka.id_pielegniarki, 'sale']"  > Sale </button>
         </td>
         <td class="text-right">
           <button class="btn btn-danger" (click)="onConfirmDelete(pielegniarka.id_pielegniarki)">Usuń</button>
