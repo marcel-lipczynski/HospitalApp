@@ -21,11 +21,11 @@ export class OperacjaService {
   }
 
   saveOrUpdatOperacjaInKartaPobytu(operacja: Operacja, pesel: string, id_karty: number) {
-    return this.http.post<Operacja>(this.OPERACJE_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/diagnozy', operacja);
+    return this.http.post<Operacja>(this.OPERACJE_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/operacje', operacja);
   }
 
-  deleteDiagnozaByIdFromKartaPobytu(id_operacji: number, pesel: string, id_karty: number) {
-    return this.http.delete(this.OPERACJE_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/diagnozy' + `/${id_operacji}`);
+  deletOperacjaByIdFromKartaPobytu(id_operacji: number, pesel: string, id_karty: number) {
+    return this.http.delete(this.OPERACJE_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/operacje' + `/${id_operacji}`);
   }
 
 }
