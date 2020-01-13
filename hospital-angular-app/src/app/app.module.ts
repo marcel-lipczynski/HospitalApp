@@ -33,6 +33,7 @@ import {RouterModule} from "@angular/router";
 import { SpecjalizacjeComponent } from './specjalizacje/specjalizacje.component';
 import { SpecjalizacjeListaComponent } from './specjalizacje/specjalizacje-lista/specjalizacje-lista.component';
 import { ReceptyListaComponent } from './recepty/recepty-lista/recepty-lista.component';
+import { LekarzeSpecjalizacjeComponent } from './lekarze/lekarze-specjalizacje/lekarze-specjalizacje.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { ReceptyListaComponent } from './recepty/recepty-lista/recepty-lista.com
     SpecjalizacjeComponent,
     SpecjalizacjeListaComponent,
     ReceptyListaComponent,
+    LekarzeSpecjalizacjeComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@
         <td>{{ lekarz.nazwisko }}</td>
         <td>{{ lekarz.placa_pod }}</td>
         <td class="text-center">
-          <button class="btn btn-outline-secondary" >Specjalizacje</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[lekarz.id_lekarza, 'specjalizacje']" >Specjalizacje</button>
         </td>
 
         <td class="text-right">

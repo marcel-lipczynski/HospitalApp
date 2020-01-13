@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lekarz} from "./lekarz.model";
+import {Specjalizacja} from "../specjalizacje/specjalizacja.model";
 
 
 @Injectable({
@@ -27,6 +28,20 @@ export class LekarzService{
 
   deleteLekarzById(id_lekarza: number){
     return this.http.delete(this.LEKARZE_API_URL + `/${id_lekarza}`)
+  }
+
+  //specjalizacje
+
+  findAllSpecjalizacjeOfLekarz(id_lekarza:number) : Observable<Specjalizacja[]>{
+    return this.http.get<Specjalizacja[]>('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje');
+  }
+
+  addSpecjalizacjaToLekarz(id_lekarza: number, nazwa_specjalizacji: string){
+    return this.http.post('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje' + `/${nazwa_specjalizacji}`, null);
+  }
+
+  deleteSpecjalizacjaFromLekarz(id_lekarza: number, nazwa_specjalizacji: string){
+    return this.http.delete('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje' + `/${nazwa_specjalizacji}`);
   }
 
 
