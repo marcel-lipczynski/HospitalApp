@@ -21,9 +21,9 @@
 
         <td>{{diagnoza.opis}}</td>
         <td>{{diagnoza.data_wystawienia}}</td>
-        <span class="text-center" *ngFor="let lekarz of lekarze">
-          <span class="text-center" *ngIf="lekarz.id_lekarza === diagnoza.id_lekarza">
-            <td class="text-right" >{{lekarz.imie}} {{lekarz.nazwisko}}</td>
+        <span  *ngFor="let lekarz of lekarze">
+          <span  *ngIf="lekarz.id_lekarza === diagnoza.id_lekarza">
+            <td  >{{lekarz.imie}} {{lekarz.nazwisko}}</td>
           </span>
         </span>
 
