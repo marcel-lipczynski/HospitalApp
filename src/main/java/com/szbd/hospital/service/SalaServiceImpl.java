@@ -67,4 +67,9 @@ public class SalaServiceImpl implements SalaService {
     public List<KartaPobytu> findActiveKartyForSala(int nr_sali) {
         return salaDAO.findActiveKartyForSala(nr_sali);
     }
+
+    @Override
+    public List<Sala> findAllAvailableSale() {
+        return salaDAO.findAllAvailableSale();
+    }
 }

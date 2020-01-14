@@ -17,4 +17,5 @@ public interface SalaDAO {
 
     //karty pobytu dla danej sali
     List<KartaPobytu> findActiveKartyForSala(int nr_sali);
+    List<Sala> findAllAvailableSale();
 }

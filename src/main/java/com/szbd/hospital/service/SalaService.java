@@ -18,4 +18,5 @@ public interface SalaService {
 
 
     List<KartaPobytu> findActiveKartyForSala(int nr_sali);
+    List<Sala> findAllAvailableSale();
 }

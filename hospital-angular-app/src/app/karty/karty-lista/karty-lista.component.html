@@ -110,9 +110,14 @@
           <div class="form-group">
             <label for="nr_sali">Numer sali</label>
             <select class="form-control" id="nr_sali" formControlName="nr_sali">
-              <option *ngFor="let sala of sale; let i = index" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
+              <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
 
             </select>
+
+            <span *ngIf="formAddKarta.get('nr_sali').errors?.salaIsFull"
+                  class="help-block text-danger">
+                  Sala jest pełna
+            </span>
 
           </div>
 

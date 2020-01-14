@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Sala} from "./sala.model";
 import {Lek} from "../leki/lek.model";
 import {Pielegniarka} from "../pielegniarki/pielegniarka.model";
+import {Karta} from "../karty/karta.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class SalaService{
   findAllSale(): Observable<Sala[]>{
     return this.http.get<Sala[]>(this.SALE_API_URL);
   }
+
+
 
   findSalaByNRSali(nr_sali: number): Observable<Sala>{
     return this.http.get<Sala>(this.SALE_API_URL + `/${nr_sali}`);
@@ -42,6 +45,14 @@ export class SalaService{
 
   deletePielegniarkaFromSala(nr_sali: number, id_pielegniarki: number){
     return this.http.delete('/api/sale' + `/${nr_sali}` + '/pielegniarki' + `/${id_pielegniarki}`);
+  }
+
+  findActiveCards(nr_sali: number): Observable<Karta[]>{
+    return this.http.get<Karta[]>(this.SALE_API_URL + `/${nr_sali}` + '/karty')
+  }
+
+  findAllAvailableSale(): Observable<Sala[]>{
+    return this.http.get<Sala[]>(this.SALE_API_URL + '/available');
   }
 
 

@@ -9,6 +9,7 @@ import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 import {SalaService} from "../../sale/sala.service";
 import {Sala} from "../../sale/sala.model";
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-karty-lista',
@@ -18,6 +19,7 @@ import {Sala} from "../../sale/sala.model";
 export class KartyListaComponent implements OnInit {
 
   karty: Karta[] = [];
+  sala: Sala;
   sale: Sala[] = [];
   isLoading: boolean = true;
   formAddKarta: FormGroup;
@@ -44,9 +46,7 @@ export class KartyListaComponent implements OnInit {
 
   }
 
-  loadSala(nr_sali: number){
-    this.salaService.findSalaByNRSali(nr_sali).subscribe()
-  }
+
 
   loadPacjent() {
     this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent => {
@@ -58,7 +58,7 @@ export class KartyListaComponent implements OnInit {
   }
 
   loadAvailableSale(){
-    this.salaService.findAllSale().subscribe(sale =>{
+    this.salaService.findAllAvailableSale().subscribe(sale =>{
       this.isLoading = true;
       this.sale = sale;
       this.isLoading = false;
@@ -80,7 +80,7 @@ export class KartyListaComponent implements OnInit {
         Validators.required]),
       godzina_przyjecia: new FormControl(null,[Validators.required]),
       data_wypisu: new FormControl(null),
-      nr_sali: new FormControl(null),
+      nr_sali: new FormControl(null, [Validators.required]),
       pesel: new FormControl(this.pesel)
     });
 
@@ -138,8 +138,6 @@ export class KartyListaComponent implements OnInit {
   static checkIfDateIsLessThanToday(control: AbstractControl): {[dateIsLess: string] : boolean}{
     const currentDate = new Date().getDate();
     const controlValue = new Date(control.value).getDate();
-    console.log(currentDate);
-    console.log(controlValue);
     if(controlValue > currentDate){
       return { 'dateIsLess': true };
     }else{
@@ -149,11 +147,22 @@ export class KartyListaComponent implements OnInit {
   }
 
   // checkIfSalaIsFull(control: AbstractControl): {[salaIsFull: string] : boolean}{
+  //   if(control.value !=null){
+  //     this.salaService.findActiveCards(control.value).subscribe(karty=>{
+  //       this.salaService.findSalaByNRSali(control.value).pipe(map(sala =>{
+  //         if(karty.length === sala.pojemnosc){
+  //           console.log(karty.length);
+  //           console.log(sala.pojemnosc);
+  //           return {'salaIsFull' : true};
+  //         }else{
+  //           return null;
+  //         }
+  //       }));
+  //     });
+  //   }else{
+  //     return null;
+  //   }
   //
   // }
-
-
-
-
 
 }

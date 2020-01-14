@@ -64,6 +64,11 @@ public class SalaController {
         return salaService.findActiveKartyForSala(nr_sali);
     }
 
+    @GetMapping("/available")
+    public List<Sala> findAvailableSale(){
+        return salaService.findAllAvailableSale();
+    }
+
 
 }
 

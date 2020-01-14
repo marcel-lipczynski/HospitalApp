@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -83,6 +84,30 @@ public class SalaDAOImpl implements SalaDAO {
         TypedQuery<KartaPobytu> query = entityManager.createQuery("FROM KartaPobytu K WHERE K.nr_sali = :nr_sali AND K.data_wypisu IS NULL", KartaPobytu.class);
         query.setParameter("nr_sali", nr_sali);
         return query.getResultList();
+
+    }
+
+    @Override
+    public List<Sala> findAllAvailableSale() {
+        int counter = 0;
+        List<Sala> availableSale = new ArrayList<>();
+        List<Sala> allSale = entityManager.createQuery("from Sala",Sala.class).getResultList();
+
+        List<KartaPobytu> kartyPobytu = entityManager.createQuery("from KartaPobytu",KartaPobytu.class).getResultList();
+
+        for(Sala sala: allSale){
+            for(KartaPobytu kartaPobytu: kartyPobytu){
+                if(kartaPobytu.getData_wypisu() == null && kartaPobytu.getNr_sali() == sala.getNr_sali()){
+                    counter++;
+                }
+            }
+            if(sala.getPojemnosc() > counter){
+                availableSale.add(sala);
+            }
+            counter = 0;
+        }
+
+        return availableSale;
 
     }
 }
