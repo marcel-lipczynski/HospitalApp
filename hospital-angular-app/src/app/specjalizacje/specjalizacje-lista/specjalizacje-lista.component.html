@@ -75,6 +75,12 @@
                   Nazwa specjalizacji może zawierać tylko litery
             </span>
 
+            <span *ngIf="formAddSpecjalizacja.get('nazwa_specjalizacji').errors?.specjalizacjaExists"
+                  class="help-block text-danger">
+                  Specjalizacja o podanej nazwie już istnieje
+            </span>
+
+
           </div>
 
           <div class="form-group">
@@ -97,7 +103,7 @@
             </span>
 
             <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('pattern') && formAddSpecjalizacja.get('placa_min').touched &&
-            !formAddSpecjalizacja.get('placa_min').hasError('min')"
+            !formAddSpecjalizacja.get('placa_min').hasError('min') && !formAddSpecjalizacja.get('placa_min').hasError('max')"
                   class="help-block text-danger">
                   Wprowadź wartość liczbową
             </span>
@@ -134,7 +140,7 @@
             </span>
 
             <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('pattern') && formAddSpecjalizacja.get('placa_max').touched &&
-            !formAddSpecjalizacja.get('placa_max').hasError('min')"
+            !formAddSpecjalizacja.get('placa_max').hasError('min') && !formAddSpecjalizacja.get('placa_max').hasError('max')"
                   class="help-block text-danger">
                   Wprowadź wartość liczbową
             </span>
@@ -200,14 +206,14 @@
             </span>
 
             <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('pattern') && formEditSpecjalizacja.get('placa_min').touched &&
-            !formAddSpecjalizacja.get('placa_min').hasError('min')"
+            !formEditSpecjalizacja.get('placa_min').hasError('min') && !formEditSpecjalizacja.get('placa_min').hasError('max')"
                   class="help-block text-danger">
                   Wprowadź wartość liczbową
             </span>
 
             <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('lessThan')
               && !formEditSpecjalizacja.get('placa_min').hasError('required')
-              && !formEditSpecjalizacja.get('placa_min').hasError('max')"
+              && !formEditSpecjalizacja.get('placa_min').hasError('max') && formEditSpecjalizacja.get('placa_min').touched"
                   class="help-block text-danger">
                   Płaca minimalna musi być mniejsza od płacy maksymalnej
             </span>
@@ -235,14 +241,14 @@
             </span>
 
             <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('pattern') && formEditSpecjalizacja.get('placa_max').touched &&
-            !formAddSpecjalizacja.get('placa_max').hasError('min')"
+            !formEditSpecjalizacja.get('placa_max').hasError('min') && !formEditSpecjalizacja.get('placa_max').hasError('max')"
                   class="help-block text-danger">
                   Wprowadź wartość liczbową
             </span>
 
             <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('greaterThan')
               && !formEditSpecjalizacja.get('placa_max').hasError('required')
-              && !formEditSpecjalizacja.get('placa_max').hasError('max')"
+              && !formEditSpecjalizacja.get('placa_max').hasError('max') && formEditSpecjalizacja.get('placa_max').touched"
                   class="help-block text-danger">
                   Płaca maksymalna musi być większa od płacy minimalnej
             </span>

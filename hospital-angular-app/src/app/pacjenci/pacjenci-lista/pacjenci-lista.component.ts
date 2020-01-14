@@ -104,7 +104,7 @@ export class PacjenciListaComponent implements OnInit {
 
   checkIfPeselExists(control: AbstractControl): {[peselExists: string] : boolean}{
     for(let i=0; i < this.pesels.length; i++){
-      if(this.pesels[i] === control.value){
+      if(control.value !=null && this.pesels[i] === control.value){
         return {'peselExists': true};
       }
     }

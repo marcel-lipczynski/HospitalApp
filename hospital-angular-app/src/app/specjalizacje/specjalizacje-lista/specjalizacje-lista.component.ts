@@ -26,6 +26,7 @@ import * as bootstrap from "bootstrap";
 export class SpecjalizacjeListaComponent implements OnInit {
 
   specjalizacje: Specjalizacja[] = [];
+  nazwy_specjalizacji: string[] = [];
   isLoading: boolean = true;
   formAddSpecjalizacja: FormGroup;
   formEditSpecjalizacja: FormGroup;
@@ -50,13 +51,16 @@ export class SpecjalizacjeListaComponent implements OnInit {
   reloadData(){
     this.specjalizacjaService.findAllSpecjalizacje().subscribe(specjalizacje => {
       this.specjalizacje = specjalizacje;
+      specjalizacje.forEach(specjalizacja => {
+        this.nazwy_specjalizacji.push(specjalizacja.nazwa_specjalizacji);
+      });
       this.isLoading = false;
     });
   }
 
   setupForm(){
     this.formAddSpecjalizacja = new FormGroup({
-      nazwa_specjalizacji: new FormControl(null, [Validators.maxLength(50),Validators.required, Validators.pattern(/^[A-Za-z ]+$/)]),
+      nazwa_specjalizacji: new FormControl(null, [Validators.maxLength(50),Validators.required, Validators.pattern(/^[A-Za-z ]+$/),this.checkIfSpecjalizacjaExists.bind(this)]),
       placa_min: new FormControl(null),
       placa_max: new FormControl(null)
     });
@@ -134,6 +138,16 @@ export class SpecjalizacjeListaComponent implements OnInit {
       'placa_min': placa_min,
       'placa_max': placa_max
     });
+  }
+
+  checkIfSpecjalizacjaExists(control: AbstractControl): {[specjalizacjaExists: string] : boolean}{
+    for(let i=0; i < this.nazwy_specjalizacji.length; i++){
+
+      if(control.value != null && this.nazwy_specjalizacji[i] === (control.value).toUpperCase()){
+        return {'specjalizacjaExists': true};
+      }
+    }
+    return null;
   }
 
 
