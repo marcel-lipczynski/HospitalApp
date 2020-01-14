@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LekService} from "../lek.service";
 import {Lek} from "../lek.model";
 import * as $AB from "jquery";
@@ -17,6 +17,7 @@ export class LekiListaComponent implements OnInit {
   isLoading: boolean = true;
   formAddLek: FormGroup;
   formEditLek: FormGroup;
+  nazwyLekow: string[] = [];
 
 
   constructor(private http: HttpClient,
@@ -31,14 +32,20 @@ export class LekiListaComponent implements OnInit {
   reloadData() {
     this.lekService.findAllLeki().subscribe(leki => {
       this.leki = leki;
+      this.nazwyLekow = [];
+      leki.forEach(element =>{
+        this.nazwyLekow.push(element.nazwa_leku);
+      });
       this.isLoading = false;
-    })
+    });
   }
 
   setupForm() {
     this.formAddLek = new FormGroup({
-      'nazwa_leku': new FormControl(null, [Validators.maxLength(20),Validators.required]),
-      'rodzaj_leku': new FormControl(null,[Validators.maxLength(50), Validators.required])
+      'nazwa_leku': new FormControl(null, [Validators.maxLength(20),
+        Validators.required, this.checkIfNazwaLekuExists.bind(this)]),
+      'rodzaj_leku': new FormControl(null,
+        [Validators.maxLength(50), Validators.required])
     });
 
     this.formEditLek = new FormGroup({
@@ -81,6 +88,23 @@ export class LekiListaComponent implements OnInit {
     if(confirm("Are you sure you want to delete?")){
       this.deleteLekByNazwa(nazwa_leku);
     }
+  }
+
+
+  //custom validator for nazwy leków
+
+  checkIfNazwaLekuExists(control: AbstractControl): {[nazwaLekuExists: string] : boolean}{
+    for(let i=0; i < this.nazwyLekow.length; i++){
+
+      if(control.value != null && this.nazwyLekow[i] === (control.value).toUpperCase()){
+        return {'nazwaLekuExists': true};
+      }
+    }
+    return null;
+  }
+
+  get nazwa_leku(){
+    return this.formAddLek.get('nazwa_leku');
   }
 
 

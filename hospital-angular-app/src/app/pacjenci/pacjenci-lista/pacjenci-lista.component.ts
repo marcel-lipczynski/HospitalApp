@@ -36,6 +36,7 @@ export class PacjenciListaComponent implements OnInit {
     this.pacjentService.findAllPacjenci().subscribe(pacjenci => {
       this.isLoading = true;
       this.pacjenci = pacjenci;
+      this.pesels = [];
       pacjenci.forEach(element =>
       {
         this.pesels.push(element.pesel);

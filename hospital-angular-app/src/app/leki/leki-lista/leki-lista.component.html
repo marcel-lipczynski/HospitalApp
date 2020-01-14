@@ -72,6 +72,12 @@
                   Pole Nazwa leku wymagane
             </span>
 
+            <span *ngIf="nazwa_leku.errors?.nazwaLekuExists"
+                  class="help-block text-danger">
+                  Lek znajduje się już w bazie danych
+            </span>
+
+
           </div>
 
           <div class="form-group">
@@ -133,6 +139,9 @@
                   class="help-block text-danger">
                   Pole Nazwa leku wymagane
             </span>
+
+
+
 
           </div>
 
