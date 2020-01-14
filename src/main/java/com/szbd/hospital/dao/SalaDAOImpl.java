@@ -23,7 +23,7 @@ public class SalaDAOImpl implements SalaDAO {
 
     @Override
     public List<Sala> findAll() {
-        return entityManager.createQuery("from Sala", Sala.class).getResultList();
+        return entityManager.createQuery("from Sala S ORDER BY S.nr_sali", Sala.class).getResultList();
     }
 
     @Override

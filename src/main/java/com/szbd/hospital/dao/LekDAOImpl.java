@@ -19,7 +19,7 @@ public class LekDAOImpl implements LekDAO {
 
     @Override
     public List<Lek> findAll() {
-        return entityManager.createQuery("from Lek", Lek.class).getResultList();
+        return entityManager.createQuery("from Lek L ORDER BY L.nazwa_leku", Lek.class).getResultList();
     }
 
     @Override

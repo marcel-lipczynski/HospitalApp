@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class PacjentDAOImpl implements PacjentDAO {
 
     @Override
     public List<Pacjent> findAll() {
-        return entityManager.createQuery("from Pacjent", Pacjent.class).getResultList();
+        return entityManager.createQuery("from Pacjent P ORDER BY P.nazwisko", Pacjent.class).getResultList();
     }
 
     @Override
@@ -47,7 +48,11 @@ public class PacjentDAOImpl implements PacjentDAO {
 
     @Override
     public List<KartaPobytu> findAllKartyPobytuOfPacjent(String pesel) {
-        return entityManager.find(Pacjent.class, pesel).getKartyPobytu();
+//        return entityManager.find(Pacjent.class, pesel).getKartyPobytu();
+
+        TypedQuery<KartaPobytu> query = entityManager.createQuery("FROM KartaPobytu K WHERE K.pesel = :pesel ORDER BY K.data_przyjecia DESC, godzina_przyjecia DESC ", KartaPobytu.class);
+        query.setParameter("pesel", pesel);
+        return query.getResultList();
     }
 
     @Override
@@ -74,7 +79,10 @@ public class PacjentDAOImpl implements PacjentDAO {
 
     @Override
     public List<Diagnoza> findAllDiagnozaForKartaPobytu(int id_karty) {
-        return entityManager.find(KartaPobytu.class, id_karty).getDiagnozy();
+//        return entityManager.find(KartaPobytu.class, id_karty).getDiagnozy();
+        TypedQuery<Diagnoza> query = entityManager.createQuery("FROM Diagnoza D WHERE D.id_karty = :id_karty ORDER BY D.data_wystawienia DESC ", Diagnoza.class);
+        query.setParameter("id_karty", id_karty);
+        return query.getResultList();
     }
 
     @Override
@@ -99,7 +107,11 @@ public class PacjentDAOImpl implements PacjentDAO {
 
     @Override
     public List<Operacja> findAllOperacjeForKartaPobytu(int id_karty) {
-        return entityManager.find(KartaPobytu.class, id_karty).getOperacje();
+//        return entityManager.find(KartaPobytu.class, id_karty).getOperacje();
+        TypedQuery<Operacja> query = entityManager.createQuery("FROM Operacja O WHERE O.id_karty = :id_karty ORDER BY O.termin DESC", Operacja.class);
+        query.setParameter("id_karty", id_karty);
+        return query.getResultList();
+
     }
 
     @Override
@@ -124,7 +136,10 @@ public class PacjentDAOImpl implements PacjentDAO {
 
     @Override
     public List<Recepta> findAllReceptyForKartaPobytu(int id_karty) {
-        return entityManager.find(KartaPobytu.class, id_karty).getRecepty();
+//        return entityManager.find(KartaPobytu.class, id_karty).getRecepty();
+        TypedQuery<Recepta> query = entityManager.createQuery("FROM Recepta R WHERE R.id_karty = :id_karty ORDER BY R.data_wystawienia DESC ", Recepta.class);
+        query.setParameter("id_karty", id_karty);
+        return query.getResultList();
     }
 
     @Override

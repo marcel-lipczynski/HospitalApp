@@ -20,7 +20,7 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
 
     @Override
     public List<Pielegniarka> findAll() {
-        return entityManager.createQuery("from Pielegniarka",Pielegniarka.class).getResultList();
+        return entityManager.createQuery("from Pielegniarka P ORDER BY P.nazwisko",Pielegniarka.class).getResultList();
     }
 
     @Override

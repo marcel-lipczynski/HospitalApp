@@ -23,7 +23,7 @@ public class LekarzDAOImpl implements LekarzDAO {
 
     @Override
     public List<Lekarz> findAll() {
-        return entityManager.createQuery("from Lekarz", Lekarz.class).getResultList();
+        return entityManager.createQuery("from Lekarz L ORDER BY L.nazwisko", Lekarz.class).getResultList();
     }
 
     @Override

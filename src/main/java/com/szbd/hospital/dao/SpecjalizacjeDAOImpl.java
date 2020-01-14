@@ -20,7 +20,7 @@ public class SpecjalizacjeDAOImpl implements SpecjalizacjeDAO {
 
     @Override
     public List<Specjalizacje> findAll() {
-        return entityManager.createQuery("from Specjalizacje", Specjalizacje.class).getResultList();
+        return entityManager.createQuery("from Specjalizacje S ORDER BY S.nazwa_specjalizacji", Specjalizacje.class).getResultList();
     }
 
     @Override

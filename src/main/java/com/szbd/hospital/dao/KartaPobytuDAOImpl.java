@@ -20,7 +20,7 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
 
     @Override
     public List<KartaPobytu> findAll() {
-        return entityManager.createQuery("from KartaPobytu", KartaPobytu.class).getResultList();
+        return entityManager.createQuery("from KartaPobytu K ORDER BY K.data_przyjecia DESC, K.godzina_przyjecia", KartaPobytu.class).getResultList();
     }
 
     @Override
