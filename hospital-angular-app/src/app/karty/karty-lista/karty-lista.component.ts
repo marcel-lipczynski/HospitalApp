@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Karta} from "../karta.model";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {KartaService} from "../karta.service";
 import {ActivatedRoute} from "@angular/router";
@@ -9,7 +9,7 @@ import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 import {SalaService} from "../../sale/sala.service";
 import {Sala} from "../../sale/sala.model";
-import { map } from 'rxjs/operators'
+import {map} from 'rxjs/operators'
 
 @Component({
   selector: 'app-karty-lista',
@@ -30,8 +30,6 @@ export class KartyListaComponent implements OnInit {
   index: number;
 
 
-
-
   constructor(private http: HttpClient,
               private kartaService: KartaService,
               private pacjentService: PacjentService,
@@ -47,7 +45,6 @@ export class KartyListaComponent implements OnInit {
   }
 
 
-
   loadPacjent() {
     this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent => {
       this.isLoading = true;
@@ -57,8 +54,8 @@ export class KartyListaComponent implements OnInit {
     });
   }
 
-  loadAvailableSale(){
-    this.salaService.findAllAvailableSale().subscribe(sale =>{
+  loadAvailableSale() {
+    this.salaService.findAllAvailableSale().subscribe(sale => {
       this.isLoading = true;
       this.sale = sale;
       this.isLoading = false;
@@ -74,11 +71,20 @@ export class KartyListaComponent implements OnInit {
     });
   }
 
+  checkIfExistsActiveKarta(): boolean {
+    for(let karta of this.karty){
+      if(karta.data_wypisu == null){
+        return true;
+      }
+    }
+    return false;
+  }
+
   setupForm() {
     this.formAddKarta = new FormGroup({
-      data_przyjecia: new FormControl(null, [KartyListaComponent.checkIfDateIsLessThanToday.bind(this),
-        Validators.required]),
-      godzina_przyjecia: new FormControl(null,[Validators.required]),
+      data_przyjecia: new FormControl(null, [KartyListaComponent.checkIfDateIsBiggerThanToday,
+        Validators.required, this.checkIfKartaWithGivenDateExists.bind(this)]),
+      godzina_przyjecia: new FormControl(null, [Validators.required]),
       data_wypisu: new FormControl(null),
       nr_sali: new FormControl(null, [Validators.required]),
       pesel: new FormControl(this.pesel)
@@ -87,27 +93,34 @@ export class KartyListaComponent implements OnInit {
 
     this.formEditKarta = new FormGroup({
       id_karty: new FormControl(null),
-      data_przyjecia: new FormControl(null),
-      godzina_przyjecia: new FormControl(null),
+      data_przyjecia: new FormControl(null, [KartyListaComponent.checkIfDateIsBiggerThanToday.bind(this),
+        Validators.required]),
+      godzina_przyjecia: new FormControl(null,[Validators.required]),
       data_wypisu: new FormControl(null),
-      nr_sali: new FormControl(null),
+      nr_sali: new FormControl(null,[Validators.required]),
       pesel: new FormControl(this.pesel)
     });
+
+    this.formEditKarta.get('data_wypisu').setValidators([this.lessThan('data_przyjecia'),KartyListaComponent.checkIfDateIsBiggerThanToday])
+
   }
 
   onEditKarta(id_karty: number, data_przyjecia: string, godzina_przyjecia: string,
               data_wypisu: string, nr_sali: number) {
-      this.formEditKarta.patchValue({
-        'id_karty': id_karty,
-        'data_przyjecia' : data_przyjecia,
-        'godzina_przyjecia' : godzina_przyjecia,
-        'data_wypisu' : data_wypisu,
-        'nr_sali' : nr_sali
-      });
+    this.formEditKarta.patchValue({
+      'id_karty': id_karty,
+      'data_przyjecia': data_przyjecia,
+      'godzina_przyjecia': godzina_przyjecia,
+      'data_wypisu': data_wypisu,
+      'nr_sali': nr_sali
+    });
+
+
   }
 
   resetForm() {
     this.formAddKarta.reset();
+    this.formEditKarta.reset();
   }
 
   saveOrUpdateKarta(karta: Karta) {
@@ -135,34 +148,39 @@ export class KartyListaComponent implements OnInit {
     }
   }
 
-  static checkIfDateIsLessThanToday(control: AbstractControl): {[dateIsLess: string] : boolean}{
-    const currentDate = new Date().getDate();
-    const controlValue = new Date(control.value).getDate();
-    if(controlValue > currentDate){
-      return { 'dateIsLess': true };
-    }else{
+  static checkIfDateIsBiggerThanToday(control: AbstractControl): { [dateIsLess: string]: boolean } {
+    const currentDate = new Date();
+    const controlValue = new Date(control.value);
+    if (controlValue > currentDate && currentDate.getDate() != controlValue.getDate()) {
+      return {'dateIsBigger': true};
+    } else {
       return null;
     }
 
   }
 
-  // checkIfSalaIsFull(control: AbstractControl): {[salaIsFull: string] : boolean}{
-  //   if(control.value !=null){
-  //     this.salaService.findActiveCards(control.value).subscribe(karty=>{
-  //       this.salaService.findSalaByNRSali(control.value).pipe(map(sala =>{
-  //         if(karty.length === sala.pojemnosc){
-  //           console.log(karty.length);
-  //           console.log(sala.pojemnosc);
-  //           return {'salaIsFull' : true};
-  //         }else{
-  //           return null;
-  //         }
-  //       }));
-  //     });
-  //   }else{
-  //     return null;
-  //   }
-  //
-  // }
+  checkIfKartaWithGivenDateExists(control: AbstractControl): { [duplicateDate: string]: boolean } {
+    const controlValue = new Date(control.value);
+    for(let karta of this.karty){
+      if(controlValue.getDate() === new Date(karta.data_przyjecia).getDate()){
+        return {'duplicateDate': true};
+      }
+    }
+    return null;
+  }
+
+
+
+
+  lessThan(field: string): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const group = control.parent;
+      const fieldToCompare = group.get(field);
+      const isLessThan = (new Date(fieldToCompare.value).getDate() > new Date(control.value).getDate()) || (new Date(fieldToCompare.value) > new Date(control.value) && control.value!=null);
+      return isLessThan ? {'greaterThan': {value: control.value}} : null;
+    }
+  }
+
+
 
 }

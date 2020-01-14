@@ -76,19 +76,27 @@
           <div class="form-group">
             <label for="data_przyjecia">Data przyjęcia</label>
             <input type="date" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
-            <p class="text-sm-left text-info">Wprowadź datę dzisiejszą lub przeszłą</p>
+            <p class="text-sm-left text-info" *ngIf="!checkIfExistsActiveKarta()">Wprowadź datę dzisiejszą lub przeszłą</p>
 
 
 
 
-            <span *ngIf="formAddKarta.get('data_przyjecia').errors?.dateIsLess && formAddKarta.get('data_przyjecia').touched"
+            <span *ngIf="formAddKarta.get('data_przyjecia').errors?.dateIsBigger && formAddKarta.get('data_przyjecia').touched &&
+            !checkIfExistsActiveKarta()"
                   class="help-block text-danger">
                   Wprowadzono datę z przyszłości
             </span>
 
-            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('required') && formAddKarta.get('data_przyjecia').touched"
+            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('required') && formAddKarta.get('data_przyjecia').touched
+            && !checkIfExistsActiveKarta()"
                   class="help-block text-danger">
                   Wymagane wprowadzenie daty
+            </span>
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('duplicateDate') && formAddKarta.get('data_przyjecia').touched
+            && !checkIfExistsActiveKarta()"
+                  class="help-block text-danger">
+                  Istnieje karta pobytu z podaną datą rejestracji. Edytuj ją zamiast dodawać nową.
             </span>
 
 
@@ -97,9 +105,10 @@
 
           <div class="form-group">
             <label for="godzina_przyjecia">Godzina przyjęcia</label>
-            <input type="time" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia">
+            <input type="time" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia" >
 
-            <span *ngIf="formAddKarta.get('godzina_przyjecia').hasError('required') && formAddKarta.get('godzina_przyjecia').touched"
+            <span *ngIf="formAddKarta.get('godzina_przyjecia').hasError('required') && formAddKarta.get('godzina_przyjecia').touched &&
+            !checkIfExistsActiveKarta()"
                   class="help-block text-danger">
                   Godzina wymagana
             </span>
@@ -108,22 +117,18 @@
 
 
           <div class="form-group">
-            <label for="nr_sali">Numer sali</label>
+            <label for="nr_sali">Sale z dostępnymi miejscami</label>
             <select class="form-control" id="nr_sali" formControlName="nr_sali">
               <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
 
             </select>
 
-            <span *ngIf="formAddKarta.get('nr_sali').errors?.salaIsFull"
-                  class="help-block text-danger">
-                  Sala jest pełna
-            </span>
-
           </div>
+          <p *ngIf="checkIfExistsActiveKarta()" class="text-danger ">Pacjent ma obecnie otwartą kartę (Nie wprowadzono daty wypisu).</p>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary" [disabled]="!formAddKarta.valid">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddKarta.valid || checkIfExistsActiveKarta()">Zapisz</button>
           </div>
 
         </form>
@@ -159,7 +164,23 @@
 
           <div class="form-group">
             <label for="data_wypisu_update">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu_update" formControlName="data_wypisu">
+            <input type="date" class="form-control" id="data_wypisu_update" formControlName="data_wypisu">
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.greaterThan && formEditKarta.get('data_wypisu').touched && !formEditKarta.get('data_wypisu').errors?.dateIsBigger"
+                  class="help-block text-danger">
+                  Data wypisu nie może być wcześniejsza od daty przyjęcia
+            </span>
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.dateIsBigger && formEditKarta.get('data_wypisu').touched && !formEditKarta.get('data_wypisu').errors?.greaterThan"
+                  class="help-block text-danger">
+                  Data wypisu nie może być datą z przyszłości
+            </span>
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.dateIsBigger && formEditKarta.get('data_wypisu').touched && formEditKarta.get('data_wypisu').errors?.greaterThan"
+                  class="help-block text-danger">
+                  Data wypisu nie może być datą z przyszłości i nie może być mniejsza od daty przyjęcia
+            </span>
+
           </div>
 
 
@@ -172,8 +193,8 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditKarta.valid">Zapisz</button>
           </div>
 
 
