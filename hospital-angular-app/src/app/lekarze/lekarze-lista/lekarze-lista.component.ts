@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LekarzService} from "../lekarz.service";
 import {Lekarz} from "../lekarz.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 
@@ -37,16 +37,16 @@ export class LekarzeListaComponent implements OnInit {
 
   setupForm(){
     this.formAddLekarz = new FormGroup({
-      'imie' : new FormControl(null),
-      'nazwisko' : new FormControl(null),
-      'placa_pod' : new FormControl(null)
+      'imie' : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      'nazwisko' : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      'placa_pod' : new FormControl(null,[Validators.required,Validators.max(99999), Validators.min(1), Validators.pattern(/^\d+$/)])
     });
 
     this.fromEditLekarz = new FormGroup({
       'id_lekarza' : new FormControl(null),
-      'imie' : new FormControl(null),
-      'nazwisko' : new FormControl(null),
-      'placa_pod' : new FormControl(null)
+      'imie' : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      'nazwisko' : new FormControl(null,[Validators.required, Validators.maxLength(20), Validators.pattern(/^[A-Za-z ]+$/)]),
+      'placa_pod' : new FormControl(null, [Validators.required,Validators.max(99999), Validators.min(1), Validators.pattern(/^\d+$/)])
     });
   }
 

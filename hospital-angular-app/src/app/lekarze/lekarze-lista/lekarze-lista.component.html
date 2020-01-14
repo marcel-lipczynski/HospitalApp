@@ -59,21 +59,79 @@
           <div class="form-group">
             <label for="imie_lekarza">Imię</label>
             <input type="text" class="form-control" id="imie_lekarza" formControlName="imie">
+
+            <span *ngIf="formAddLekarz.get('imie').hasError('maxlength') && formAddLekarz.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formAddLekarz.get('imie').hasError('required') && formAddLekarz.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię jest wymagane
+            </span>
+
+            <span *ngIf="formAddLekarz.get('imie').hasError('pattern') && formAddLekarz.get('imie').touched &&
+            !formAddLekarz.get('imie').hasError('maxlength')"
+                  class="help-block text-danger">
+                  Imię może zawierać tylko litery
+            </span>
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_lekarza">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_lekarza" formControlName="nazwisko">
+
+            <span *ngIf="formAddLekarz.get('nazwisko').hasError('maxlength') && formAddLekarz.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="formAddLekarz.get('nazwisko').hasError('required') && formAddLekarz.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko jest wymagane
+            </span>
+
+            <span *ngIf="formAddLekarz.get('nazwisko').hasError('pattern') && formAddLekarz.get('nazwisko').touched &&
+            !formAddLekarz.get('nazwisko').hasError('maxlength')"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="placa_podstawowa">Płaca</label>
             <input type="text" class="form-control" id="placa_podstawowa" formControlName="placa_pod">
+
+            <span *ngIf="formAddLekarz.get('placa_pod').hasError('min') && formAddLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="formAddLekarz.get('placa_pod').hasError('max') && formAddLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9999
+            </span>
+
+            <span *ngIf="formAddLekarz.get('placa_pod').hasError('required') && formAddLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Pole płaca jest wymagane
+            </span>
+
+            <span *ngIf="formAddLekarz.get('placa_pod').hasError('pattern') && formAddLekarz.get('placa_pod').touched &&
+            !formAddLekarz.get('placa_pod').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddLekarz.valid">Zapisz</button>
           </div>
 
         </form>
@@ -101,21 +159,82 @@
           <div class="form-group">
             <label for="imie_lekarza_update">Imię</label>
             <input type="text" class="form-control" id="imie_lekarza_update" formControlName="imie">
+
+            <span *ngIf="fromEditLekarz.get('imie').hasError('maxlength') && fromEditLekarz.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('imie').hasError('required') && fromEditLekarz.get('imie').touched"
+                  class="help-block text-danger">
+                  Imię jest wymagane
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('imie').hasError('pattern') && fromEditLekarz.get('imie').touched &&
+            !fromEditLekarz.get('imie').hasError('maxlength')"
+                  class="help-block text-danger">
+                  Imię może zawierać tylko litery
+            </span>
+
+
           </div>
 
           <div class="form-group">
             <label for="nazwisko_lekarza_update">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_lekarza_update" formControlName="nazwisko">
+
+            <span *ngIf="fromEditLekarz.get('nazwisko').hasError('maxlength') && fromEditLekarz.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać maksymalnie 20 znaków
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('nazwisko').hasError('required') && fromEditLekarz.get('nazwisko').touched"
+                  class="help-block text-danger">
+                  Nazwisko jest wymagane
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('nazwisko').hasError('pattern') && fromEditLekarz.get('nazwisko').touched &&
+            !fromEditLekarz.get('nazwisko').hasError('maxlength')"
+                  class="help-block text-danger">
+                  Nazwisko może zawierać tylko litery
+            </span>
+
+
+
+
           </div>
 
           <div class="form-group">
             <label for="placa_podstawowa_update">Płaca</label>
             <input type="text" class="form-control" id="placa_podstawowa_update" formControlName="placa_pod">
+
+            <span *ngIf="fromEditLekarz.get('placa_pod').hasError('min') && fromEditLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Minimalna wartość pola to 1
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('placa_pod').hasError('max') && fromEditLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Maksymalna wartość pola to 9999
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('placa_pod').hasError('required') && fromEditLekarz.get('placa_pod').touched"
+                  class="help-block text-danger">
+                  Pole płaca jest wymagane
+            </span>
+
+            <span *ngIf="fromEditLekarz.get('placa_pod').hasError('pattern') && fromEditLekarz.get('placa_pod').touched &&
+            !fromEditLekarz.get('placa_pod').hasError('min')"
+                  class="help-block text-danger">
+                  Wprowadź wartość liczbową
+            </span>
+
+
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!fromEditLekarz.valid">Zapisz</button>
           </div>
 
 
