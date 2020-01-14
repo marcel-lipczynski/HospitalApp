@@ -1,5 +1,6 @@
 package com.szbd.hospital.controller;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 import com.szbd.hospital.service.SalaService;
@@ -56,6 +57,11 @@ public class SalaController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable int id) {
         salaService.deleteById(id);
+    }
+
+    @GetMapping("/{nr_sali}/karty")
+    public List<KartaPobytu> findActiveKartyForSala(@PathVariable int nr_sali){
+        return salaService.findActiveKartyForSala(nr_sali);
     }
 
 

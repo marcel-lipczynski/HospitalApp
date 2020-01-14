@@ -1,5 +1,6 @@
 package com.szbd.hospital.service;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 
@@ -15,4 +16,6 @@ public interface SalaService {
     void deletePielegniarkaFromSala(int idPielegniarki, int nrSali);
     void deleteById(int id);
 
+
+    List<KartaPobytu> findActiveKartyForSala(int nr_sali);
 }

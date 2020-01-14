@@ -1,5 +1,6 @@
 package com.szbd.hospital.dao;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 
@@ -13,4 +14,7 @@ public interface SalaDAO {
     void saveSalaWithIdPielegniarki(int idPielegniarki, int nr_sali);
     void deletePielegniarkaFromSala(int idPielegniarki, int nrSali);
     void deleteById(int id);
+
+    //karty pobytu dla danej sali
+    List<KartaPobytu> findActiveKartyForSala(int nr_sali);
 }

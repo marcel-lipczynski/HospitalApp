@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Karta} from "../karta.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {KartaService} from "../karta.service";
 import {ActivatedRoute} from "@angular/router";
@@ -25,6 +25,7 @@ export class KartyListaComponent implements OnInit {
   pesel: string;
   imie: string;
   nazwisko: string;
+  index: number;
 
 
 
@@ -40,8 +41,11 @@ export class KartyListaComponent implements OnInit {
     this.pesel = this.route.snapshot.params['pesel'];
     this.reloadData();
     this.setupForm();
-    this.loadPacjent();
-    this.loadAvailableSale();
+
+  }
+
+  loadSala(nr_sali: number){
+    this.salaService.findSalaByNRSali(nr_sali).subscribe()
   }
 
   loadPacjent() {
@@ -64,19 +68,22 @@ export class KartyListaComponent implements OnInit {
   reloadData() {
     this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty => {
       this.karty = karty;
-      // this.loadPacjent();
+      this.loadPacjent();
+      this.loadAvailableSale();
       this.isLoading = false;
     });
   }
 
   setupForm() {
     this.formAddKarta = new FormGroup({
-      data_przyjecia: new FormControl(null),
-      godzina_przyjecia: new FormControl(null),
+      data_przyjecia: new FormControl(null, [KartyListaComponent.checkIfDateIsLessThanToday.bind(this),
+        Validators.required]),
+      godzina_przyjecia: new FormControl(null,[Validators.required]),
       data_wypisu: new FormControl(null),
       nr_sali: new FormControl(null),
       pesel: new FormControl(this.pesel)
     });
+
 
     this.formEditKarta = new FormGroup({
       id_karty: new FormControl(null),
@@ -127,6 +134,26 @@ export class KartyListaComponent implements OnInit {
       this.deleteKartaFromPacjent(id_karty);
     }
   }
+
+  static checkIfDateIsLessThanToday(control: AbstractControl): {[dateIsLess: string] : boolean}{
+    const currentDate = new Date().getDate();
+    const controlValue = new Date(control.value).getDate();
+    console.log(currentDate);
+    console.log(controlValue);
+    if(controlValue > currentDate){
+      return { 'dateIsLess': true };
+    }else{
+      return null;
+    }
+
+  }
+
+  // checkIfSalaIsFull(control: AbstractControl): {[salaIsFull: string] : boolean}{
+  //
+  // }
+
+
+
 
 
 }

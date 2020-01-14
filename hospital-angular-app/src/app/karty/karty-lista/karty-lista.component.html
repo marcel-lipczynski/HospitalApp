@@ -75,31 +75,42 @@
 
           <div class="form-group">
             <label for="data_przyjecia">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
+            <input type="date" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
+            <p class="text-sm-left text-info">Wprowadź datę dzisiejszą lub przeszłą</p>
+
+
+
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').errors?.dateIsLess && formAddKarta.get('data_przyjecia').touched"
+                  class="help-block text-danger">
+                  Wprowadzono datę z przyszłości
+            </span>
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('required') && formAddKarta.get('data_przyjecia').touched"
+                  class="help-block text-danger">
+                  Wymagane wprowadzenie daty
+            </span>
+
+
+
           </div>
 
           <div class="form-group">
             <label for="godzina_przyjecia">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia">
+            <input type="time" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia">
+
+            <span *ngIf="formAddKarta.get('godzina_przyjecia').hasError('required') && formAddKarta.get('godzina_przyjecia').touched"
+                  class="help-block text-danger">
+                  Godzina wymagana
+            </span>
+
           </div>
 
-          <div class="form-group">
-            <label for="data_wypisu">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu" formControlName="data_wypisu">
-          </div>
-
-
-<!--          <div class="form-group">-->
-<!--            <label for="nr_sali">Numer sali</label>-->
-<!--            <input type="text" class="form-control" id="nr_sali" formControlName="nr_sali">-->
-
-
-<!--          </div>-->
 
           <div class="form-group">
             <label for="nr_sali">Numer sali</label>
             <select class="form-control" id="nr_sali" formControlName="nr_sali">
-              <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
+              <option *ngFor="let sala of sale; let i = index" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
 
             </select>
 
@@ -107,7 +118,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddKarta.valid">Zapisz</button>
           </div>
 
         </form>
@@ -133,12 +144,12 @@
 
           <div class="form-group">
             <label for="data_przyjecia_update">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia_update" formControlName="data_przyjecia">
+            <input type="date" class="form-control" id="data_przyjecia_update" formControlName="data_przyjecia" >
           </div>
 
           <div class="form-group">
             <label for="godzina_przyjecia_update">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia_update" formControlName="godzina_przyjecia">
+            <input type="time" class="form-control" id="godzina_przyjecia_update" formControlName="godzina_przyjecia">
           </div>
 
           <div class="form-group">

@@ -1,11 +1,13 @@
 package com.szbd.hospital.dao;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -72,6 +74,15 @@ public class SalaDAOImpl implements SalaDAO {
         if (sala != null) {
             entityManager.remove(sala);
         }
+
+    }
+
+    @Override
+    public List<KartaPobytu> findActiveKartyForSala(int nr_sali) {
+
+        TypedQuery<KartaPobytu> query = entityManager.createQuery("FROM KartaPobytu K WHERE K.nr_sali = :nr_sali AND K.data_wypisu IS NULL", KartaPobytu.class);
+        query.setParameter("nr_sali", nr_sali);
+        return query.getResultList();
 
     }
 }
