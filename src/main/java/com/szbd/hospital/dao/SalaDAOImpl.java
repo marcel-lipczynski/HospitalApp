@@ -91,7 +91,7 @@ public class SalaDAOImpl implements SalaDAO {
     public List<Sala> findAllAvailableSale() {
         int counter = 0;
         List<Sala> availableSale = new ArrayList<>();
-        List<Sala> allSale = entityManager.createQuery("from Sala",Sala.class).getResultList();
+        List<Sala> allSale = entityManager.createQuery("from Sala S ORDER BY S.nr_sali",Sala.class).getResultList();
 
         List<KartaPobytu> kartyPobytu = entityManager.createQuery("from KartaPobytu",KartaPobytu.class).getResultList();
 

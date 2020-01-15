@@ -175,8 +175,22 @@ export class KartyListaComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: any} => {
       const group = control.parent;
       const fieldToCompare = group.get(field);
-      const isLessThan = (new Date(fieldToCompare.value).getDate() > new Date(control.value).getDate()) || (new Date(fieldToCompare.value) > new Date(control.value) && control.value!=null);
-      return isLessThan ? {'greaterThan': {value: control.value}} : null;
+      const data_przyjecia = new Date(fieldToCompare.value);
+      const data_wypisu = new Date(control.value);
+      if(data_przyjecia.getUTCFullYear() > data_wypisu.getUTCFullYear()){
+        return {'greaterThan': {value: control.value}};
+      }
+      if(data_przyjecia.getUTCFullYear() === data_wypisu.getUTCFullYear()
+        && data_przyjecia.getUTCMonth() > data_wypisu.getUTCMonth()){
+        return {'greaterThan': {value: control.value}};
+      }
+      if(data_przyjecia.getUTCFullYear() === data_wypisu.getUTCFullYear()
+        && data_przyjecia.getUTCMonth() === data_wypisu.getUTCMonth()
+        && data_przyjecia.getDate() > data_wypisu.getDate()){
+        return {'greaterThan': {value: control.value}};
+
+      }
+      return null;
     }
   }
 

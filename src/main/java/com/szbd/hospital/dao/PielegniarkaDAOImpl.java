@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class PielegniarkaDAOImpl implements PielegniarkaDAO{
+public class PielegniarkaDAOImpl implements PielegniarkaDAO {
 
     private EntityManager entityManager;
 
@@ -20,21 +20,21 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
 
     @Override
     public List<Pielegniarka> findAll() {
-        return entityManager.createQuery("from Pielegniarka P ORDER BY P.nazwisko",Pielegniarka.class).getResultList();
+        return entityManager.createQuery("from Pielegniarka P ORDER BY P.nazwisko", Pielegniarka.class).getResultList();
     }
 
     @Override
     public Pielegniarka findById(int id) {
         //zwraca pacjenta jesli go znajdzie, jesli go nie ma
         //zwroci pouste response body
-        return entityManager.find(Pielegniarka.class,id);
+        return entityManager.find(Pielegniarka.class, id);
     }
 
 
     //zwroc wszystkie sale danej pielegniarki
     @Override
     public List<Sala> findAllSalaOfPielegniarka(int id) {
-        return entityManager.find(Pielegniarka.class,id).getSale();
+        return entityManager.find(Pielegniarka.class, id).getSale();
     }
 
     @Override
@@ -46,13 +46,13 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
     //Dodaj sale dla pielegniarki w szczegolach danej pielegniarki
     @Override
     public void savePielegniarkaWitNrSali(int idPielegniarki, int nr_sali) {
-        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class,idPielegniarki);
+        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class, idPielegniarki);
         Sala sala = entityManager.find(Sala.class, nr_sali);
 
-        if(pielegniarka != null && sala != null){
+        if (pielegniarka != null && sala != null) {
             //nie dodajemy sali ktora juz jest!
-            for(Sala salePiel: pielegniarka.getSale()){
-                if(salePiel.getNr_sali() == nr_sali){
+            for (Sala salePiel : pielegniarka.getSale()) {
+                if (salePiel.getNr_sali() == nr_sali) {
                     return;
                 }
             }
@@ -63,9 +63,9 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
 
     @Override
     public void deleteSalaFromPielegniarka(int idPielegniarki, int nrSali) {
-        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class,idPielegniarki);
+        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class, idPielegniarki);
         Sala sala = entityManager.find(Sala.class, nrSali);
-        if(pielegniarka != null && sala != null && pielegniarka.getSale().indexOf(sala) != -1){
+        if (pielegniarka != null && sala != null && pielegniarka.getSale().indexOf(sala) != -1) {
             pielegniarka.removeSala(sala);
             sala.removePielegniarka(pielegniarka);
         }
@@ -74,10 +74,17 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO{
 
     @Override
     public void deleteById(int id) {
-        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class,id);
-        if(pielegniarka != null){
-            entityManager.remove(pielegniarka);
+        Pielegniarka pielegniarka = entityManager.find(Pielegniarka.class, id);
+        List<Sala> sale = entityManager.createQuery("from Sala", Sala.class).getResultList();
+        for (Sala salaDB : sale) {
+            if(pielegniarka.getSale().indexOf(salaDB) != -1)
+            pielegniarka.getSale().remove(salaDB);
+            salaDB.getPielegniarki().remove(pielegniarka);
+
         }
+        entityManager.remove(pielegniarka);
+
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.szbd.hospital.dao;
 
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Specjalizacje;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,14 @@ public class SpecjalizacjeDAOImpl implements SpecjalizacjeDAO {
     @Override
     public void deleteSpecjalizacjeById(String id) {
         Specjalizacje specjalizacje = entityManager.find(Specjalizacje.class, id);
+        List<Lekarz> lekarze = entityManager.createQuery("from Lekarz", Lekarz.class).getResultList();
+
+        for(Lekarz lekarzDB: lekarze){
+            if(lekarzDB.getSpecjalizacje().indexOf(specjalizacje) != -1){
+                lekarzDB.getSpecjalizacje().remove(specjalizacje);
+            }
+        }
+
         if (specjalizacje != null) {
             entityManager.remove(specjalizacje);
         }
