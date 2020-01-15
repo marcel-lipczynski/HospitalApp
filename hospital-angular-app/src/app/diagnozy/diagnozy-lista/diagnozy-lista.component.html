@@ -138,7 +138,7 @@
             <label for="id_lek2">Lekarz wystawiający</label>
             <select class="form-control" id="id_lek2" formControlName="id_lekarza">
 
-              <option *ngFor="let lekarz of lekarze" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
+              <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
 
             </select>
           </div>
