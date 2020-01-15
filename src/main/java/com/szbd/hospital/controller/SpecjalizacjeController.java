@@ -31,6 +31,7 @@ public class SpecjalizacjeController {
 
     @PostMapping("")
     public void saveSpecjalizacje(@RequestBody Specjalizacje specjalizacje) {
+        specjalizacje.setNazwa_specjalizacji(specjalizacje.getNazwa_specjalizacji().toUpperCase());
         specjalizacjeService.saveSpecjalizacje(specjalizacje);
     }
 
