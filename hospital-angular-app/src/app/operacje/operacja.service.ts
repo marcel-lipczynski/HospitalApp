@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Diagnoza} from "../diagnozy/diagnoza.model";
 import {Operacja} from "./operacja.model";
+import {Lekarz} from "../lekarze/lekarz.model";
 
 
 @Injectable({
@@ -26,6 +27,10 @@ export class OperacjaService {
 
   deletOperacjaByIdFromKartaPobytu(id_operacji: number, pesel: string, id_karty: number) {
     return this.http.delete(this.OPERACJE_API_URL + `/${pesel}` + '/karty' + `/${id_karty}` + '/operacje' + `/${id_operacji}`);
+  }
+
+  findLekarzWhoCanAddOperacja(id_karty:number): Observable<Lekarz[]>{
+    return this.http.get<Lekarz[]>('/api/operacje' + `/${id_karty}` + '/lekarze');
   }
 
 }

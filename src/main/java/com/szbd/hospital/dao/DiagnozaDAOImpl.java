@@ -3,10 +3,12 @@ package com.szbd.hospital.dao;
 import com.szbd.hospital.entity.Diagnoza;
 import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Lekarz;
+import com.szbd.hospital.entity.Operacja;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -75,6 +77,22 @@ public class DiagnozaDAOImpl implements DiagnozaDAO {
         if (diagnoza != null) {
             entityManager.remove(diagnoza);
         }
+    }
+
+    @Override
+    public List<Lekarz> getAvailableLekarze(int id_karty) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        List<Lekarz> allLekarze = kartaPobytu.getLekarze();
+        List<Lekarz> availableLekarze = new ArrayList<>(allLekarze);
+
+        for(Lekarz lekarz: allLekarze){
+            for(Diagnoza diagnoza: lekarz.getDiagnozy()){
+                if(diagnoza.getId_karty() == id_karty){
+                    availableLekarze.remove(lekarz);
+                }
+            }
+        }
+        return availableLekarze;
     }
 
 }

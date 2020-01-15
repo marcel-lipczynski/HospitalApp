@@ -6,6 +6,7 @@ import {HttpClient} from "@angular/common/http";
 import {OperacjaService} from "../operacja.service";
 import {ActivatedRoute} from "@angular/router";
 import {KartaService} from "../../karty/karta.service";
+import {Lek} from "../../leki/lek.model";
 
 @Component({
   selector: 'app-operacje-lista',
@@ -16,6 +17,7 @@ export class OperacjeListaComponent implements OnInit {
 
   operacje: Operacja[] = [];
   lekarze: Lekarz[] = [];
+  lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
   formAddOperacja: FormGroup;
   formEditOperacja: FormGroup;
@@ -40,9 +42,16 @@ export class OperacjeListaComponent implements OnInit {
   reloadData() {
     this.operacjaService.findAllOperacjeForKartaPobytu(this.pesel, this.id_karty).subscribe(operacje => {
       this.findAllLekarzeOnKarta();
+      this.findLekarzWhoCanAddOperacja();
       this.operacje = operacje;
       this.isLoading = false;
     });
+  }
+
+  findLekarzWhoCanAddOperacja(){
+    return this.operacjaService.findLekarzWhoCanAddOperacja(this.id_karty).subscribe(lekarzeAvailable =>{
+      this.lekarzeAvailable = lekarzeAvailable;
+    })
   }
 
   findAllLekarzeOnKarta(){

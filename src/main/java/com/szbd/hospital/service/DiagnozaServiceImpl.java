@@ -2,6 +2,7 @@ package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.DiagnozaDAO;
 import com.szbd.hospital.entity.Diagnoza;
+import com.szbd.hospital.entity.Lekarz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +41,11 @@ public class DiagnozaServiceImpl implements DiagnozaService {
     @Transactional
     public void deleteDiagnozaById(int id) {
         diagnozaDAO.deleteDiagnozaById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Lekarz> getAvailableLekarze(int id_karty) {
+        return diagnozaDAO.getAvailableLekarze(id_karty);
     }
 }

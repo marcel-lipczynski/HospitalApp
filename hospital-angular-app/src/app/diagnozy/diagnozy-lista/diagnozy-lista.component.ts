@@ -18,6 +18,7 @@ export class DiagnozyListaComponent implements OnInit {
 
   diagnozy: Diagnoza[] = [];
   lekarze: Lekarz[] = [];
+  lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
   formAddDiagnoza: FormGroup;
   formEditDiagnoza: FormGroup;
@@ -44,8 +45,15 @@ export class DiagnozyListaComponent implements OnInit {
   reloadData() {
     this.diagnozaService.findAllDiagnozyForKartaPobytu(this.pesel, this.id_karty).subscribe(diagnozy => {
       this.findAllLekarzeOnKarta();
+      this.findLekarzWhoCanAddDiagnoza();
       this.diagnozy = diagnozy;
       this.isLoading = false;
+    });
+  }
+
+  findLekarzWhoCanAddDiagnoza(){
+    return this.diagnozaService.findLekarzWhoCanAddDiagnoza(this.id_karty).subscribe(lekarzeAvailable =>{
+      this.lekarzeAvailable = lekarzeAvailable;
     });
   }
 
