@@ -93,9 +93,8 @@ export class KartyListaComponent implements OnInit {
 
     this.formEditKarta = new FormGroup({
       id_karty: new FormControl(null),
-      data_przyjecia: new FormControl(null, [KartyListaComponent.checkIfDateIsBiggerThanToday.bind(this),
-        Validators.required]),
-      godzina_przyjecia: new FormControl(null,[Validators.required]),
+      data_przyjecia: new FormControl({value: null, disabled: true}),
+      godzina_przyjecia: new FormControl({value: null, disabled:true}),
       data_wypisu: new FormControl(null),
       nr_sali: new FormControl(null,[Validators.required]),
       pesel: new FormControl(this.pesel)

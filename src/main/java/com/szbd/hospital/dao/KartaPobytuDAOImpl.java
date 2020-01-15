@@ -101,26 +101,26 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
         if (kartaPobytu != null && lekarz != null && kartaPobytu.getLekarze().indexOf(lekarz) != -1) {
 
 
-            List<Diagnoza> diagnozy = new ArrayList<>(kartaPobytu.getDiagnozy());
-            List<Operacja> operacje = new ArrayList<>(kartaPobytu.getOperacje());
-            List<Recepta> recepty = new ArrayList<>(kartaPobytu.getRecepty());
+//            List<Diagnoza> diagnozy = new ArrayList<>(kartaPobytu.getDiagnozy());
+//            List<Operacja> operacje = new ArrayList<>(kartaPobytu.getOperacje());
+//            List<Recepta> recepty = new ArrayList<>(kartaPobytu.getRecepty());
 
 
-//            List<Diagnoza> diagnozy = entityManager.createQuery("from Diagnoza", Diagnoza.class).getResultList();
+            List<Diagnoza> diagnozy = entityManager.createQuery("from Diagnoza", Diagnoza.class).getResultList();
             for (Diagnoza diagnoza : diagnozy) {
                 if (diagnoza.getId_lekarza() == id_lekarza && diagnoza.getId_karty() == id_karty) {
                     entityManager.remove(diagnoza);
                 }
             }
 //
-//            List<Recepta> recepty = entityManager.createQuery("from Recepta", Recepta.class).getResultList();
+            List<Recepta> recepty = entityManager.createQuery("from Recepta", Recepta.class).getResultList();
             for(Recepta recepta: recepty){
                 if (recepta.getId_lekarza() == id_lekarza && recepta.getId_karty() == id_karty) {
                     entityManager.remove(recepta);
                 }
             }
 //
-//            List<Operacja> operacje = entityManager.createQuery("from Operacja", Operacja.class).getResultList();
+            List<Operacja> operacje = entityManager.createQuery("from Operacja", Operacja.class).getResultList();
             for(Operacja operacja: operacje){
                 if (operacja.getId_lekarza() == id_lekarza && operacja.getId_karty() == id_karty) {
                     entityManager.remove(operacja);

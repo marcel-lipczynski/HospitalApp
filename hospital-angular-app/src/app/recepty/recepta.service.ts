@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Recepta} from "./recepta.model";
 import {Lek} from "../leki/lek.model";
+import {Lekarz} from "../lekarze/lekarz.model";
 
 
 @Injectable({
@@ -40,6 +41,10 @@ export class ReceptaService{
 
   deleteLekFromRecepta(id_recepty: number, nazwa_leku: string){
     return this.http.delete('/api/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`);
+  }
+
+  findLekarzWhoCanAddRecepta(id_karty:number): Observable<Lekarz[]>{
+    return this.http.get<Lekarz[]>('/api/recepty' + `/${id_karty}` + '/lekarze');
   }
 
 }

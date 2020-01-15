@@ -18,6 +18,7 @@ export class ReceptyListaComponent implements OnInit {
 
   recepty: Recepta[] = [];
   lekarze: Lekarz[] = [];
+  lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
   formAddRecepta: FormGroup;
   formEditRecepta: FormGroup;
@@ -44,6 +45,7 @@ export class ReceptyListaComponent implements OnInit {
   reloadData() {
     this.receptaService.findAllReceptyForKartaPobytu(this.pesel, this.id_karty).subscribe(recepty => {
       this.findAllLekarzeOnKarta();
+      this.findLekarzWhoCanAddRecepta();
       this.recepty = recepty;
       this.isLoading = false;
     });
@@ -52,6 +54,12 @@ export class ReceptyListaComponent implements OnInit {
   findAllLekarzeOnKarta(){
     return this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarze =>{
       this.lekarze = lekarze;
+    });
+  }
+
+  findLekarzWhoCanAddRecepta(){
+    return this.receptaService.findLekarzWhoCanAddRecepta(this.id_karty).subscribe(lekarzeAvailable =>{
+      this.lekarzeAvailable = lekarzeAvailable;
     })
   }
 
@@ -106,5 +114,9 @@ export class ReceptyListaComponent implements OnInit {
       this.deleteReceptaByIdFromKartaPobytu(id_recepty);
     }
   }
+
+
+
+
 
 }

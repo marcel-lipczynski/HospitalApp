@@ -1,6 +1,7 @@
 package com.szbd.hospital.controller;
 
 import com.szbd.hospital.entity.Lek;
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Recepta;
 import com.szbd.hospital.service.ReceptaService;
 import oracle.jdbc.proxy.annotation.Post;
@@ -55,6 +56,11 @@ public class ReceptaController {
     @DeleteMapping("/{id_recepty}/leki/{nazwa_leku}")
     public void deleteLekFromRecepta(@PathVariable int id_recepty, @PathVariable String nazwa_leku) {
         receptaService.deleteLekFromRecepta(id_recepty, nazwa_leku.toUpperCase());
+    }
+
+    @GetMapping("{id_karty}/lekarze")
+    public List<Lekarz> getAvailableLekarze(@PathVariable int id_karty){
+        return receptaService.getAvailableLekarze(id_karty);
     }
 
 
