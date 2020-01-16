@@ -126,4 +126,16 @@ public class ReceptaDAOImpl implements ReceptaDAO {
         }
         return availableLekarze;
     }
+
+    @Override
+    public List<Lek> findAvailableLeki(int id_recepty) {
+        List<Lek> lekiInDatabase = entityManager.createQuery("from Lek L ORDER BY L.nazwa_leku", Lek.class).getResultList();
+        List<Lek> lekiOnRecepta = entityManager.find(Recepta.class, id_recepty).getLeki();
+
+        for(Lek lek: lekiOnRecepta){
+            lekiInDatabase.remove(lek);
+        }
+
+        return lekiInDatabase;
+    }
 }

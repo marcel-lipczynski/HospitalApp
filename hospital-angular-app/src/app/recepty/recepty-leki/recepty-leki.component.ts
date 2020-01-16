@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ReceptaService} from "../recepta.service";
 import {Lekarz} from "../../lekarze/lekarz.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {KartaService} from "../../karty/karta.service";
 import {ActivatedRoute} from "@angular/router";
 import {Recepta} from "../recepta.model";
@@ -47,14 +47,17 @@ export class ReceptyLekiComponent implements OnInit {
 
   reloadData() {
     this.receptaService.findAllLekiOnRecepta(this.id_recepty).subscribe(lekiOnRecepta => {
+      this.fetchAvailableLeki();
       this.lekiOnRecepta = lekiOnRecepta;
       this.isLoading = false;
     });
   }
 
   fetchAvailableLeki(){
-    this.lekService.findAllLeki().subscribe(leki =>{
+    this.receptaService.findAvailableLekiForRecepta(this.id_recepty).subscribe(leki =>{
+      this.isLoading = true;
       this.leki = leki;
+      this.isLoading = false;
     })
   }
 
@@ -62,13 +65,15 @@ export class ReceptyLekiComponent implements OnInit {
 
   setupForm() {
     this.formAddLek = new FormGroup({
-      nazwa_leku: new FormControl(null)
+      nazwa_leku: new FormControl(null,[Validators.required])
     });
 
   }
 
   onSubmit(form: FormGroup) {
+
     this.addLekToRecepta(form.getRawValue());
+    this.reloadData();
     this.resetForm();
   }
 

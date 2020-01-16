@@ -16,5 +16,6 @@ public interface ReceptaService  {
     void deleteLekFromRecepta(int id_recepty, String nazwa_leku);
 
     List<Lekarz> getAvailableLekarze(int id_karty);
+    List<Lek> findAvailableLeki(int id_recepty);
 
 }

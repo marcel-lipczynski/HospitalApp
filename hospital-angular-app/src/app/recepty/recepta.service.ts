@@ -34,6 +34,10 @@ export class ReceptaService{
     return this.http.get<Lek[]>('/api/recepty' + `/${id_recepty}` + '/leki');
   }
 
+  findAvailableLekiForRecepta(id_recepty: number): Observable<Lek[]> {
+    return this.http.get<Lek[]>('/api/recepty' + `/${id_recepty}` + '/leki/available');
+  }
+
   addLekToRecepta(id_recepty: number, nazwa_leku: string){
     console.log(nazwa_leku);
     return this.http.post('/api/recepty' + `/${id_recepty}` + '/leki' + `/${nazwa_leku}`, null);

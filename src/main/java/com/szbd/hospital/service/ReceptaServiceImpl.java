@@ -68,4 +68,10 @@ public class ReceptaServiceImpl implements ReceptaService {
     public List<Lekarz> getAvailableLekarze(int id_karty) {
         return receptaDAO.getAvailableLekarze(id_karty);
     }
+
+    @Override
+    @Transactional
+    public List<Lek> findAvailableLeki(int id_recepty) {
+        return receptaDAO.findAvailableLeki(id_recepty);
+    }
 }

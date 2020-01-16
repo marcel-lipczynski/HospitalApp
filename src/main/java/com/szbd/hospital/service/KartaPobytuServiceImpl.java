@@ -39,6 +39,7 @@ public class KartaPobytuServiceImpl implements KartaPobytuService {
     }
 
     @Override
+    @Transactional
     public List<Lekarz> findAvailableLekarze(int id_karty) {
         return kartaPobytuDAO.findAvailableLekarze(id_karty);
     }

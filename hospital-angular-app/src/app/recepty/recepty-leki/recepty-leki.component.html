@@ -60,19 +60,25 @@
 
 
           <div class="form-group">
-            <label for="nazwa_leku">Lek</label>
+            <label for="nazwa_leku" class="required-field">Lek</label>
             <select class="form-control" id="nazwa_leku" formControlName="nazwa_leku">
 
               <option *ngFor="let lek of leki" [value]="lek.nazwa_leku">{{lek.nazwa_leku}} - {{lek.rodzaj_leku}}</option>
 
+
+
             </select>
+            <p class="text-danger">Wybierz lek z listy dostępnych leków</p>
+            <p class="text-info">Pusta lista oznacza, że wszystkie dostępne leki zostały wybrane</p>
+
+
           </div>
 
 
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddLek.valid">Zapisz</button>
           </div>
 
         </form>

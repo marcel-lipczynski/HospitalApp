@@ -63,5 +63,10 @@ public class ReceptaController {
         return receptaService.getAvailableLekarze(id_karty);
     }
 
+    @GetMapping("/{id_recepty}/leki/available")
+    public List<Lek> findAvailableLeki(@PathVariable int id_recepty) {
+        return receptaService.findAvailableLeki(id_recepty);
+    }
+
 
 }
