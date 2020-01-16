@@ -34,7 +34,7 @@ export class KartyLekarzeComponent implements OnInit {
   ngOnInit() {
     this.id_karty = +this.route.snapshot.params['id_karty'];
 
-    this.fetchAvailableLekarze();
+
     this.reloadData();
     this.setupForm();
 
@@ -43,12 +43,13 @@ export class KartyLekarzeComponent implements OnInit {
   reloadData() {
     this.kartaService.findAllLekarzeOnKarta(this.id_karty).subscribe(lekarzeFromKarta => {
       this.lekarzeFromKarta = lekarzeFromKarta;
+      this.fetchAvailableLekarze();
       this.isLoading = false;
     });
   }
 
   fetchAvailableLekarze() {
-    this.lekarzService.findAllLekarze().subscribe(lekarze => {
+    this.kartaService.findAvailableLekarze(this.id_karty).subscribe(lekarze => {
       this.lekarze = lekarze;
     })
   }
@@ -64,6 +65,7 @@ export class KartyLekarzeComponent implements OnInit {
   onSubmit(form: FormGroup) {
     this.addLekarzToKarta(form.getRawValue());
     this.resetForm();
+    this.reloadData();
   }
 
   resetForm() {

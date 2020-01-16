@@ -34,6 +34,10 @@ export class KartaService {
     return this.http.get<Lekarz[]>('/api/karty' + `/${id_karty}` + '/lekarze');
   }
 
+  findAvailableLekarze(id_karty: number): Observable<Lekarz[]> {
+    return this.http.get<Lekarz[]>('/api/karty' + `/${id_karty}` + '/lekarze/available');
+  }
+
   addLekarzToKarta(id_karty: number, id_lekarza: number) {
     return this.http.post('/api/karty' + `/${id_karty}` + '/lekarze' + `/${id_lekarza}`, null);
   }

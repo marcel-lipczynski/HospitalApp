@@ -34,6 +34,19 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
     }
 
     @Override
+    public List<Lekarz> findAvailableLekarze(int id_karty) {
+        List<Lekarz> lekarzeInDatabase = entityManager.createQuery("from Lekarz L ORDER BY L.nazwisko", Lekarz.class).getResultList();
+        List<Lekarz> lekarzeOnKarta = entityManager.find(KartaPobytu.class, id_karty).getLekarze();
+
+        for(Lekarz lekarz: lekarzeOnKarta){
+            lekarzeInDatabase.remove(lekarz);
+        }
+
+        return lekarzeInDatabase;
+
+    }
+
+    @Override
     public void saveKarta(KartaPobytu kartaPobytu) {
         //Koniecznie sprawdz czy Karta nie ma podobnej godziny, daty i peselu do ktorejs
         // z istniejacych kart. Jedno z tych pol musi sie roznic!!!

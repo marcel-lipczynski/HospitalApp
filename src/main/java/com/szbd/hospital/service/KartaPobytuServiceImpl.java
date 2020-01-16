@@ -39,6 +39,11 @@ public class KartaPobytuServiceImpl implements KartaPobytuService {
     }
 
     @Override
+    public List<Lekarz> findAvailableLekarze(int id_karty) {
+        return kartaPobytuDAO.findAvailableLekarze(id_karty);
+    }
+
+    @Override
     @Transactional
     public void saveKarta(KartaPobytu kartaPobytu) {
         kartaPobytuDAO.saveKarta(kartaPobytu);

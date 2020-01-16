@@ -10,6 +10,7 @@ public interface KartaPobytuDAO {
     List<KartaPobytu> findAll();
     KartaPobytu findById(int id);
     List<Lekarz> findLekarzeOnKartaPobytu(int id_karty);
+    List<Lekarz> findAvailableLekarze(int id_karty);
     void saveKarta(KartaPobytu kartaPobytu);
     void addLekarzToKartaPobytu(int id_karty, int id_lekarza);
     void deleteKartaById(int id);

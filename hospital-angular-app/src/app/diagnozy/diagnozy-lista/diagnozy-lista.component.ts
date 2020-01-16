@@ -91,6 +91,7 @@ export class DiagnozyListaComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.saveOrUpdateDiagnozaInKartaPobytu(form.getRawValue());
+    this.reloadData();
     this.resetForm();
   }
 

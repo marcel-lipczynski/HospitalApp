@@ -35,6 +35,11 @@ public class KartaPobytuController {
         return kartaPobytuService.findLekarzeOnKartaPobytu(id_karty);
     }
 
+    @GetMapping("/{id_karty}/lekarze/available")
+    public List<Lekarz> findAvailableLekarze(@PathVariable int id_karty){
+        return kartaPobytuService.findAvailableLekarze(id_karty);
+    }
+
 
     @PostMapping("")
     public void saveKarta(@RequestBody KartaPobytu kartaPobytu) {
