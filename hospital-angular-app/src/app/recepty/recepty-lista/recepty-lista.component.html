@@ -69,22 +69,59 @@
 
 
           <div class="form-group">
-            <label for="data_wystawienia">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia" formControlName="data_wystawienia">
+            <label for="data_wystawienia" class="required-field">Data wystawienia</label>
+            <input type="date" class="form-control" id="data_wystawienia" formControlName="data_wystawienia">
+
+            <span *ngIf="formAddRecepta.get('data_wystawienia').hasError('required') && formAddRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę wystawienia
+            </span>
+
+
+            <span *ngIf="formAddRecepta.get('data_wystawienia').errors?.dateNotLess && formAddRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia recepty nie może być wcześniejsza od daty przyjęcia pacjenta
+            </span>
+
+            <span *ngIf="formAddRecepta.get('data_wystawienia').errors?.dateNotBigger && formAddRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia recepty nie może być późniejsza od daty wypisu
+            </span>
+
+            <span *ngIf="formAddRecepta.get('data_wystawienia').errors?.dateIsBigger && formAddRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę dzisiejszą bądź przeszłą
+            </span>
+
+
+            <span *ngIf="formAddRecepta.get('data_wystawienia').pending"
+                  class="help-block text-info">
+                  Sprawdzanie daty
+            </span>
+
+            <span *ngIf="!formAddRecepta.get('data_wystawienia').pending
+            && !formAddRecepta.get('data_wystawienia').hasError('required') && !formAddRecepta.get('data_wystawienia').errors?.dateNotLess
+            && !formAddRecepta.get('data_wystawienia').errors?.dateNotBigger && !formAddRecepta.get('data_wystawienia').errors?.dateIsBigger"
+                  class="help-block text-success">
+                  Data prawidłowa
+            </span>
+
+
           </div>
 
           <div class="form-group">
-            <label for="id_lek">Lekarz wystawiający</label>
+            <label for="id_lek" class="required-field">Lekarz wystawiający</label>
             <select class="form-control" id="id_lek" formControlName="id_lekarza">
 
-              <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
+              <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">
+                {{lekarz.imie}} {{lekarz.nazwisko}}</option>
 
             </select>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddRecepta.valid">Zapisz</button>
           </div>
 
         </form>
@@ -110,22 +147,61 @@
 
 
           <div class="form-group">
-            <label for="data_wystawienia_update">Data wystawienia</label>
-            <input type="text" class="form-control" id="data_wystawienia_update" formControlName="data_wystawienia">
+            <label for="data_wystawienia_update" class="required-field">Data wystawienia</label>
+            <input type="date" class="form-control" id="data_wystawienia_update" formControlName="data_wystawienia">
+
+            <span *ngIf="formEditRecepta.get('data_wystawienia').hasError('required') && formEditRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę wystawienia
+            </span>
+
+
+            <span *ngIf="formEditRecepta.get('data_wystawienia').errors?.dateNotLess && formEditRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia recepty nie może być wcześniejsza od daty przyjęcia pacjenta
+            </span>
+
+            <span *ngIf="formEditRecepta.get('data_wystawienia').errors?.dateNotBigger && formEditRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia recepty nie może być późniejsza od daty wypisu
+            </span>
+
+            <span *ngIf="formEditRecepta.get('data_wystawienia').errors?.dateIsBigger && formEditRecepta.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę dzisiejszą bądź przeszłą
+            </span>
+
+
+            <span *ngIf="formEditRecepta.get('data_wystawienia').pending"
+                  class="help-block text-info">
+                  Sprawdzanie daty
+            </span>
+
+            <span *ngIf="!formEditRecepta.get('data_wystawienia').pending
+            && !formEditRecepta.get('data_wystawienia').hasError('required') && !formEditRecepta.get('data_wystawienia').errors?.dateNotLess
+            && !formEditRecepta.get('data_wystawienia').errors?.dateNotBigger && !formEditRecepta.get('data_wystawienia').errors?.dateIsBigger"
+                  class="help-block text-success">
+                  Data prawidłowa
+            </span>
+
+
+
+
           </div>
 
           <div class="form-group">
-            <label for="id_lek2">Lekarz wystawiający</label>
+            <label for="id_lek2" class="required-field">Lekarz wystawiający</label>
             <select class="form-control" id="id_lek2" formControlName="id_lekarza">
 
-              <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">{{lekarz.id_lekarza}} - {{lekarz.imie}} {{lekarz.nazwisko}}</option>
+              <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">
+                {{lekarz.imie}} {{lekarz.nazwisko}}</option>
 
             </select>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditRecepta.valid">Zapisz</button>
           </div>
 
 
