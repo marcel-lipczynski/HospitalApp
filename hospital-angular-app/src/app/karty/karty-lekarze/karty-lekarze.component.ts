@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Sala} from "../../sale/sala.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {SalaService} from "../../sale/sala.service";
 import {PielegniarkaService} from "../../pielegniarki/pielegniarka.service";
@@ -57,7 +57,7 @@ export class KartyLekarzeComponent implements OnInit {
 
   setupForm() {
     this.formAddLekarz = new FormGroup({
-      id_lekarza: new FormControl(null)
+      id_lekarza: new FormControl(null, [Validators.required])
     });
 
   }

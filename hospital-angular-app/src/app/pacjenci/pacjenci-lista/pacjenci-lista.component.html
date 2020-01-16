@@ -61,7 +61,7 @@
         <form (ngSubmit)="onSubmit(formPacjent)" [formGroup]="formPacjent">
 
           <div class="form-group ">
-            <label for="pesel_pacjenta">PESEL</label>
+            <label for="pesel_pacjenta" class="required-field">PESEL</label>
             <input type="text" class="form-control" formControlName="pesel" id="pesel_pacjenta">
 
             <span *ngIf="formPacjent.get('pesel').hasError('required') && formPacjent.get('pesel').touched"
@@ -82,7 +82,7 @@
           </div>
 
           <div class="form-group">
-            <label for="imie_pacjenta">Imie</label>
+            <label for="imie_pacjenta" class="required-field">Imie</label>
             <input type="text" class="form-control" formControlName="imie" id="imie_pacjenta" >
             <span *ngIf="formPacjent.get('imie').hasError('required') && formPacjent.get('imie').touched"
                   class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
@@ -93,7 +93,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_pacjenta">Nazwisko</label>
+            <label for="nazwisko_pacjenta" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" formControlName="nazwisko" id="nazwisko_pacjenta">
             <span *ngIf="formPacjent.get('nazwisko').hasError('required') && formPacjent.get('nazwisko').touched"
                   class="help-block text-danger">Proszę wprowadzić nazwisko pacjenta</span>
@@ -133,12 +133,12 @@
         <form (ngSubmit)="onSubmit(formPacjentEdit)" [formGroup]="formPacjentEdit">
 
           <div class="form-group">
-            <label for="pesel_pacjenta_update">PESEL</label>
+            <label for="pesel_pacjenta_update" class="required-field">PESEL</label>
             <input type="text" class="form-control" id="pesel_pacjenta_update" formControlName="pesel">
           </div>
 
           <div class="form-group">
-            <label for="imie_pacjenta_update">Imie</label>
+            <label for="imie_pacjenta_update" class="required-field">Imie</label>
             <input type="text" class="form-control" id="imie_pacjenta_update" formControlName="imie">
             <span *ngIf="formPacjentEdit.get('imie').hasError('required')"
                   class="help-block text-danger">Proszę wprowadzić imię pacjenta</span>
@@ -149,7 +149,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_pacjenta_update">Nazwisko</label>
+            <label for="nazwisko_pacjenta_update" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pacjenta_update" formControlName="nazwisko">
 
             <span *ngIf="formPacjentEdit.get('nazwisko').hasError('required')"

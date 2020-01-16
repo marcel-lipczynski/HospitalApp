@@ -57,7 +57,7 @@
         <form (ngSubmit)="onSubmit(formAddSpecjalizacja)" [formGroup]="formAddSpecjalizacja">
 
           <div class="form-group">
-            <label for="nazwa_specjalizacji">Nazwa specjalizacji</label>
+            <label for="nazwa_specjalizacji" class="required-field">Nazwa specjalizacji</label>
             <input type="text" class="form-control" id="nazwa_specjalizacji" formControlName="nazwa_specjalizacji">
 
             <span *ngIf="formAddSpecjalizacja.get('nazwa_specjalizacji').hasError('maxlength') && formAddSpecjalizacja.get('nazwa_specjalizacji').touched"
@@ -84,7 +84,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_min">Płaca minimalna</label>
+            <label for="placa_min" class="required-field">Płaca minimalna</label>
             <input type="text" class="form-control" id="placa_min" formControlName="placa_min">
 
             <span *ngIf="formAddSpecjalizacja.get('placa_min').hasError('min') && formAddSpecjalizacja.get('placa_min').touched"
@@ -121,7 +121,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_max">Płaca maksymalna</label>
+            <label for="placa_max" class="required-field">Płaca maksymalna</label>
             <input type="text" class="form-control" id="placa_max" formControlName="placa_max">
 
             <span *ngIf="formAddSpecjalizacja.get('placa_max').hasError('min') && formAddSpecjalizacja.get('placa_max').touched"
@@ -187,7 +187,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_min2">Płaca minimalna</label>
+            <label for="placa_min2" class="required-field">Płaca minimalna</label>
             <input type="text" class="form-control" id="placa_min2" formControlName="placa_min">
 
             <span *ngIf="formEditSpecjalizacja.get('placa_min').hasError('min') && formEditSpecjalizacja.get('placa_min').touched"
@@ -222,7 +222,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_max2">Płaca maksymalna</label>
+            <label for="placa_max2" class="required-field">Płaca maksymalna</label>
             <input type="text" class="form-control" id="placa_max2" formControlName="placa_max">
 
             <span *ngIf="formEditSpecjalizacja.get('placa_max').hasError('min') && formEditSpecjalizacja.get('placa_max').touched"

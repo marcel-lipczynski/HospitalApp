@@ -10,9 +10,9 @@
 
   <div class="table-responsive" *ngIf="!isLoading">
 
-    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-      +Dodaj
-    </button>
+<!--    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--      +Dodaj-->
+<!--    </button>-->
 
     <table class="table table-striped table-sm">
       <thead>
@@ -35,7 +35,7 @@
         </td>
 
         <td class="text-right">
-          <button class="btn btn-danger" (click)="onConfirmDelete(sala.nr_sali)" disabled>Usuń</button>
+<!--          <button class="btn btn-danger" (click)="onConfirmDelete(sala.nr_sali)" disabled>Usuń</button>-->
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
           (click)="onEditSala(sala.nr_sali,sala.pojemnosc,sala.oddzial)">Edytuj</button>
         </td>
@@ -67,7 +67,7 @@
 <!--          </div>-->
 
           <div class="form-group">
-            <label for="pojemnosc">Pojemność</label>
+            <label for="pojemnosc" class="required-field">Pojemność</label>
             <input type="text" class="form-control" id="pojemnosc" formControlName="pojemnosc">
 
             <span *ngIf="formAddSala.get('pojemnosc').hasError('min') && formAddSala.get('pojemnosc').touched"
@@ -95,7 +95,7 @@
           </div>
 
           <div class="form-group">
-            <label for="oddzial">Oddział</label>
+            <label for="oddzial" class="required-field">Oddział</label>
             <input type="text" class="form-control" id="oddzial" formControlName="oddzial">
 
             <span *ngIf="formAddSala.get('oddzial').hasError('maxlength') && formAddSala.get('oddzial').touched"
@@ -148,7 +148,7 @@
           </div>
 
           <div class="form-group">
-            <label for="pojemnosc_update">Pojemność</label>
+            <label for="pojemnosc_update" class="required-field">Pojemność</label>
             <input type="text" class="form-control" id="pojemnosc_update" formControlName="pojemnosc">
 
             <span *ngIf="formEditSala.get('pojemnosc').hasError('min') && formEditSala.get('pojemnosc').touched"
@@ -175,7 +175,7 @@
           </div>
 
           <div class="form-group">
-            <label for="oddzial_update">Oddział</label>
+            <label for="oddzial_update" class="required-field">Oddział</label>
             <input type="text" class="form-control" id="oddzial_update" formControlName="oddzial">
 
             <span *ngIf="formEditSala.get('oddzial').hasError('maxlength') && formEditSala.get('oddzial').touched"

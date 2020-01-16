@@ -63,7 +63,7 @@
 
 
           <div class="form-group">
-            <label for="id_lekarza">Lekarz</label>
+            <label for="id_lekarza" class="required-field">Lekarz</label>
             <select class="form-control" id="id_lekarza" formControlName="id_lekarza">
 
               <option *ngFor="let lekarz of lekarze" [value]="lekarz.id_lekarza">
@@ -71,13 +71,15 @@
               </option>
 
             </select>
+            <p class="text-danger">Wybierz lekarza z listy dostępnych lekarzy</p>
+            <p class="text-info">Jeśli lista jest pusta to znaczy, że nie ma więcej dostępnych lekarzy</p>
           </div>
 
 
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddLekarz.valid">Zapisz</button>
           </div>
 
         </form>

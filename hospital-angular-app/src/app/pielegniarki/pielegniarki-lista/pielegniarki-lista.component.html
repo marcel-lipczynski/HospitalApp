@@ -65,7 +65,7 @@
 
 
           <div class="form-group">
-            <label for="imie_pielegniarki">Imię </label>
+            <label for="imie_pielegniarki" class="required-field">Imię </label>
             <input type="text" class="form-control" id="imie_pielegniarki" formControlName="imie">
 
             <span *ngIf="formAddPielegniarka.get('imie').hasError('maxlength') && formAddPielegniarka.get('imie').touched"
@@ -87,7 +87,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_pielegniarki">Nazwisko</label>
+            <label for="nazwisko_pielegniarki" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pielegniarki" formControlName="nazwisko">
 
             <span *ngIf="formAddPielegniarka.get('nazwisko').hasError('maxlength') && formAddPielegniarka.get('nazwisko').touched"
@@ -109,7 +109,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa">Płaca</label>
+            <label for="placa" class="required-field">Płaca</label>
             <input type="text" class="form-control" id="placa" formControlName="placa">
 
 
@@ -166,7 +166,7 @@
 
 
           <div class="form-group">
-            <label for="imie_pielegniarki_update">Imie</label>
+            <label for="imie_pielegniarki_update" class="required-field">Imie</label>
             <input type="text" class="form-control" id="imie_pielegniarki_update" formControlName="imie">
 
             <span *ngIf="formEditPielegniarka.get('imie').hasError('maxlength') && formEditPielegniarka.get('imie').touched"
@@ -188,7 +188,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_pielegniarki_update">Nazwisko</label>
+            <label for="nazwisko_pielegniarki_update" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_pielegniarki_update" formControlName="nazwisko">
 
             <span *ngIf="formEditPielegniarka.get('nazwisko').hasError('maxlength') && formEditPielegniarka.get('nazwisko').touched"
@@ -210,7 +210,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_podstawowa_update">Placa podstawowa</label>
+            <label for="placa_podstawowa_update" class="required-field">Płaca</label>
             <input type="text" class="form-control" id="placa_podstawowa_update" formControlName="placa">
 
             <span *ngIf="formEditPielegniarka.get('placa').hasError('min') && formEditPielegniarka.get('placa').touched"

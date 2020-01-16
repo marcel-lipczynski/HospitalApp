@@ -74,7 +74,7 @@
         <form (ngSubmit)="onSubmit(formAddKarta)" [formGroup]="formAddKarta">
 
           <div class="form-group">
-            <label for="data_przyjecia">Data przyjęcia</label>
+            <label for="data_przyjecia" class="required-field">Data przyjęcia</label>
             <input type="date" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
             <p class="text-sm-left text-info" *ngIf="!checkIfExistsActiveKarta()">Wprowadź datę dzisiejszą lub przeszłą</p>
 
@@ -104,7 +104,7 @@
           </div>
 
           <div class="form-group">
-            <label for="godzina_przyjecia">Godzina przyjęcia</label>
+            <label for="godzina_przyjecia" class="required-field">Godzina przyjęcia</label>
             <input type="time" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia" >
 
             <span *ngIf="formAddKarta.get('godzina_przyjecia').hasError('required') && formAddKarta.get('godzina_przyjecia').touched &&
@@ -117,7 +117,7 @@
 
 
           <div class="form-group">
-            <label for="nr_sali">Sale z dostępnymi miejscami</label>
+            <label for="nr_sali" class="required-field">Sale z dostępnymi miejscami</label>
             <select class="form-control" id="nr_sali" formControlName="nr_sali">
               <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
 
@@ -153,12 +153,12 @@
         <form (ngSubmit)="onSubmit(formEditKarta)" [formGroup]="formEditKarta">
 
           <div class="form-group">
-            <label for="data_przyjecia_update">Data przyjęcia</label>
+            <label for="data_przyjecia_update" class="required-field">Data przyjęcia</label>
             <input type="date" class="form-control" id="data_przyjecia_update" formControlName="data_przyjecia" >
           </div>
 
           <div class="form-group">
-            <label for="godzina_przyjecia_update">Godzina przyjęcia</label>
+            <label for="godzina_przyjecia_update" class="required-field">Godzina przyjęcia</label>
             <input type="time" class="form-control" id="godzina_przyjecia_update" formControlName="godzina_przyjecia">
           </div>
 
@@ -185,7 +185,7 @@
 
 
           <div class="form-group">
-            <label for="nr_sali_update">Numer sali</label>
+            <label for="nr_sali_update" class="required-field">Numer sali</label>
             <select class="form-control" id="nr_sali_update" formControlName="nr_sali">
               <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
             </select>

@@ -57,7 +57,7 @@
         <form (ngSubmit)="onSubmit(formAddLekarz)" [formGroup]="formAddLekarz">
 
           <div class="form-group">
-            <label for="imie_lekarza">Imię</label>
+            <label for="imie_lekarza" class="required-field">Imię</label>
             <input type="text" class="form-control" id="imie_lekarza" formControlName="imie">
 
             <span *ngIf="formAddLekarz.get('imie').hasError('maxlength') && formAddLekarz.get('imie').touched"
@@ -79,7 +79,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_lekarza">Nazwisko</label>
+            <label for="nazwisko_lekarza" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_lekarza" formControlName="nazwisko">
 
             <span *ngIf="formAddLekarz.get('nazwisko').hasError('maxlength') && formAddLekarz.get('nazwisko').touched"
@@ -102,7 +102,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_podstawowa">Płaca</label>
+            <label for="placa_podstawowa" class="required-field">Płaca</label>
             <input type="text" class="form-control" id="placa_podstawowa" formControlName="placa_pod">
 
             <span *ngIf="formAddLekarz.get('placa_pod').hasError('min') && formAddLekarz.get('placa_pod').touched"
@@ -157,7 +157,7 @@
         <form (ngSubmit)="onSubmit(fromEditLekarz)" [formGroup]="fromEditLekarz">
 
           <div class="form-group">
-            <label for="imie_lekarza_update">Imię</label>
+            <label for="imie_lekarza_update" class="required-field">Imię</label>
             <input type="text" class="form-control" id="imie_lekarza_update" formControlName="imie">
 
             <span *ngIf="fromEditLekarz.get('imie').hasError('maxlength') && fromEditLekarz.get('imie').touched"
@@ -180,7 +180,7 @@
           </div>
 
           <div class="form-group">
-            <label for="nazwisko_lekarza_update">Nazwisko</label>
+            <label for="nazwisko_lekarza_update" class="required-field">Nazwisko</label>
             <input type="text" class="form-control" id="nazwisko_lekarza_update" formControlName="nazwisko">
 
             <span *ngIf="fromEditLekarz.get('nazwisko').hasError('maxlength') && fromEditLekarz.get('nazwisko').touched"
@@ -205,7 +205,7 @@
           </div>
 
           <div class="form-group">
-            <label for="placa_podstawowa_update">Płaca</label>
+            <label for="placa_podstawowa_update" class="required-field">Płaca</label>
             <input type="text" class="form-control" id="placa_podstawowa_update" formControlName="placa_pod">
 
             <span *ngIf="fromEditLekarz.get('placa_pod').hasError('min') && fromEditLekarz.get('placa_pod').touched"

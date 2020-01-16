@@ -59,7 +59,7 @@
         <form (ngSubmit)="onSubmit(formAddLek)" [formGroup]="formAddLek">
 
           <div class="form-group">
-            <label for="nazwa_leku">Nazwa leku</label>
+            <label for="nazwa_leku" class="required-field">Nazwa leku</label>
             <input type="text" class="form-control" id="nazwa_leku" formControlName="nazwa_leku">
 
             <span *ngIf="formAddLek.get('nazwa_leku').hasError('maxlength') && formAddLek.get('nazwa_leku').touched"
@@ -81,7 +81,7 @@
           </div>
 
           <div class="form-group">
-            <label for="rodzaj_leku">Rodzaj leku</label>
+            <label for="rodzaj_leku" class="required-field">Rodzaj leku</label>
             <input type="text" class="form-control" id="rodzaj_leku" formControlName="rodzaj_leku">
 
             <span *ngIf="formAddLek.get('rodzaj_leku').hasError('maxlength') && formAddLek.get('rodzaj_leku').touched"
@@ -127,7 +127,7 @@
         <form (ngSubmit)="onSubmit(formEditLek)" [formGroup]="formEditLek">
 
           <div class="form-group">
-            <label for="nazwa_leku_update">Nazwa leku</label>
+            <label for="nazwa_leku_update" class="required-field">Nazwa leku</label>
             <input type="text" class="form-control" id="nazwa_leku_update" formControlName="nazwa_leku">
 
             <span *ngIf="formEditLek.get('nazwa_leku').hasError('maxlength') && formEditLek.get('nazwa_leku').touched"
@@ -146,7 +146,7 @@
           </div>
 
           <div class="form-group">
-            <label for="rodzaj_leku_update">Rodzaj leku</label>
+            <label for="rodzaj_leku_update" class="required-field">Rodzaj leku</label>
             <input type="text" class="form-control" id="rodzaj_leku_update" formControlName="rodzaj_leku">
 
             <span *ngIf="formEditLek.get('rodzaj_leku').hasError('maxlength') && formEditLek.get('rodzaj_leku').touched"
