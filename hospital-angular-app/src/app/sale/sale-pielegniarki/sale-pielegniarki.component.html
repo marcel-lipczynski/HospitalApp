@@ -62,7 +62,7 @@
 
 
           <div class="form-group">
-            <label for="id_pielegniarki">Pielęgniarka</label>
+            <label for="id_pielegniarki" class="required-field">Pielęgniarka</label>
             <select class="form-control" id="id_pielegniarki" formControlName="id_pielegniarki">
 
               <option *ngFor="let pielegniarka of pielegiarki" [value]="pielegniarka.id_pielegniarki">
@@ -70,13 +70,18 @@
               </option>
 
             </select>
+
+            <p class="text-danger">Wybierz pielęgniarkę z listy dostępnych pielęgniarek</p>
+            <p class="text-info">Pusta lista oznacza, że wszystkie dostępne pielęgniarki zostały wybrane</p>
+
+
           </div>
 
 
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddPielegniarka.valid">Zapisz</button>
           </div>
 
         </form>

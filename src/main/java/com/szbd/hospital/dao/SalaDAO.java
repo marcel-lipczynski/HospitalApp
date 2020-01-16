@@ -15,7 +15,8 @@ public interface SalaDAO {
     void deletePielegniarkaFromSala(int idPielegniarki, int nrSali);
     void deleteById(int id);
 
-    //karty pobytu dla danej sali
+
     List<KartaPobytu> findActiveKartyForSala(int nr_sali);
     List<Sala> findAllAvailableSale();
+    List<Pielegniarka> findAvailablePielegniarkiForSala(int nr_sali);
 }

@@ -19,4 +19,5 @@ public interface SalaService {
 
     List<KartaPobytu> findActiveKartyForSala(int nr_sali);
     List<Sala> findAllAvailableSale();
+    List<Pielegniarka> findAvailablePielegniarkiForSala(int nr_sali);
 }

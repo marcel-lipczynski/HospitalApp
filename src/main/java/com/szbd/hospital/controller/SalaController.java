@@ -69,6 +69,11 @@ public class SalaController {
         return salaService.findAllAvailableSale();
     }
 
+    @GetMapping("/{nr_sali}/pielegniarki/available")
+    public List<Pielegniarka> findAvailablePielegniarkiForSala(@PathVariable int nr_sali) {
+        return salaService.findAvailablePielegniarkiForSala(nr_sali);
+    }
+
 
 }
 

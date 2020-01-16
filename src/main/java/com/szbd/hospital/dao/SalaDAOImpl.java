@@ -110,4 +110,16 @@ public class SalaDAOImpl implements SalaDAO {
         return availableSale;
 
     }
+
+    @Override
+    public List<Pielegniarka> findAvailablePielegniarkiForSala(int nr_sali) {
+        List<Pielegniarka> pielegniarkaInDatabase = entityManager.createQuery("from Pielegniarka P ORDER BY P.nazwisko", Pielegniarka.class).getResultList();
+        List<Pielegniarka> pielegniarkaInSala = entityManager.find(Sala.class, nr_sali).getPielegniarki();
+
+        for(Pielegniarka pielegniarka: pielegniarkaInSala){
+            pielegniarkaInDatabase.remove(pielegniarka);
+        }
+
+        return pielegniarkaInDatabase;
+    }
 }

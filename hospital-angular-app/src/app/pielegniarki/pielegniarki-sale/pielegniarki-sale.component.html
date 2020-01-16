@@ -62,7 +62,7 @@
 
 
           <div class="form-group">
-            <label for="nr_sali">Sala</label>
+            <label for="nr_sali" class="required-field">Sala</label>
             <select class="form-control" id="nr_sali" formControlName="nr_sali">
 
               <option *ngFor="let sala of sale" [value]="sala.nr_sali">
@@ -70,13 +70,18 @@
               </option>
 
             </select>
+
+            <p class="text-danger">Wybierz sale z listy dostępnych sal</p>
+            <p class="text-info">Pusta lista oznacza, że wszystkie dostępne sale zostały wybrane</p>
+
+
           </div>
 
 
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddSala.valid">Zapisz</button>
           </div>
 
         </form>

@@ -69,7 +69,14 @@ public class SalaServiceImpl implements SalaService {
     }
 
     @Override
+    @Transactional
     public List<Sala> findAllAvailableSale() {
         return salaDAO.findAllAvailableSale();
+    }
+
+    @Override
+    @Transactional
+    public List<Pielegniarka> findAvailablePielegniarkiForSala(int nr_sali) {
+        return salaDAO.findAvailablePielegniarkiForSala(nr_sali);
     }
 }

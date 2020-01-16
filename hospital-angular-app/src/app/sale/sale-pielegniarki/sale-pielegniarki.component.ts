@@ -8,7 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SalaService} from "../sala.service";
 import {PielegniarkaService} from "../../pielegniarki/pielegniarka.service";
 import {Pielegniarka} from "../../pielegniarki/pielegniarka.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Lek} from "../../leki/lek.model";
 
 @Component({
@@ -42,13 +42,14 @@ export class SalePielegniarkiComponent implements OnInit {
 
   reloadData() {
     this.salaService.findAllPielegniarkiInSala(this.nr_sali).subscribe(pielegniarkiFromSala => {
+      this.fetchAvailablePielegniarki();
       this.pielegniarkiFromSala = pielegniarkiFromSala;
       this.isLoading = false;
     });
   }
 
   fetchAvailablePielegniarki(){
-    this.pielegniarkaService.findAllPielegniarki().subscribe(pielegniarki =>{
+    this.salaService.findAvailablePielegniarkaForSala(this.nr_sali).subscribe(pielegniarki =>{
       this.pielegiarki = pielegniarki;
     })
   }
@@ -57,13 +58,14 @@ export class SalePielegniarkiComponent implements OnInit {
 
   setupForm() {
     this.formAddPielegniarka = new FormGroup({
-      id_pielegniarki: new FormControl(null)
+      id_pielegniarki: new FormControl(null,[Validators.required])
     });
 
   }
 
   onSubmit(form: FormGroup) {
     this.addPielegniarkaToSala(form.getRawValue());
+    this.reloadData();
     this.resetForm();
   }
 

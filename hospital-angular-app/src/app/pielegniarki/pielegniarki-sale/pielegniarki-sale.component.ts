@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Pielegniarka} from "../pielegniarka.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {SalaService} from "../../sale/sala.service";
 import {PielegniarkaService} from "../pielegniarka.service";
@@ -56,7 +56,7 @@ export class PielegniarkiSaleComponent implements OnInit {
 
   setupForm() {
     this.formAddSala = new FormGroup({
-      nr_sali: new FormControl(null)
+      nr_sali: new FormControl(null, [Validators.required])
     });
 
   }
