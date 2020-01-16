@@ -40,13 +40,14 @@ export class PielegniarkiSaleComponent implements OnInit {
 
   reloadData() {
     this.pielegniarkaService.findAllSaleOfPielegniarka(this.id_pielegniarki).subscribe(saleFromPielegniarka => {
+      this.fetchAvailableSale();
       this.saleFromPielegniarka = saleFromPielegniarka;
       this.isLoading = false;
     });
   }
 
   fetchAvailableSale(){
-    this.salaService.findAllSale().subscribe(sale =>{
+    this.pielegniarkaService.findAvailableSaleForPielegniarka(this.id_pielegniarki).subscribe(sale =>{
       this.sale = sale;
     })
   }
@@ -62,6 +63,7 @@ export class PielegniarkiSaleComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     this.addSalaToPielegniarka(form.getRawValue());
+    this.reloadData();
     this.resetForm();
   }
 

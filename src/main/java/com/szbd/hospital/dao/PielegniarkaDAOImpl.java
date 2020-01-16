@@ -87,4 +87,16 @@ public class PielegniarkaDAOImpl implements PielegniarkaDAO {
 
 
     }
+
+    @Override
+    public List<Sala> findAvailableSaleForPielegniarka(int id_pielegniarki) {
+        List<Sala> saleInDatabase = entityManager.createQuery("from Sala S ORDER BY S.nr_sali", Sala.class).getResultList();
+        List<Sala> salaOnPielegniarka = entityManager.find(Pielegniarka.class, id_pielegniarki).getSale();
+
+        for(Sala sala: salaOnPielegniarka){
+            saleInDatabase.remove(sala);
+        }
+
+        return saleInDatabase;
+    }
 }

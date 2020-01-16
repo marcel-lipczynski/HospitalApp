@@ -13,4 +13,6 @@ public interface PielegniarkaService {
     void savePielegniarkaWitNrSali(int idPielegniarki, int nr_sali);
     void deleteSalaFromPielegniarka(int idPielegniarki, int nrSali);
     void deleteById(int id);
+
+    List<Sala> findAvailableSaleForPielegniarka(int id_pielegniarki);
 }

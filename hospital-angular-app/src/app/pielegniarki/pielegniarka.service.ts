@@ -35,6 +35,10 @@ export class PielegniarkaService {
     return this.http.get<Sala[]>('/api/pielegniarki' + `/${id_pielegniarki}` + '/sale');
   }
 
+  findAvailableSaleForPielegniarka(id_pielegniarki: number): Observable<Sala[]> {
+    return this.http.get<Sala[]>('/api/pielegniarki' + `/${id_pielegniarki}` + '/sale/available');
+  }
+
   addSalaToPielegniarka(id_pielegniarki: number, nr_sali: number){
     return this.http.post('/api/pielegniarki' + `/${id_pielegniarki}` + '/sale' + `/${nr_sali}`, null);
   }

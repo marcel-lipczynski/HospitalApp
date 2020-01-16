@@ -61,5 +61,10 @@ public class PielegniarkaController {
         pielegniarkaService.deleteById(id);
     }
 
+    @GetMapping("/{id_pielegniarki}/sale/available")
+    public List<Sala> findAvailableSaleForPielegniarka(@PathVariable int id_pielegniarki) {
+        return pielegniarkaService.findAvailableSaleForPielegniarka(id_pielegniarki);
+    }
+
 
 }
