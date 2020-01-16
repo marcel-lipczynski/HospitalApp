@@ -73,7 +73,7 @@
 
 
           <div class="form-group">
-            <label for="opis">Opis</label>
+            <label for="opis" class="required-field">Opis</label>
             <textarea class="form-control" id="opis" formControlName="opis" rows="5"></textarea>
 
             <span *ngIf="formAddDiagnoza.get('opis').hasError('required') && formAddDiagnoza.get('opis').touched"
@@ -92,7 +92,7 @@
 
 
           <div class="form-group">
-            <label for="data_wystawienia">Data wystawienia</label>
+            <label for="data_wystawienia" class="required-field">Data wystawienia</label>
             <input type="date" class="form-control" id="data_wystawienia" formControlName="data_wystawienia">
 
             <span *ngIf="formAddDiagnoza.get('data_wystawienia').hasError('required') && formAddDiagnoza.get('data_wystawienia').touched"
@@ -136,12 +136,21 @@
 
 
           <div class="form-group">
-            <label for="id_lek">Lekarz wystawiający</label>
+            <label for="id_lek" class="required-field">Lekarz wystawiający</label>
             <select class="form-control" id="id_lek" formControlName="id_lekarza">
 
               <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">{{lekarz.imie}} {{lekarz.nazwisko}}</option>
 
             </select>
+
+            <p class="text-info">Jeśli lekarz nie widnieje na liście, należy dodać go w zakładce lekarze na karcie pobytu</p>
+
+            <span *ngIf="formEditDiagnoza.get('id_lekarza').touched"
+                  class="help-block text-danger">
+                  Podaj lekarza wystawiającego diagnozę
+            </span>
+
+
           </div>
 
 
@@ -179,7 +188,7 @@
 
 
           <div class="form-group">
-            <label for="opis2">Opis</label>
+            <label for="opis2" class="required-field">Opis</label>
             <input type="text" class="form-control" id="opis2" formControlName="opis">
 
             <span *ngIf="formEditDiagnoza.get('opis').hasError('required') && formEditDiagnoza.get('opis').touched"
@@ -195,17 +204,62 @@
           </div>
 
           <div class="form-group">
-            <label for="data_wystawienia_update">Data wystawienia</label>
+            <label for="data_wystawienia_update" class="required-field">Data wystawienia</label>
             <input type="date" class="form-control" id="data_wystawienia_update" formControlName="data_wystawienia">
+
+            <span *ngIf="formEditDiagnoza.get('data_wystawienia').hasError('required') && formEditDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę wystawienia
+            </span>
+
+
+            <span *ngIf="formEditDiagnoza.get('data_wystawienia').errors?.dateNotLess && formEditDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia diagnozy nie może być wcześniejsza od daty przyjęcia pacjenta
+            </span>
+
+            <span *ngIf="formEditDiagnoza.get('data_wystawienia').errors?.dateNotBigger && formEditDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia diagnozy nie może być późniejsza od daty wypisu
+            </span>
+
+            <span *ngIf="formEditDiagnoza.get('data_wystawienia').errors?.dateIsBigger && formEditDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę dzisiejszą bądź przeszłą
+            </span>
+
+
+            <span *ngIf="formEditDiagnoza.get('data_wystawienia').pending"
+                  class="help-block text-info">
+                  Sprawdzanie daty
+            </span>
+
+            <span *ngIf="!formEditDiagnoza.get('data_wystawienia').pending
+            && !formEditDiagnoza.get('data_wystawienia').hasError('required') && !formEditDiagnoza.get('data_wystawienia').errors?.dateNotLess
+            && !formEditDiagnoza.get('data_wystawienia').errors?.dateNotBigger && !formEditDiagnoza.get('data_wystawienia').errors?.dateIsBigger"
+                  class="help-block text-success">
+                  Data prawidłowa
+            </span>
+
+
+
           </div>
 
           <div class="form-group">
-            <label for="id_lek2">Lekarz wystawiający</label>
+            <label for="id_lek2" class="required-field">Lekarz wystawiający</label>
             <select class="form-control" id="id_lek2" formControlName="id_lekarza">
 
               <option *ngFor="let lekarz of lekarzeAvailable" [value]="lekarz.id_lekarza">{{lekarz.imie}} {{lekarz.nazwisko}}</option>
 
             </select>
+
+            <p class="text-info">Jeśli lista jest pusta, oznacza to, że nie ma innych lekarzy przypisanych do karty</p>
+
+            <span *ngIf="formEditDiagnoza.get('id_lekarza').hasError('required') && formEditDiagnoza.get('id_lekarza').touched"
+                  class="help-block text-danger">
+                  Podaj lekarza wystawiającego diagnozę
+            </span>
+
           </div>
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Lekarz} from "../../lekarze/lekarz.model";
 import {Operacja} from "../operacja.model";
 import {HttpClient} from "@angular/common/http";
@@ -7,6 +7,7 @@ import {OperacjaService} from "../operacja.service";
 import {ActivatedRoute} from "@angular/router";
 import {KartaService} from "../../karty/karta.service";
 import {Lek} from "../../leki/lek.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-operacje-lista',
@@ -62,17 +63,21 @@ export class OperacjeListaComponent implements OnInit {
 
   setupForm() {
     this.formAddOperacja = new FormGroup({
-      nazwa_operacji: new FormControl(null),
-      termin: new FormControl(null),
-      id_lekarza: new FormControl(null),
+      nazwa_operacji: new FormControl(null,[Validators.maxLength(50),Validators.required]),
+      termin: new FormControl(null, [Validators.required,this.checkIfTerminIsBiggerThanToday],
+        [this.checkIfTerminNotLessThanDataPrzyjecia.bind(this),
+          this.checkIfTerminNotBiggerThanDataWypisu.bind(this)]),
+      id_lekarza: new FormControl(null,[Validators.required]),
       id_karty: new FormControl(this.id_karty)
     });
 
     this.formEditOperacja = new FormGroup({
       id_operacji: new FormControl(null),
-      nazwa_operacji: new FormControl(null),
-      termin: new FormControl(null),
-      id_lekarza: new FormControl(null),
+      nazwa_operacji: new FormControl(null,[Validators.maxLength(50),Validators.required]),
+      termin: new FormControl(null, [Validators.required,this.checkIfTerminIsBiggerThanToday],
+        [this.checkIfTerminNotLessThanDataPrzyjecia.bind(this),
+          this.checkIfTerminNotBiggerThanDataWypisu.bind(this)]),
+      id_lekarza: new FormControl(null, [Validators.required]),
       id_karty: new FormControl(this.id_karty)
     });
   }
@@ -114,5 +119,80 @@ export class OperacjeListaComponent implements OnInit {
       this.deletOperacjaByIdFromKartaPobytu(id_operacji);
     }
   }
+
+
+
+  checkIfTerminNotLessThanDataPrzyjecia(control: AbstractControl): Promise<any> | Observable<any>{
+    return new Promise<any>((resolve) => {
+      this.kartaService.findKartaById(this.id_karty).subscribe(karta => {
+        const dataWystawieniaDiagnozy = new Date(control.value);
+        const data_przyjecia = new Date(karta.data_przyjecia);
+        if (data_przyjecia.getUTCFullYear() > dataWystawieniaDiagnozy.getUTCFullYear()) {
+          resolve({'dateNotLess': true});
+        } else if (data_przyjecia.getUTCFullYear() === dataWystawieniaDiagnozy.getUTCFullYear()
+          && data_przyjecia.getUTCMonth() > dataWystawieniaDiagnozy.getUTCMonth()) {
+          resolve({'dateNotLess': true});
+        } else if (data_przyjecia.getUTCFullYear() === dataWystawieniaDiagnozy.getUTCFullYear()
+          && data_przyjecia.getUTCMonth() === dataWystawieniaDiagnozy.getUTCMonth()
+          && data_przyjecia.getDate() > dataWystawieniaDiagnozy.getDate()) {
+          resolve({'dateNotLess': true});
+        } else {
+          resolve(null);
+        }
+
+      });
+    });
+
+  }
+
+
+  checkIfTerminNotBiggerThanDataWypisu(control: AbstractControl): Promise<any> | Observable<any>{
+    return new Promise<any>((resolve) => {
+      this.kartaService.findKartaById(this.id_karty).subscribe(karta => {
+        if(karta.data_wypisu == null){
+          resolve(null);
+        }
+        const dataWystawieniaDiagnozy = new Date(control.value);
+        const data_wypisu = new Date(karta.data_wypisu);
+
+        if (data_wypisu.getUTCFullYear() < dataWystawieniaDiagnozy.getUTCFullYear()) {
+          resolve({'dateNotBigger': true});
+        } else if (data_wypisu.getUTCFullYear() === dataWystawieniaDiagnozy.getUTCFullYear()
+          && data_wypisu.getUTCMonth() < dataWystawieniaDiagnozy.getUTCMonth()) {
+          resolve({'dateNotBigger': true});
+        } else if (data_wypisu.getUTCFullYear() === dataWystawieniaDiagnozy.getUTCFullYear()
+          && data_wypisu.getUTCMonth() === dataWystawieniaDiagnozy.getUTCMonth()
+          && data_wypisu.getDate() < dataWystawieniaDiagnozy.getDate()) {
+          resolve({'dateNotBigger': true});
+        } else {
+          resolve(null);
+        }
+
+      });
+    });
+
+  }
+
+  checkIfTerminIsBiggerThanToday(control: AbstractControl): { [dateIsLess: string]: boolean } {
+    const currentDate = new Date();
+    const data_przyjecia = new Date(control.value);
+    if(data_przyjecia.getUTCFullYear() > currentDate.getUTCFullYear()){
+      return {'dateIsBigger': true };
+    }
+    if(data_przyjecia.getUTCFullYear() === currentDate.getUTCFullYear()
+      && data_przyjecia.getUTCMonth() > currentDate.getUTCMonth()){
+      return {'dateIsBigger': true };
+    }
+    if(data_przyjecia.getUTCFullYear() === currentDate.getUTCFullYear()
+      && data_przyjecia.getUTCMonth() === currentDate.getUTCMonth()
+      && data_przyjecia.getDate() > currentDate.getDate()){
+      return {'dateIsBigger': true };
+
+    }
+    return null;
+
+  }
+
+
 
 }

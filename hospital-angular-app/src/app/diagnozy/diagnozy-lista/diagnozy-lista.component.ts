@@ -89,15 +89,17 @@ export class DiagnozyListaComponent implements OnInit {
       data_wystawienia: new FormControl(null, [Validators.required,this.checkIfDateIsBiggerThanToday],
         [this.checkIfDataWystawieniaNotLessThanDataPrzyjecia.bind(this),
           this.checkIfDataWystawieniaNotBiggerThanDataWypisu.bind(this)]),
-      id_lekarza: new FormControl(null),
+      id_lekarza: new FormControl(null,[Validators.required]),
       id_karty: new FormControl(this.id_karty)
     });
 
     this.formEditDiagnoza = new FormGroup({
       id_diagnozy: new FormControl(null),
-      opis: new FormControl(null),
-      data_wystawienia: new FormControl(null),
-      id_lekarza: new FormControl(null),
+      opis: new FormControl(null, [Validators.required, Validators.maxLength(2000)]),
+      data_wystawienia: new FormControl(null, [Validators.required,this.checkIfDateIsBiggerThanToday],
+        [this.checkIfDataWystawieniaNotLessThanDataPrzyjecia.bind(this),
+          this.checkIfDataWystawieniaNotBiggerThanDataWypisu.bind(this)]),
+      id_lekarza: new FormControl(null,[Validators.required]),
       id_karty: new FormControl(this.id_karty)
     });
   }
