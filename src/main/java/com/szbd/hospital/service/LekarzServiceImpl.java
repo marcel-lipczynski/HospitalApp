@@ -61,4 +61,10 @@ public class LekarzServiceImpl implements LekarzService {
     public void deleteSpecjalizacjaFromLekarz(int id_lekarza, String nazwa_specjalizacji) {
         lekarzDAO.deleteSpecjalizacjaFromLekarz(id_lekarza, nazwa_specjalizacji);
     }
+
+    @Override
+    @Transactional
+    public List<Specjalizacje> findAvailableSpecjalizacjeForLekarz(int id_lekarza) {
+        return lekarzDAO.findAvailableSpecjalizacjeForLekarz(id_lekarza);
+    }
 }

@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {SpecjalizacjaService} from "../../specjalizacje/specjalizacja.service";
 import {ActivatedRoute} from "@angular/router";
 import {Specjalizacja} from "../../specjalizacje/specjalizacja.model";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Lek} from "../../leki/lek.model";
 import {LekarzService} from "../lekarz.service";
 import * as $AB from "jquery";
@@ -31,7 +31,7 @@ export class LekarzeSpecjalizacjeComponent implements OnInit {
 
     this.id_lekarza = +this.route.snapshot.params['id_lekarza'];
 
-    this.fetchAvailableSpecjalizacje();
+
     this.reloadData();
     this.setupForm();
 
@@ -39,13 +39,14 @@ export class LekarzeSpecjalizacjeComponent implements OnInit {
 
   reloadData() {
     this.lekarzService.findAllSpecjalizacjeOfLekarz(this.id_lekarza).subscribe(specjalizacjeLekarza => {
+      this.fetchAvailableSpecjalizacje();
       this.specjalizacjeLekarza = specjalizacjeLekarza;
       this.isLoading = false;
     });
   }
 
   fetchAvailableSpecjalizacje(){
-    this.specjalizacjeService.findAllSpecjalizacje().subscribe(specjalizacje =>{
+    this.lekarzService.findAvailableSpecjalizacjeForLekarz(this.id_lekarza).subscribe(specjalizacje =>{
       this.specjalizacje = specjalizacje;
     })
   }
@@ -54,13 +55,14 @@ export class LekarzeSpecjalizacjeComponent implements OnInit {
 
   setupForm() {
     this.formAddSpecjalizacja = new FormGroup({
-      nazwa_specjalizacji: new FormControl(null)
+      nazwa_specjalizacji: new FormControl(null,[Validators.required])
     });
 
   }
 
   onSubmit(form: FormGroup) {
     this.addSpecjalizacjaToLekarz(form.getRawValue());
+    this.reloadData();
     this.resetForm();
   }
 

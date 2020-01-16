@@ -15,4 +15,6 @@ public interface LekarzDAO {
     void deleteLekarzById(int id);
     void deleteSpecjalizacjaFromLekarz(int id_lekarza, String nazwa_specjalizacji);
 
+    List<Specjalizacje> findAvailableSpecjalizacjeForLekarz(int id_lekarza);
+
 }

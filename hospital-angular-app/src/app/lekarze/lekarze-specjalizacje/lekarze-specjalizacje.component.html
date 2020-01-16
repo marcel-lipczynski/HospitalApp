@@ -60,7 +60,7 @@
 
 
           <div class="form-group">
-            <label for="nazwa_specjalizacji">Specjalizacja</label>
+            <label for="nazwa_specjalizacji" class="required-field">Specjalizacja</label>
             <select class="form-control" id="nazwa_specjalizacji" formControlName="nazwa_specjalizacji">
 
               <option *ngFor="let specjalizacja of specjalizacje" [value]="specjalizacja.nazwa_specjalizacji">
@@ -68,13 +68,17 @@
               </option>
 
             </select>
+
+            <p class="text-danger">Wybierz specjalizację z listy dostępnych specjalizacji</p>
+            <p class="text-info">Pusta lista oznacza, że wszystkie dostępne specjalizacje zostały wybrane</p>
+
           </div>
 
 
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddSpecjalizacja.valid">Zapisz</button>
           </div>
 
         </form>

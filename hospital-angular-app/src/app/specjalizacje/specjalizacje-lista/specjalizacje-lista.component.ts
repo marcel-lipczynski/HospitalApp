@@ -86,6 +86,9 @@ export class SpecjalizacjeListaComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: any} => {
       const group = control.parent;
       const fieldToCompare = group.get(field);
+      if(fieldToCompare === null){
+        return null;
+      }
       const isLessThan = Number(fieldToCompare.value) < Number(control.value);
       return isLessThan ? {'lessThan': {value: control.value}} : null;
     }
@@ -95,6 +98,9 @@ export class SpecjalizacjeListaComponent implements OnInit {
     return (control: AbstractControl): {[key: string]: any} => {
       const group = control.parent;
       const fieldToCompare = group.get(field);
+      if(fieldToCompare === null){
+        return null;
+      }
       const isLessThan = Number(fieldToCompare.value) > Number(control.value);
       return isLessThan ? {'greaterThan': {value: control.value}} : null;
     }

@@ -36,6 +36,10 @@ export class LekarzService{
     return this.http.get<Specjalizacja[]>('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje');
   }
 
+  findAvailableSpecjalizacjeForLekarz(id_lekarza:number) : Observable<Specjalizacja[]>{
+    return this.http.get<Specjalizacja[]>('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje/available');
+  }
+
   addSpecjalizacjaToLekarz(id_lekarza: number, nazwa_specjalizacji: string){
     return this.http.post('/api/lekarze' + `/${id_lekarza}` + '/specjalizacje' + `/${nazwa_specjalizacji}`, null);
   }

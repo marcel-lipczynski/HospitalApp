@@ -101,4 +101,16 @@ public class LekarzDAOImpl implements LekarzDAO {
             }
 
         }
+
+    @Override
+    public List<Specjalizacje> findAvailableSpecjalizacjeForLekarz(int id_lekarza) {
+        List<Specjalizacje> specjalizacjeInDB = entityManager.createQuery("from Specjalizacje S ORDER BY S.nazwa_specjalizacji", Specjalizacje.class).getResultList();
+        List<Specjalizacje> specjalizacjeInLekarz = entityManager.find(Lekarz.class, id_lekarza).getSpecjalizacje();
+
+        for(Specjalizacje specjalizacje: specjalizacjeInLekarz){
+            specjalizacjeInDB.remove(specjalizacje);
+        }
+
+        return specjalizacjeInDB;
     }
+}
