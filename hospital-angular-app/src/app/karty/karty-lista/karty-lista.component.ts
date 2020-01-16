@@ -149,19 +149,30 @@ export class KartyListaComponent implements OnInit {
 
   static checkIfDateIsBiggerThanToday(control: AbstractControl): { [dateIsLess: string]: boolean } {
     const currentDate = new Date();
-    const controlValue = new Date(control.value);
-    if (controlValue > currentDate && currentDate.getDate() != controlValue.getDate()) {
-      return {'dateIsBigger': true};
-    } else {
-      return null;
+    const data_przyjecia = new Date(control.value);
+    if(data_przyjecia.getUTCFullYear() > currentDate.getUTCFullYear()){
+      return {'dateIsBigger': true };
     }
+    if(data_przyjecia.getUTCFullYear() === currentDate.getUTCFullYear()
+      && data_przyjecia.getUTCMonth() > currentDate.getUTCMonth()){
+      return {'dateIsBigger': true };
+    }
+    if(data_przyjecia.getUTCFullYear() === currentDate.getUTCFullYear()
+      && data_przyjecia.getUTCMonth() === currentDate.getUTCMonth()
+      && data_przyjecia.getDate() > currentDate.getDate()){
+      return {'dateIsBigger': true };
+
+    }
+    return null;
 
   }
 
   checkIfKartaWithGivenDateExists(control: AbstractControl): { [duplicateDate: string]: boolean } {
     const controlValue = new Date(control.value);
     for(let karta of this.karty){
-      if(controlValue.getDate() === new Date(karta.data_przyjecia).getDate()){
+      if(controlValue.getDate() === new Date(karta.data_przyjecia).getDate() &&
+      controlValue.getUTCMonth() == new Date(karta.data_przyjecia).getUTCMonth() &&
+      controlValue.getUTCFullYear() == new Date(karta.data_przyjecia).getUTCFullYear()){
         return {'duplicateDate': true};
       }
     }

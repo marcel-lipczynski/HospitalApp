@@ -56,7 +56,7 @@
 
 <!-- Modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="!isLoading">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,11 +73,40 @@
           <div class="form-group">
             <label for="opis">Opis</label>
             <input type="text" class="form-control" id="opis" formControlName="opis">
+
           </div>
+
+
 
           <div class="form-group">
             <label for="data_wystawienia">Data wystawienia</label>
             <input type="date" class="form-control" id="data_wystawienia" formControlName="data_wystawienia">
+
+            <span *ngIf="formAddDiagnoza.get('data_wystawienia').hasError('required') && formAddDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Wprowadź datę wystawienia
+            </span>
+
+
+            <span *ngIf="formAddDiagnoza.get('data_wystawienia').errors?.dateNotLess && formAddDiagnoza.get('data_wystawienia').touched"
+                  class="help-block text-danger">
+                  Data wystawienia diagnozy nie może być wcześniejsza od daty przyjęcia pacjenta
+            </span>
+
+            <span *ngIf="formAddDiagnoza.get('data_wystawienia').pending"
+                  class="help-block text-info">
+                  Sprawdzanie daty
+            </span>
+
+            <span *ngIf="!formAddDiagnoza.get('data_wystawienia').pending && formAddDiagnoza.get('data_wystawienia').touched
+            && !formAddDiagnoza.get('data_wystawienia').hasError('required') && !formAddDiagnoza.get('data_wystawienia').errors?.dateNotLess"
+                  class="help-block text-success">
+                  Data prawidłowa
+            </span>
+
+
+
+
           </div>
 
 
@@ -95,7 +124,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddDiagnoza.valid">Zapisz</button>
           </div>
 
 
@@ -110,7 +139,7 @@
 
 
 
-<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true" *ngIf="!isLoading">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
