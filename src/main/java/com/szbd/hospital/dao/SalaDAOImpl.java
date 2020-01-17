@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -34,7 +35,9 @@ public class SalaDAOImpl implements SalaDAO {
 
     @Override
     public List<Pielegniarka> findAllPielegniarkaOfSala(int id) {
-        return entityManager.find(Sala.class, id).getPielegniarki();
+        List<Pielegniarka> pielegniarki = entityManager.find(Sala.class, id).getPielegniarki();
+        Collections.sort(pielegniarki);
+        return pielegniarki;
     }
 
     @Override
