@@ -5,6 +5,7 @@ import {PielegniarkaService} from "../pielegniarka.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {Pacjent} from "../../pacjenci/pacjent.model";
 
 @Component({
   selector: 'app-pielegniarki-lista',
@@ -13,6 +14,7 @@ import * as bootstrap from "bootstrap";
 })
 export class PielegniarkiListaComponent implements OnInit {
 
+  filteredPielegniarki: Pielegniarka[] = [];
   formAddPielegniarka: FormGroup;
   formEditPielegniarka: FormGroup;
   pielegniarki: Pielegniarka[] = [];
@@ -31,6 +33,7 @@ export class PielegniarkiListaComponent implements OnInit {
   reloadData() {
     this.pielegniarkaService.findAllPielegniarki().subscribe(pielegniarki => {
       this.isLoading = true;
+      this.filteredPielegniarki = pielegniarki;
       this.pielegniarki = pielegniarki;
       this.isLoading = false;
     })
@@ -91,5 +94,20 @@ export class PielegniarkiListaComponent implements OnInit {
       'placa': placa
     });
   }
+
+  filterPielegniarki(filter: string): Pielegniarka[]{
+    this.filteredPielegniarki = [];
+    if(filter === ''){
+      this.filteredPielegniarki = this.pielegniarki;
+      return this.filteredPielegniarki;
+    }
+    for(let pielegniarka of this.pielegniarki){
+      if(pielegniarka.imie === filter || pielegniarka.nazwisko === filter){
+        this.filteredPielegniarki.push(pielegniarka);
+      }
+    }
+    return this.filteredPielegniarki;
+  }
+
 
 }

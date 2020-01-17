@@ -17,6 +17,7 @@ import * as bootstrap from "bootstrap";
 export class PielegniarkiSaleComponent implements OnInit {
 
   saleFromPielegniarka: Sala[] = [];
+  filteredSale: Sala[] = [];
   sale: Sala[] = [];
   formAddSala: FormGroup;
   isLoading: boolean = true;
@@ -41,6 +42,7 @@ export class PielegniarkiSaleComponent implements OnInit {
   reloadData() {
     this.pielegniarkaService.findAllSaleOfPielegniarka(this.id_pielegniarki).subscribe(saleFromPielegniarka => {
       this.fetchAvailableSale();
+      this.filteredSale = saleFromPielegniarka;
       this.saleFromPielegniarka = saleFromPielegniarka;
       this.isLoading = false;
     });
@@ -88,6 +90,20 @@ export class PielegniarkiSaleComponent implements OnInit {
     if (confirm("Are you sure you want to delete?")) {
       this.deleteSalaFromPielegniarka(nr_sali);
     }
+  }
+
+  filterSale(filter: string): Sala[]{
+    this.filteredSale = [];
+    if(filter === ''){
+      this.filteredSale = this.saleFromPielegniarka;
+      return this.filteredSale;
+    }
+    for(let sala of this.saleFromPielegniarka){
+      if(sala.nr_sali === +filter || sala.oddzial === filter){
+        this.filteredSale.push(sala);
+      }
+    }
+    return this.filteredSale;
   }
 
 

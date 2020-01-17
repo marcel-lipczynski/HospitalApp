@@ -5,6 +5,7 @@ import {Lekarz} from "../lekarz.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {Sala} from "../../sale/sala.model";
 
 @Component({
   selector: 'app-lekarze-lista',
@@ -14,6 +15,7 @@ import * as bootstrap from "bootstrap";
 export class LekarzeListaComponent implements OnInit {
 
   lekarze: Lekarz[] = [];
+  filteredLekarze: Lekarz[] = [];
   isLoading: boolean = true;
   formAddLekarz: FormGroup;
   fromEditLekarz: FormGroup;
@@ -30,6 +32,7 @@ export class LekarzeListaComponent implements OnInit {
 
   reloadData(){
     this.lekarzService.findAllLekarze().subscribe(lekarze =>{
+      this.filteredLekarze = lekarze;
       this.lekarze = lekarze;
       this.isLoading = false;
     });
@@ -87,5 +90,20 @@ export class LekarzeListaComponent implements OnInit {
       this.reloadData();
     });
   }
+
+  filterLekarze(filter: string): Lekarz[]{
+    this.filteredLekarze = [];
+    if(filter === ''){
+      this.filteredLekarze = this.lekarze;
+      return this.filteredLekarze;
+    }
+    for(let lekarz of this.lekarze){
+      if(lekarz.imie === filter || lekarz.nazwisko === filter){
+        this.filteredLekarze.push(lekarz);
+      }
+    }
+    return this.filteredLekarze;
+  }
+
 
 }

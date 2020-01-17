@@ -13,6 +13,9 @@
       +Dodaj
     </button>
 
+    <input class="search" type="text" id="search" placeholder="Wpisz numer sali lub oddział, aby wyszukać sale" (change)="filterSale(selectedValue.value)" #selectedValue>
+
+
 
     <table class="table table-striped table-sm">
       <thead>
@@ -27,7 +30,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let salaFromPielegniarka of saleFromPielegniarka">
+      <tr *ngFor="let salaFromPielegniarka of filteredSale">
 
         <td>{{salaFromPielegniarka.nr_sali}}</td>
         <td>{{salaFromPielegniarka.oddzial}}</td>

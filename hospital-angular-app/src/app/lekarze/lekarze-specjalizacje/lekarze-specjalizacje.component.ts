@@ -8,6 +8,7 @@ import {Lek} from "../../leki/lek.model";
 import {LekarzService} from "../lekarz.service";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {Lekarz} from "../lekarz.model";
 
 @Component({
   selector: 'app-lekarze-specjalizacje',
@@ -17,6 +18,7 @@ import * as bootstrap from "bootstrap";
 export class LekarzeSpecjalizacjeComponent implements OnInit {
 
   specjalizacje: Specjalizacja[] = [];
+  filteredSpecjlizacje: Specjalizacja[] = [];
   specjalizacjeLekarza: Specjalizacja[] = [];
   formAddSpecjalizacja: FormGroup;
   isLoading: boolean = true;
@@ -40,6 +42,7 @@ export class LekarzeSpecjalizacjeComponent implements OnInit {
   reloadData() {
     this.lekarzService.findAllSpecjalizacjeOfLekarz(this.id_lekarza).subscribe(specjalizacjeLekarza => {
       this.fetchAvailableSpecjalizacje();
+      this.filteredSpecjlizacje = specjalizacjeLekarza;
       this.specjalizacjeLekarza = specjalizacjeLekarza;
       this.isLoading = false;
     });
@@ -87,6 +90,20 @@ export class LekarzeSpecjalizacjeComponent implements OnInit {
     if (confirm("Are you sure you want to delete?")) {
       this.deleteSpecjalizacjaFromLekarz(nazwa_specjalzacji);
     }
+  }
+
+  filterSpecjalizacje(filter: string): Specjalizacja[]{
+    this.filteredSpecjlizacje = [];
+    if(filter === ''){
+      this.filteredSpecjlizacje = this.specjalizacjeLekarza;
+      return this.filteredSpecjlizacje;
+    }
+    for(let specjalizacja of this.specjalizacjeLekarza){
+      if(specjalizacja.nazwa_specjalizacji === filter || specjalizacja.nazwa_specjalizacji === filter.toUpperCase()){
+        this.filteredSpecjlizacje.push(specjalizacja);
+      }
+    }
+    return this.filteredSpecjlizacje;
   }
 
 }
