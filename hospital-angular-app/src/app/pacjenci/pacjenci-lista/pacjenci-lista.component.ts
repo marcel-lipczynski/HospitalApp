@@ -14,6 +14,7 @@ import * as bootstrap from "bootstrap";
 })
 export class PacjenciListaComponent implements OnInit {
 
+  filteredPacjenci: Pacjent[] = [];
   pacjenci: Pacjent[] = [];
   isLoading: boolean = true;
   formPacjent: FormGroup;
@@ -36,6 +37,7 @@ export class PacjenciListaComponent implements OnInit {
     this.pacjentService.findAllPacjenci().subscribe(pacjenci => {
       this.isLoading = true;
       this.pacjenci = pacjenci;
+      this.filteredPacjenci = pacjenci;
       this.pesels = [];
       pacjenci.forEach(element =>
       {
@@ -114,6 +116,19 @@ export class PacjenciListaComponent implements OnInit {
 
   get pesel(){
     return this.formPacjent.get('pesel');
+  }
+
+  filterPacjenci(filter: string): Pacjent[]{
+    this.filteredPacjenci = [];
+    if(filter === ''){
+      this.filteredPacjenci = this.pacjenci;
+    }
+    for(let pacjent of this.pacjenci){
+      if(pacjent.imie === filter || pacjent.nazwisko === filter || pacjent.pesel === filter){
+        this.filteredPacjenci.push(pacjent);
+      }
+    }
+    return this.filteredPacjenci;
   }
 
 }

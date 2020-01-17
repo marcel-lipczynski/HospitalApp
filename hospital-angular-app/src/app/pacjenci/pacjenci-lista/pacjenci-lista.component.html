@@ -12,6 +12,9 @@
       +Dodaj
     </button>
 
+
+    <input class="search" type="text" id="search" placeholder="Wpisz pesel, imię lub nazwisko albo wyszukać pacjenta" (change)="filterPacjenci(selectedValue.value)" #selectedValue>
+
     <table class="table table-striped table-sm">
       <thead>
       <tr>
@@ -25,7 +28,7 @@
 
       <tbody>
 
-      <tr *ngFor = "let pacjent of pacjenci">
+      <tr *ngFor = "let pacjent of filteredPacjenci">
         <td>{{pacjent.pesel}}</td>
         <td>{{pacjent.imie}}</td>
         <td>{{pacjent.nazwisko}}</td>
