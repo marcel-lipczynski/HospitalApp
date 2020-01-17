@@ -8,10 +8,15 @@
 
   <div class="table-responsive" *ngIf="!isLoading">
 
+    <h2 class="text-center">Dodaj pielęgniarkę do wybranej sali</h2>
 
     <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
       +Dodaj
     </button>
+
+
+    <input class="search" type="text" id="search" placeholder="Wpisz imię lub nazwisko albo wyszukać pielęgniarkę" (change)="filterPielegniarki(selectedValue.value)" #selectedValue>
+
 
 
     <table class="table table-striped table-sm">
@@ -27,7 +32,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor = "let pielegniarkaFromSala of pielegniarkiFromSala">
+      <tr *ngFor = "let pielegniarkaFromSala of filteredPielegniarki">
 
         <td>{{pielegniarkaFromSala.imie}}</td>
         <td>{{pielegniarkaFromSala.nazwisko}}</td>

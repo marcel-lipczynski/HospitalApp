@@ -26,6 +26,7 @@ import * as bootstrap from "bootstrap";
 export class SpecjalizacjeListaComponent implements OnInit {
 
   specjalizacje: Specjalizacja[] = [];
+  filteredSpecjlizacje: Specjalizacja[] = [];
   nazwy_specjalizacji: string[] = [];
   isLoading: boolean = true;
   formAddSpecjalizacja: FormGroup;
@@ -51,6 +52,7 @@ export class SpecjalizacjeListaComponent implements OnInit {
   reloadData(){
     this.specjalizacjaService.findAllSpecjalizacje().subscribe(specjalizacje => {
       this.specjalizacje = specjalizacje;
+      this.filteredSpecjlizacje = specjalizacje;
       specjalizacje.forEach(specjalizacja => {
         this.nazwy_specjalizacji.push(specjalizacja.nazwa_specjalizacji);
       });
@@ -154,6 +156,20 @@ export class SpecjalizacjeListaComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  filterSpecjalizacje(filter: string): Specjalizacja[]{
+    this.filteredSpecjlizacje = [];
+    if(filter === ''){
+      this.filteredSpecjlizacje = this.specjalizacje;
+      return this.filteredSpecjlizacje;
+    }
+    for(let specjalizacja of this.specjalizacje){
+      if(specjalizacja.nazwa_specjalizacji === filter || specjalizacja.nazwa_specjalizacji === filter.toUpperCase()){
+        this.filteredSpecjlizacje.push(specjalizacja);
+      }
+    }
+    return this.filteredSpecjlizacje;
   }
 
 

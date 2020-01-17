@@ -5,6 +5,7 @@ import {LekService} from "../lek.service";
 import {Lek} from "../lek.model";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
+import {Sala} from "../../sale/sala.model";
 
 @Component({
   selector: 'app-leki-lista',
@@ -14,10 +15,12 @@ import * as bootstrap from "bootstrap";
 export class LekiListaComponent implements OnInit {
 
   leki: Lek[] = [];
+  filteredLeki: Lek[] = [];
   isLoading: boolean = true;
   formAddLek: FormGroup;
   formEditLek: FormGroup;
   nazwyLekow: string[] = [];
+
 
 
   constructor(private http: HttpClient,
@@ -32,6 +35,7 @@ export class LekiListaComponent implements OnInit {
   reloadData() {
     this.lekService.findAllLeki().subscribe(leki => {
       this.leki = leki;
+      this.filteredLeki = leki;
       this.nazwyLekow = [];
       leki.forEach(element =>{
         this.nazwyLekow.push(element.nazwa_leku);
@@ -105,6 +109,20 @@ export class LekiListaComponent implements OnInit {
 
   get nazwa_leku(){
     return this.formAddLek.get('nazwa_leku');
+  }
+
+  filterLeki(filter: string): Lek[]{
+    this.filteredLeki = [];
+    if(filter === ''){
+      this.filteredLeki = this.leki;
+      return this.filteredLeki;
+    }
+    for(let lek of this.leki){
+      if(lek.nazwa_leku === filter || lek.nazwa_leku === filter.toUpperCase() || lek.rodzaj_leku === filter){
+        this.filteredLeki.push(lek);
+      }
+    }
+    return this.filteredLeki;
   }
 
 

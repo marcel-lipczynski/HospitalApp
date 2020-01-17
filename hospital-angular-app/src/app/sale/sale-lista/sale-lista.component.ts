@@ -14,6 +14,7 @@ import * as bootstrap from "bootstrap";
 export class SaleListaComponent implements OnInit {
 
   sale: Sala[] = [];
+  filteredSale: Sala[] = [];
   isLoading: boolean = true;
   formAddSala: FormGroup;
   formEditSala: FormGroup;
@@ -30,6 +31,7 @@ export class SaleListaComponent implements OnInit {
   reloadData(){
     this.salaService.findAllSale().subscribe(sale =>{
       this.isLoading = true;
+      this.filteredSale = sale;
       this.sale = sale;
       this.isLoading = false;
     });
@@ -89,6 +91,20 @@ export class SaleListaComponent implements OnInit {
       'pojemnosc' : pojemnosc,
       'oddzial' : oddzial
     });
+  }
+
+  filterSale(filter: string): Sala[]{
+    this.filteredSale = [];
+    if(filter === ''){
+      this.filteredSale = this.sale;
+      return this.filteredSale;
+    }
+    for(let sala of this.sale){
+      if(sala.nr_sali === +filter || sala.oddzial === filter){
+        this.filteredSale.push(sala);
+      }
+    }
+    return this.filteredSale;
   }
 
 

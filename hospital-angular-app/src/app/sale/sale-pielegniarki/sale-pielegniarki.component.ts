@@ -20,6 +20,7 @@ export class SalePielegniarkiComponent implements OnInit {
 
   pielegniarkiFromSala: Pielegniarka[] = [];
   pielegiarki: Pielegniarka[] = [];
+  filteredPielegniarki: Pielegniarka[] = [];
   formAddPielegniarka: FormGroup;
   isLoading: boolean = true;
   nr_sali : number;
@@ -43,6 +44,7 @@ export class SalePielegniarkiComponent implements OnInit {
   reloadData() {
     this.salaService.findAllPielegniarkiInSala(this.nr_sali).subscribe(pielegniarkiFromSala => {
       this.fetchAvailablePielegniarki();
+      this.filteredPielegniarki = pielegniarkiFromSala;
       this.pielegniarkiFromSala = pielegniarkiFromSala;
       this.isLoading = false;
     });
@@ -92,6 +94,20 @@ export class SalePielegniarkiComponent implements OnInit {
     }
   }
 
+
+  filterPielegniarki(filter: string): Pielegniarka[]{
+    this.filteredPielegniarki = [];
+    if(filter === ''){
+      this.filteredPielegniarki = this.pielegniarkiFromSala;
+      return this.filteredPielegniarki;
+    }
+    for(let pielegniarka of this.pielegniarkiFromSala){
+      if(pielegniarka.imie === filter || pielegniarka.nazwisko === filter){
+        this.filteredPielegniarki.push(pielegniarka);
+      }
+    }
+    return this.filteredPielegniarki;
+  }
 
 
 

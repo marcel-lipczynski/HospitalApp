@@ -12,6 +12,9 @@
       +Dodaj
     </button>
 
+    <input class="search" type="text" id="search" placeholder="Wpisz nazwę specjalizacji, aby wyszukać" (change)="filterSpecjalizacje(selectedValue.value)" #selectedValue>
+
+
     <table class="table table-striped table-sm">
       <thead>
       <tr>
@@ -23,7 +26,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let specjalizacja of specjalizacje">
+      <tr *ngFor="let specjalizacja of filteredSpecjlizacje">
         <td>{{specjalizacja.nazwa_specjalizacji}}</td>
         <td>{{specjalizacja.placa_min}}</td>
         <td>{{specjalizacja.placa_max}}</td>
