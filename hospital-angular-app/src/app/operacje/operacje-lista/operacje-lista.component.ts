@@ -17,6 +17,7 @@ import {Observable} from "rxjs";
 export class OperacjeListaComponent implements OnInit {
 
   operacje: Operacja[] = [];
+  filteredOperacje: Operacja[] = [];
   lekarze: Lekarz[] = [];
   lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
@@ -45,6 +46,7 @@ export class OperacjeListaComponent implements OnInit {
       this.findAllLekarzeOnKarta();
       this.findLekarzWhoCanAddOperacja();
       this.operacje = operacje;
+      this.filteredOperacje = operacje;
       this.isLoading = false;
     });
   }
@@ -191,6 +193,21 @@ export class OperacjeListaComponent implements OnInit {
     }
     return null;
 
+  }
+
+
+  filterOperacje(filter: string): Operacja[]{
+    this.filteredOperacje = [];
+    if(filter === ''){
+      this.filteredOperacje = this.operacje;
+      return this.filteredOperacje;
+    }
+    for(let operacja of this.operacje){
+      if(operacja.nazwa_operacji === filter || operacja.termin === filter){
+        this.filteredOperacje.push(operacja);
+      }
+    }
+    return this.filteredOperacje;
   }
 
 
