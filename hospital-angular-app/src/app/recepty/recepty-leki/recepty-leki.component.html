@@ -13,6 +13,10 @@
       +Dodaj
     </button>
 
+    <label for="search"></label>
+    <input class="search" type="text" id="search" placeholder="Wpisz nazwę specjalizacji, aby wyszukać" (change)="filterLeki(selectedValue.value)" #selectedValue>
+
+
 
     <table class="table table-striped table-sm">
       <thead>
@@ -26,7 +30,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let lek of lekiOnRecepta">
+      <tr *ngFor="let lek of filteredLeki">
 
         <td>{{lek.nazwa_leku}}</td>
         <td>{{lek.rodzaj_leku}}</td>

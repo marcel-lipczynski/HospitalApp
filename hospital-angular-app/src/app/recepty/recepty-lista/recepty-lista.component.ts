@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 import * as $AB from "jquery";
 import * as bootstrap from "bootstrap";
 import {Observable} from "rxjs";
+import {Karta} from "../../karty/karta.model";
 
 @Component({
   selector: 'app-recepty-lista',
@@ -18,6 +19,7 @@ import {Observable} from "rxjs";
 export class ReceptyListaComponent implements OnInit {
 
   recepty: Recepta[] = [];
+  filteredRecepty: Recepta[] = [];
   lekarze: Lekarz[] = [];
   lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
@@ -48,6 +50,7 @@ export class ReceptyListaComponent implements OnInit {
       this.findAllLekarzeOnKarta();
       this.findLekarzWhoCanAddRecepta();
       this.recepty = recepty;
+      this.filteredRecepty = recepty;
       this.isLoading = false;
     });
   }
@@ -189,6 +192,21 @@ export class ReceptyListaComponent implements OnInit {
     }
     return null;
 
+  }
+
+
+  filterRecepty(filter: string): Recepta[]{
+    this.filteredRecepty = [];
+    if(filter === ''){
+      this.filteredRecepty = this.recepty;
+      return this.filteredRecepty;
+    }
+    for(let recepta of this.recepty){
+      if(recepta.data_wystawienia === filter){
+        this.filteredRecepty.push(recepta);
+      }
+    }
+    return this.filteredRecepty;
   }
 
 

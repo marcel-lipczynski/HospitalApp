@@ -10,6 +10,7 @@ import * as bootstrap from "bootstrap";
 import {SalaService} from "../../sale/sala.service";
 import {Sala} from "../../sale/sala.model";
 import {map} from 'rxjs/operators'
+import {Lekarz} from "../../lekarze/lekarz.model";
 
 @Component({
   selector: 'app-karty-lista',
@@ -19,6 +20,7 @@ import {map} from 'rxjs/operators'
 export class KartyListaComponent implements OnInit {
 
   karty: Karta[] = [];
+  filteredKarty: Karta[] = [];
   sala: Sala;
   sale: Sala[] = [];
   isLoading: boolean = true;
@@ -65,6 +67,7 @@ export class KartyListaComponent implements OnInit {
   reloadData() {
     this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty => {
       this.karty = karty;
+      this.filteredKarty = karty;
       this.loadPacjent();
       this.loadAvailableSale();
       this.isLoading = false;
@@ -203,6 +206,20 @@ export class KartyListaComponent implements OnInit {
       }
       return null;
     }
+  }
+
+  filterKarty(filter: string): Karta[]{
+    this.filteredKarty = [];
+    if(filter === ''){
+      this.filteredKarty = this.karty;
+      return this.filteredKarty;
+    }
+    for(let karta of this.karty){
+      if(karta.data_przyjecia === filter || karta.godzina_przyjecia === filter){
+        this.filteredKarty.push(karta);
+      }
+    }
+    return this.filteredKarty;
   }
 
 

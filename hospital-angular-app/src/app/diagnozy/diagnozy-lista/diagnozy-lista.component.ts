@@ -18,6 +18,7 @@ export class DiagnozyListaComponent implements OnInit {
 
   currentKarta: Karta;
   diagnozy: Diagnoza[] = [];
+  filteredDiagnozy: Diagnoza[] = [];
   lekarze: Lekarz[] = [];
   lekarzeAvailable: Lekarz[] = [];
   isLoading: boolean = true;
@@ -55,17 +56,11 @@ export class DiagnozyListaComponent implements OnInit {
       this.findAllLekarzeOnKarta();
       this.findLekarzWhoCanAddDiagnoza();
       this.diagnozy = diagnozy;
+      this.filteredDiagnozy = diagnozy;
       this.isLoading = false;
     });
   }
 
-  findKartaPobytu() {
-    this.kartaService.findKartaById(this.id_karty).subscribe(karta => {
-      this.isLoading = true;
-      this.currentKarta = karta;
-      this.isLoading = false;
-    });
-  }
 
   findLekarzWhoCanAddDiagnoza() {
     return this.diagnozaService.findLekarzWhoCanAddDiagnoza(this.id_karty).subscribe(lekarzeAvailable => {
@@ -214,6 +209,20 @@ export class DiagnozyListaComponent implements OnInit {
     }
     return null;
 
+  }
+
+  filterDiagnozy(filter: string): Diagnoza[]{
+    this.filteredDiagnozy = [];
+    if(filter === ''){
+      this.filteredDiagnozy = this.diagnozy;
+      return this.filteredDiagnozy;
+    }
+    for(let diagnoza of this.diagnozy){
+      if(diagnoza.data_wystawienia === filter){
+        this.filteredDiagnozy.push(diagnoza);
+      }
+    }
+    return this.filteredDiagnozy;
   }
 
 

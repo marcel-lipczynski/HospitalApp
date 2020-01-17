@@ -19,6 +19,7 @@ import {LekService} from "../../leki/lek.service";
 export class ReceptyLekiComponent implements OnInit {
 
   leki: Lek[] = [];
+  filteredLeki: Lek[] = [];
   lekiOnRecepta: Lek[] = [];
   isLoading: boolean = true;
   formAddLek: FormGroup;
@@ -49,6 +50,7 @@ export class ReceptyLekiComponent implements OnInit {
     this.receptaService.findAllLekiOnRecepta(this.id_recepty).subscribe(lekiOnRecepta => {
       this.fetchAvailableLeki();
       this.lekiOnRecepta = lekiOnRecepta;
+      this.filteredLeki = lekiOnRecepta;
       this.isLoading = false;
     });
   }
@@ -98,6 +100,20 @@ export class ReceptyLekiComponent implements OnInit {
     if (confirm("Are you sure you want to delete?")) {
       this.deleteLekFromRecepta(nazwa_leku);
     }
+  }
+
+  filterLeki(filter: string): Lek[]{
+    this.filteredLeki = [];
+    if(filter === ''){
+      this.filteredLeki = this.lekiOnRecepta;
+      return this.filteredLeki;
+    }
+    for(let lek of this.lekiOnRecepta){
+      if(lek.nazwa_leku === filter || lek.nazwa_leku === filter.toUpperCase() || lek.rodzaj_leku === filter){
+        this.filteredLeki.push(lek);
+      }
+    }
+    return this.filteredLeki;
   }
 
 }
