@@ -19,7 +19,6 @@ export class KartaService {
   }
 
 
-
   saveOrUpdateKartaForPacjent(karta: Karta, pesel: string) {
     return this.http.post<Karta>(this.KARTY_API_URL + `/${pesel}` + '/karty', karta);
   }
@@ -48,8 +47,12 @@ export class KartaService {
     return this.http.delete('/api/karty' + `/${id_karty}` + '/lekarze' + `/${id_lekarza}`);
   }
 
-  findKartaById(id_karty: number): Observable<Karta>{
+  findKartaById(id_karty: number): Observable<Karta> {
     return this.http.get<Karta>('/api/karty' + `/${id_karty}`);
+  }
+
+  addWypis(id_karty: number) {
+    return this.http.post('api/karty/addWypis' + `/${id_karty}`, null);
   }
 
 

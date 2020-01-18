@@ -67,4 +67,9 @@ public class KartaPobytuServiceImpl implements KartaPobytuService {
     public void deleteLekarzFromKarta(int id_karty, int id_lekarza) {
         kartaPobytuDAO.deleteLekarzFromKarta(id_karty, id_lekarza);
     }
+
+    @Override
+    public void addWypisToKarta(int id_karty) {
+        kartaPobytuDAO.addWypisToKarta(id_karty);
+    }
 }

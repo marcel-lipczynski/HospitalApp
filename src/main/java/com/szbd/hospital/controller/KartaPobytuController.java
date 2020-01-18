@@ -64,5 +64,9 @@ public class KartaPobytuController {
         kartaPobytuService.deleteKartaById(id);
     }
 
+    @PostMapping("addWypis/{id_karty}")
+    public void addWypisToKarta(@PathVariable int id_karty) {
+        kartaPobytuService.addWypisToKarta(id_karty);
+    }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -144,5 +145,12 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
             lekarz.removeKartaPobytu(kartaPobytu);
 
         }
+    }
+
+    @Override
+    public void addWypisToKarta(int id_karty) {
+        StoredProcedureQuery query = this.entityManager.createNamedStoredProcedureQuery("DodajWypis");
+        query.setParameter("id_kartyPobytu", id_karty);
+        query.execute();
     }
 }

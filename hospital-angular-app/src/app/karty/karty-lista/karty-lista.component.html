@@ -27,7 +27,7 @@
         <th>Godzina przyjęcia</th>
         <th>Data wypisu</th>
         <th>Numer sali</th>
-        <th>PESEL pacjenta</th>
+        <th>Wypisz już dziś</th>
         <th class="text-center">Informacje na karcie</th>
         <th></th>
       </tr>
@@ -39,7 +39,9 @@
         <td class="text-center">{{karta.godzina_przyjecia}}</td>
         <td class="text-center">{{karta.data_wypisu}}</td>
         <td class="text-center">{{karta.nr_sali}}</td>
-        <td class="text-center">{{karta.pesel}}</td>
+        <td class="text-center"><button class="btn btn-secondary"
+                                        (click)="addWypisToKarta(karta.id_karty)"
+                                        >Wypisz</button></td>
 
         <td class="text-right">
           <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'diagnozy']" > Diagnozy</button>

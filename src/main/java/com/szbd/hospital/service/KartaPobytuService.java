@@ -16,4 +16,6 @@ public interface KartaPobytuService{
     void deleteKartaById(int id);
     void deleteLekarzFromKarta(int id_karty, int id_lekarza);
 
+    void addWypisToKarta(int id_karty);
+
 }

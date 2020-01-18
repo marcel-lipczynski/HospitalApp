@@ -46,6 +46,11 @@ export class KartyListaComponent implements OnInit {
 
   }
 
+  addWypisToKarta(id_karty: number){
+    this.kartaService.addWypis(id_karty).subscribe();
+    this.reloadData();
+  }
+
 
   loadPacjent() {
     this.pacjentService.findPacjentByPesel(this.pesel).subscribe(pacjent => {
@@ -66,6 +71,7 @@ export class KartyListaComponent implements OnInit {
 
   reloadData() {
     this.kartaService.findAllKartyOfPacjent(this.pesel).subscribe(karty => {
+      this.isLoading = true;
       this.karty = karty;
       this.filteredKarty = karty;
       this.loadPacjent();

@@ -47,10 +47,6 @@ public class HospitalApplication {
 		stmt.close();
 
 		System.out.println("\n\n\n\n\n\n\n");
-
-		
-
-
 	}
 
 //	@EventListener(ApplicationReadyEvent.class)
