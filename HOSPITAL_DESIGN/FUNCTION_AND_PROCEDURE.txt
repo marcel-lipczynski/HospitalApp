@@ -1,0 +1,37 @@
+			FUNKCJA 
+
+CREATE OR REPLACE FUNCTION countTables
+RETURN INTEGER IS
+numberOfTables INTEGER;
+begin
+    
+       SELECT COUNT(*) INTO numberOfTables
+       FROM all_tables where owner = 'HOMEUSER';
+       return numberOfTables;
+        
+end countTables;
+
+SELECT countTables() FROM dual;
+
+
+
+			PROCEDURA
+
+CREATE OR REPLACE PROCEDURE DodajWypis
+(id_kartyPobytu IN NUMBER) IS
+BEGIN 
+    UPDATE KARTA_POBYTU SET 
+    data_wypisu = CURRENT_DATE 
+    WHERE id_karty = id_kartyPobytu;
+END;
+
+BEGIN 
+    DodajWypis(29);
+END;
+
+COMMIT;
+
+
+			
+
+
