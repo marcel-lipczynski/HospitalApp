@@ -1,6 +1,7 @@
 package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.SalaDAO;
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,23 @@ public class SalaServiceImpl implements SalaService {
     @Transactional
     public void deleteById(int id) {
         salaDAO.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<KartaPobytu> findActiveKartyForSala(int nr_sali) {
+        return salaDAO.findActiveKartyForSala(nr_sali);
+    }
+
+    @Override
+    @Transactional
+    public List<Sala> findAllAvailableSale() {
+        return salaDAO.findAllAvailableSale();
+    }
+
+    @Override
+    @Transactional
+    public List<Pielegniarka> findAvailablePielegniarkiForSala(int nr_sali) {
+        return salaDAO.findAvailablePielegniarkiForSala(nr_sali);
     }
 }

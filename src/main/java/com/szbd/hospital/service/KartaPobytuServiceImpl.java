@@ -40,6 +40,12 @@ public class KartaPobytuServiceImpl implements KartaPobytuService {
 
     @Override
     @Transactional
+    public List<Lekarz> findAvailableLekarze(int id_karty) {
+        return kartaPobytuDAO.findAvailableLekarze(id_karty);
+    }
+
+    @Override
+    @Transactional
     public void saveKarta(KartaPobytu kartaPobytu) {
         kartaPobytuDAO.saveKarta(kartaPobytu);
     }
@@ -60,5 +66,10 @@ public class KartaPobytuServiceImpl implements KartaPobytuService {
     @Transactional
     public void deleteLekarzFromKarta(int id_karty, int id_lekarza) {
         kartaPobytuDAO.deleteLekarzFromKarta(id_karty, id_lekarza);
+    }
+
+    @Override
+    public void addWypisToKarta(int id_karty) {
+        kartaPobytuDAO.addWypisToKarta(id_karty);
     }
 }

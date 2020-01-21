@@ -15,18 +15,18 @@
     <div class="row">
 
 <!--      Karta pobytu pacjenta-->
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card h-100">
-          <a [routerLink]="['karty']"><img class="card-img-top" src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"
-                           alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a [routerLink]="['karty']">Karty pobytu</a>
-            </h4>
-            <p class="card-text">Zarządzaj kartami pobytu pacjentów przebywających w szpitalu aktualnie bądź w przeszłości.</p>
-          </div>
-        </div>
-      </div>
+<!--      <div class="col-lg-4 col-sm-6 mb-4">-->
+<!--        <div class="card h-100">-->
+<!--          <a [routerLink]="['karty']"><img class="card-img-top" src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80"-->
+<!--                           alt=""></a>-->
+<!--          <div class="card-body">-->
+<!--            <h4 class="card-title">-->
+<!--              <a [routerLink]="['karty']">Karty pobytu</a>-->
+<!--            </h4>-->
+<!--            <p class="card-text">Zarządzaj kartami pobytu pacjentów przebywających w szpitalu aktualnie bądź w przeszłości.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 <!--    Pacjenci -->
       <div class="col-lg-4 col-sm-6 mb-4">
@@ -42,6 +42,7 @@
           </div>
         </div>
       </div>
+
 
 <!--      Lekarze   -->
       <div class="col-lg-4 col-sm-6 mb-4">
@@ -86,52 +87,67 @@
         </div>
       </div>
 
-<!--      Operacje -->
+      <!--     Specjalizacje lekarskie -->
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card h-100">
-          <a [routerLink]="['operacje']"><img class="card-img-top" src="https://images.unsplash.com/photo-1550831107-1553da8c8464?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                           alt=""></a>
+          <a [routerLink]="['specjalizacje']"><img class="card-img-top" src="http://cqrecords.com/wp-content/uploads/ph/photostock-vector-doctors-with-different-specializations-wearing-medical-scrubs-uniform-working-in-the-hospital-set-of.jpg"
+                  alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a [routerLink]="['operacje']">Operacje</a>
+              <a [routerLink]="['specjalizacje']" >Specjalizacje lekarskie</a>
             </h4>
-            <p class="card-text">Zarządzaj operacjami. Przeglądaj dane o przeprowadzonych operacjach. Wprowadź
-            termin operacji dla pacjenta.</p>
+            <p class="card-text">Sprawdź możliwe specjalizacje, a także związane z nimi zarobki.</p>
           </div>
         </div>
       </div>
 
+<!--      Operacje -->
+<!--      <div class="col-lg-4 col-sm-6 mb-4">-->
+<!--        <div class="card h-100">-->
+<!--          <a [routerLink]="['operacje']"><img class="card-img-top" src="https://images.unsplash.com/photo-1550831107-1553da8c8464?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"-->
+<!--                           alt=""></a>-->
+<!--          <div class="card-body">-->
+<!--            <h4 class="card-title">-->
+<!--              <a [routerLink]="['operacje']">Operacje</a>-->
+<!--            </h4>-->
+<!--            <p class="card-text">Zarządzaj operacjami. Przeglądaj dane o przeprowadzonych operacjach. Wprowadź-->
+<!--            termin operacji dla pacjenta.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
 <!--      Diagnozy-->
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card h-100">
-          <a [routerLink]="['diagnozy']"><img class="card-img-top" src="https://images.unsplash.com/photo-1560582861-45078880e48e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                           alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a [routerLink]="['diagnozy']">Diagnozy</a>
-            </h4>
-            <p class="card-text">Zarządzaj diagnozami. Przeglądaj wystawione dla pacjenta diagnozy. Dodaj
-            nową diagnozę dla pacjenta.</p>
-          </div>
-        </div>
-      </div>
+<!--      <div class="col-lg-4 col-sm-6 mb-4">-->
+<!--        <div class="card h-100">-->
+<!--          <a [routerLink]="['diagnozy']"><img class="card-img-top" src="https://images.unsplash.com/photo-1560582861-45078880e48e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"-->
+<!--                           alt=""></a>-->
+<!--          <div class="card-body">-->
+<!--            <h4 class="card-title">-->
+<!--              <a [routerLink]="['diagnozy']">Diagnozy</a>-->
+<!--            </h4>-->
+<!--            <p class="card-text">Zarządzaj diagnozami. Przeglądaj wystawione dla pacjenta diagnozy. Dodaj-->
+<!--            nową diagnozę dla pacjenta.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 <!--      Recepty-->
 
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <div class="card h-100">
-          <a [routerLink]="['recepty']"><img class="card-img-top" src="https://thumbs.dreamstime.com/b/ubezpieczenie-zdrowotne-schowek-z-medycznym-krzy%C5%BCem-kliniczny-rejestr-recepta-%C5%BC%C4%85danie-raport-medyczny-ubezpiecze%C5%84-zdrowotnych-130823830.jpg"
-                           alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a [routerLink]="['recepty']">Recepty</a>
-            </h4>
-            <p class="card-text">Zarządzaj receptami. Przeglądaj wystawione dla pacjenta recepty. Wystaw
-              nową receptę dla pacjenta.</p>
-          </div>
-        </div>
-      </div>
+<!--      <div class="col-lg-4 col-sm-6 mb-4">-->
+<!--        <div class="card h-100">-->
+<!--          <a [routerLink]="['recepty']"><img class="card-img-top" src="https://thumbs.dreamstime.com/b/ubezpieczenie-zdrowotne-schowek-z-medycznym-krzy%C5%BCem-kliniczny-rejestr-recepta-%C5%BC%C4%85danie-raport-medyczny-ubezpiecze%C5%84-zdrowotnych-130823830.jpg"-->
+<!--                           alt=""></a>-->
+<!--          <div class="card-body">-->
+<!--            <h4 class="card-title">-->
+<!--              <a [routerLink]="['recepty']">Recepty</a>-->
+<!--            </h4>-->
+<!--            <p class="card-text">Zarządzaj receptami. Przeglądaj wystawione dla pacjenta recepty. Wystaw-->
+<!--              nową receptę dla pacjenta.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
+<!--      Leki -->
       <div class="col-lg-4 col-sm-6 mb-4">
         <div class="card h-100">
           <a [routerLink]="['leki']"><img class="card-img-top" src="https://images.unsplash.com/photo-1573823062558-f93608871c3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=962&q=80"

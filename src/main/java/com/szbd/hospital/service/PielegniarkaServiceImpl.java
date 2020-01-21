@@ -61,4 +61,10 @@ public class PielegniarkaServiceImpl implements PielegniarkaService {
     public void deleteById(int id) {
         pielegniarkaDAO.deleteById(id);
     }
+
+    @Override
+    @Transactional
+    public List<Sala> findAvailableSaleForPielegniarka(int id_pielegniarki) {
+        return pielegniarkaDAO.findAvailableSaleForPielegniarka(id_pielegniarki);
+    }
 }

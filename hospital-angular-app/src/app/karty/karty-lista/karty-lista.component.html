@@ -1,34 +1,62 @@
 <div class="container">
 
-  <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    +Dodaj
-  </button>
-  <div class="table-responsive">
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" *ngIf="isLoading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <h1 class="text-center" *ngIf="!isLoading">Karty pobytu pacjenta {{imie}} {{nazwisko}}</h1>
+
+
+  <div class="table-responsive" *ngIf="!isLoading">
+
+    <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      +Dodaj
+    </button>
+
+    <label for="search"></label>
+    <input class="search" type="text" id="search" placeholder="Wpisz datę przyjęcia (YYYY-MM-DD) lub godzinę przyjęcia aby wyszukać kartę" (change)="filterKarty(selectedValue.value)" #selectedValue>
+
+
     <table class="table table-striped table-sm">
       <thead>
       <tr>
-        <th>id_karty</th>
-        <th>data przyjęcia</th>
-        <th>godzina przyjęcia</th>
-        <th>data wypisu</th>
-        <th>nr sali</th>
-        <th>pesel</th>
+
+        <th>Data przyjęcia</th>
+        <th>Godzina przyjęcia</th>
+        <th>Data wypisu</th>
+        <th>Numer sali</th>
+        <th>Wypisz już dziś</th>
+        <th class="text-center">Informacje na karcie</th>
         <th></th>
       </tr>
       </thead>
 
       <tbody>
-      <tr>
-        <td>1,001</td>
-        <td>Lorem</td>
-        <td>ipsum</td>
-        <td>dolor</td>
-        <td>sit</td>
-        <td>sit</td>
+      <tr *ngFor="let karta of filteredKarty">
+        <td class="text-center">{{karta.data_przyjecia}}</td>
+        <td class="text-center">{{karta.godzina_przyjecia}}</td>
+        <td class="text-center">{{karta.data_wypisu}}</td>
+        <td class="text-center">{{karta.nr_sali}}</td>
+        <td class="text-center"><button class="btn btn-secondary"
+                                        (click)="addWypisToKarta(karta.id_karty)"
+                                        >Wypisz</button></td>
+
         <td class="text-right">
-          <button class="btn btn-danger">Usuń</button>
-          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">Edytuj</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'diagnozy']" > Diagnozy</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'recepty']"> Recepty</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'operacje']"> Operacje</button>
+          <button class="btn btn-outline-secondary" [routerLink]="[karta.id_karty,'lekarze']">Lekarze</button>
         </td>
+        <td class="text-right">
+          <button class="btn btn-danger" (click)="onConfirmDelete(karta.id_karty)">Usuń</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2"
+          (click)="onEditKarta(karta.id_karty,karta.data_przyjecia,karta.godzina_przyjecia,
+          karta.data_wypisu, karta.nr_sali)">Edytuj</button>
+
+        </td>
+
       </tr>
 
       </tbody>
@@ -37,59 +65,80 @@
 </div>
 
 
-<!-- Modal -->
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Dodaj kartę</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+        <form (ngSubmit)="onSubmit(formAddKarta)" [formGroup]="formAddKarta">
 
           <div class="form-group">
-            <label for="id_karty">ID Karty</label>
-            <input type="text" class="form-control" id="id_karty">
+            <label for="data_przyjecia" class="required-field">Data przyjęcia</label>
+            <input type="date" class="form-control" id="data_przyjecia" formControlName="data_przyjecia">
+            <p class="text-sm-left text-info" *ngIf="!checkIfExistsActiveKarta()">Wprowadź datę dzisiejszą lub przeszłą</p>
+
+
+
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').errors?.dateIsBigger && formAddKarta.get('data_przyjecia').touched &&
+            !checkIfExistsActiveKarta()"
+                  class="help-block text-danger">
+                  Wprowadzono datę z przyszłości
+            </span>
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('required') && formAddKarta.get('data_przyjecia').touched
+            && !checkIfExistsActiveKarta()"
+                  class="help-block text-danger">
+                  Wymagane wprowadzenie daty
+            </span>
+
+            <span *ngIf="formAddKarta.get('data_przyjecia').hasError('duplicateDate') && formAddKarta.get('data_przyjecia').touched
+            && !checkIfExistsActiveKarta()"
+                  class="help-block text-danger">
+                  Istnieje karta pobytu z podaną datą rejestracji. Edytuj ją zamiast dodawać nową.
+            </span>
+
+
+
           </div>
 
           <div class="form-group">
-            <label for="data_przyjecia">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia">
-          </div>
+            <label for="godzina_przyjecia" class="required-field">Godzina przyjęcia</label>
+            <input type="time" class="form-control" id="godzina_przyjecia" formControlName="godzina_przyjecia" >
 
-          <div class="form-group">
-            <label for="godzina_przyjecia">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia">
-          </div>
+            <span *ngIf="formAddKarta.get('godzina_przyjecia').hasError('required') && formAddKarta.get('godzina_przyjecia').touched &&
+            !checkIfExistsActiveKarta()"
+                  class="help-block text-danger">
+                  Godzina wymagana
+            </span>
 
-          <div class="form-group">
-            <label for="data_wypisu">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu">
           </div>
 
 
           <div class="form-group">
-            <label for="nr_sali">Nr sali</label>
-            <input type="text" class="form-control" id="nr_sali">
+            <label for="nr_sali" class="required-field">Sale z dostępnymi miejscami</label>
+            <select class="form-control" id="nr_sali" formControlName="nr_sali">
+              <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
+
+            </select>
+
           </div>
+          <p *ngIf="checkIfExistsActiveKarta()" class="text-danger ">Pacjent ma obecnie otwartą kartę (Nie wprowadzono daty wypisu).</p>
 
-          <div class="form-group">
-            <label for="pesel">pesel</label>
-            <input type="text" class="form-control" id="pesel">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formAddKarta.valid || checkIfExistsActiveKarta()">Zapisz</button>
           </div>
-
-
-
 
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
+
       </div>
     </div>
   </div>
@@ -107,48 +156,57 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="submit">
+        <form (ngSubmit)="onSubmit(formEditKarta)" [formGroup]="formEditKarta">
 
           <div class="form-group">
-            <label for="id_karty_update">ID Karty</label>
-            <input type="text" class="form-control" id="id_karty_update">
+            <label for="data_przyjecia_update" class="required-field">Data przyjęcia</label>
+            <input type="date" class="form-control" id="data_przyjecia_update" formControlName="data_przyjecia" >
           </div>
 
           <div class="form-group">
-            <label for="data_przyjecia_update">Data przyjęcia</label>
-            <input type="text" class="form-control" id="data_przyjecia_update">
-          </div>
-
-          <div class="form-group">
-            <label for="godzina_przyjecia_update">Godzina przyjęcia</label>
-            <input type="text" class="form-control" id="godzina_przyjecia_update">
+            <label for="godzina_przyjecia_update" class="required-field">Godzina przyjęcia</label>
+            <input type="time" class="form-control" id="godzina_przyjecia_update" formControlName="godzina_przyjecia">
           </div>
 
           <div class="form-group">
             <label for="data_wypisu_update">Data wypisu</label>
-            <input type="text" class="form-control" id="data_wypisu_update">
+            <input type="date" class="form-control" id="data_wypisu_update" formControlName="data_wypisu">
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.greaterThan && formEditKarta.get('data_wypisu').touched && !formEditKarta.get('data_wypisu').errors?.dateIsBigger"
+                  class="help-block text-danger">
+                  Data wypisu nie może być wcześniejsza od daty przyjęcia
+            </span>
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.dateIsBigger && formEditKarta.get('data_wypisu').touched && !formEditKarta.get('data_wypisu').errors?.greaterThan"
+                  class="help-block text-danger">
+                  Data wypisu nie może być datą z przyszłości
+            </span>
+
+            <span *ngIf="formEditKarta.get('data_wypisu').errors?.dateIsBigger && formEditKarta.get('data_wypisu').touched && formEditKarta.get('data_wypisu').errors?.greaterThan"
+                  class="help-block text-danger">
+                  Data wypisu nie może być datą z przyszłości i nie może być mniejsza od daty przyjęcia
+            </span>
+
           </div>
 
 
           <div class="form-group">
-            <label for="nr_sali_update">Nr sali</label>
-            <input type="text" class="form-control" id="nr_sali_update">
+            <label for="nr_sali_update" class="required-field">Numer sali</label>
+            <select class="form-control" id="nr_sali_update" formControlName="nr_sali">
+              <option *ngFor="let sala of sale" [value]="sala.nr_sali" >{{sala.nr_sali}} - {{sala.oddzial}}</option>
+            </select>
+
           </div>
 
-          <div class="form-group">
-            <label for="pesel_update">pesel</label>
-            <input type="text" class="form-control" id="pesel_update">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm()">Zamknij</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!formEditKarta.valid">Zapisz</button>
           </div>
-
-
 
 
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-        <button type="button" class="btn btn-primary">Zapisz</button>
-      </div>
+
     </div>
   </div>
 </div>

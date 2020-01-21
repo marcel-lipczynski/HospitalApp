@@ -1,5 +1,6 @@
 package com.szbd.hospital.controller;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Pielegniarka;
 import com.szbd.hospital.entity.Sala;
 import com.szbd.hospital.service.SalaService;
@@ -31,7 +32,7 @@ public class SalaController {
         return salaService.findById(id);
     }
 
-    @GetMapping("/{id}/pielegniarka")
+    @GetMapping("/{id}/pielegniarki")
     public List<Pielegniarka> findAllPielegniarkaOfSala(@PathVariable int id) {
         return salaService.findAllPielegniarkaOfSala(id);
     }
@@ -41,13 +42,13 @@ public class SalaController {
         salaService.saveSala(sala);
     }
 
-    @PostMapping("/{nr_sali}/pielegniarka/{idPielegniarki}")
+    @PostMapping("/{nr_sali}/pielegniarki/{idPielegniarki}")
     public void saveSalaWithIdPielegniarki(@PathVariable int idPielegniarki,
                                            @PathVariable int nr_sali) {
         salaService.saveSalaWithIdPielegniarki(idPielegniarki,nr_sali);
     }
 
-    @DeleteMapping("/{nr_sali}/pielegniarka/{idPielegniarki}")
+    @DeleteMapping("/{nr_sali}/pielegniarki/{idPielegniarki}")
     public void deletePielegniarkaFromSala(@PathVariable int idPielegniarki,
                                            @PathVariable int nr_sali) {
         salaService.deletePielegniarkaFromSala(idPielegniarki, nr_sali);
@@ -56,6 +57,21 @@ public class SalaController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable int id) {
         salaService.deleteById(id);
+    }
+
+    @GetMapping("/{nr_sali}/karty")
+    public List<KartaPobytu> findActiveKartyForSala(@PathVariable int nr_sali){
+        return salaService.findActiveKartyForSala(nr_sali);
+    }
+
+    @GetMapping("/available")
+    public List<Sala> findAvailableSale(){
+        return salaService.findAllAvailableSale();
+    }
+
+    @GetMapping("/{nr_sali}/pielegniarki/available")
+    public List<Pielegniarka> findAvailablePielegniarkiForSala(@PathVariable int nr_sali) {
+        return salaService.findAvailablePielegniarkiForSala(nr_sali);
     }
 
 

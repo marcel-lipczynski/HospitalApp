@@ -1,0 +1,53 @@
+--INDEKSY NA KLUCZACH OBCYCH
+--1) DIAGNOZA
+CREATE INDEX diagnoza_id_lekarza ON diagnoza(id_lekarza);
+CREATE INDEX diagnoza_id_karty ON diagnoza(id_karty);
+
+--2) Operacja
+
+CREATE INDEX operacja_id_lekarza ON operacja(id_lekarza);
+CREATE INDEX operacja_id_karty ON operacja(id_karty);
+
+--3) Recepta
+CREATE INDEX recepta_id_lekarza ON recepta(id_lekarza);
+CREATE INDEX recepta_id_karty ON recepta(id_karty);
+
+--4) Karta pobytu
+CREATE INDEX karta_nr_sali ON karta_pobytu(nr_sali);
+CREATE INDEX karta_pesel ON karta_pobytu(pesel);
+
+--5) Pacjent 
+--NIC
+
+--6) Pielegniarka
+--NIC
+
+--7) Sala
+--NIC
+
+--8)Pielegniarki_sale
+CREATE INDEX pielegniarki_sale_id_piel ON pielegniarki_sale(id_pielegniarki);
+CREATE INDEX pielegniarki_sale_nr_sali ON pielegniarki_sale(nr_sali);
+
+--9)KartyPobytu_lekarze
+CREATE INDEX kartypobytu_lekarze_id_karty ON kartypobytu_lekarze(id_karty);
+CREATE INDEX kartypobytu_lekarze_id_lekarza ON kartypobytu_lekarze(id_lekarza);
+
+--10) Lekarz 
+--NIC
+
+--11) Specjalizacja 
+--NIC
+
+--12)Lek 
+--NIC
+
+--13) lekarze_specjalizacje
+CREATE INDEX lekarze_specjalizacje_id_lekarza ON lekarze_specjalizacjelekarskie(id_lekarza);
+CREATE INDEX lekarze_specjalizacje_nazwa ON lekarze_specjalizacjelekarskie(nazwa_specjalizacji);
+
+--14) recepty_leki
+CREATE INDEX recepty_leki_id_recepty ON recepty_leki(id_recepty);
+CREATE INDEX recepty_leki_nazwa_leku ON recepty_leki(nazwa_leku);
+
+

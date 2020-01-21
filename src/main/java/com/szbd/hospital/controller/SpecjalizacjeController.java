@@ -1,5 +1,6 @@
 package com.szbd.hospital.controller;
 
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Specjalizacje;
 import com.szbd.hospital.service.SpecjalizacjeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,14 @@ public class SpecjalizacjeController {
 
     @PostMapping("")
     public void saveSpecjalizacje(@RequestBody Specjalizacje specjalizacje) {
+        specjalizacje.setNazwa_specjalizacji(specjalizacje.getNazwa_specjalizacji().toUpperCase());
         specjalizacjeService.saveSpecjalizacje(specjalizacje);
     }
 
     @DeleteMapping("/{id}")
     public void deleteSpecjalizacjeById(@PathVariable String id) {
+
+
         specjalizacjeService.deleteSpecjalizacjeById(id.toUpperCase());
     }
 

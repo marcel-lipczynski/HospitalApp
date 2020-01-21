@@ -1,6 +1,9 @@
 package com.szbd.hospital.dao;
 
+import com.szbd.hospital.entity.KartaPobytu;
 import com.szbd.hospital.entity.Lek;
+import com.szbd.hospital.entity.Lekarz;
+import com.szbd.hospital.entity.Recepta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +22,7 @@ public class LekDAOImpl implements LekDAO {
 
     @Override
     public List<Lek> findAll() {
-        return entityManager.createQuery("from Lek", Lek.class).getResultList();
+        return entityManager.createQuery("from Lek L ORDER BY L.nazwa_leku", Lek.class).getResultList();
     }
 
     @Override
@@ -34,9 +37,18 @@ public class LekDAOImpl implements LekDAO {
 
     @Override
     public void deleteLekById(String id) {
+
         Lek lek = entityManager.find(Lek.class, id);
-        if (lek != null) {
+        List<Recepta> recepty = entityManager.createQuery("from Recepta", Recepta.class).getResultList();
+        for (Recepta receptaDB : recepty) {
+            if (lek.getRecepty().indexOf(receptaDB) != -1) {
+                lek.getRecepty().remove(receptaDB);
+                receptaDB.getLeki().remove(lek);
+
+            }
             entityManager.remove(lek);
+
+
         }
     }
 

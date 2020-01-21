@@ -1,5 +1,6 @@
 package com.szbd.hospital.controller;
 
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Operacja;
 import com.szbd.hospital.service.OperacjaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,11 @@ public class OperacjaController {
     @DeleteMapping("/{id}")
     public void deleteOperacjaById(@PathVariable int id){
         operacjaService.deleteOperacjaById(id);
+    }
+
+    @GetMapping("{id_karty}/lekarze")
+    public List<Lekarz> getAvailableLekarze(@PathVariable int id_karty){
+        return operacjaService.getAvailableLekarze(id_karty);
     }
 
 }

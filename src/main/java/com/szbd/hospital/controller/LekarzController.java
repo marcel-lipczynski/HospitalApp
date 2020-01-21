@@ -57,4 +57,10 @@ public class LekarzController {
     public void deleteSpecjalizacjaFromLekarz(@PathVariable int id_lekarza, @PathVariable String nazwa_specjalizacji) {
         lekarzService.deleteSpecjalizacjaFromLekarz(id_lekarza, nazwa_specjalizacji.toUpperCase());
     }
+
+    @GetMapping("/{id_lekarza}/specjalizacje/available")
+    public List<Specjalizacje> findAvailableSpecjalizacjeForLekarz(@PathVariable int id_lekarza) {
+        return lekarzService.findAvailableSpecjalizacjeForLekarz(id_lekarza);
+    }
+
 }

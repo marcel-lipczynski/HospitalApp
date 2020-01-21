@@ -1,6 +1,7 @@
 package com.szbd.hospital.service;
 
 import com.szbd.hospital.dao.OperacjaDAO;
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.entity.Operacja;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,11 @@ public class OperacjaServiceImpl implements OperacjaService {
     @Transactional
     public void deleteOperacjaById(int id) {
         operacjaDAO.deleteOperacjaById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Lekarz> getAvailableLekarze(int id_karty) {
+        return operacjaDAO.getAvailableLekarze(id_karty);
     }
 }

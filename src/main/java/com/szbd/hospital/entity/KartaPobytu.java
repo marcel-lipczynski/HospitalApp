@@ -10,6 +10,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
+@NamedStoredProcedureQuery(
+        name = "DodajWypis",
+        procedureName = "DodajWypis",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, type = Integer.class, name = "id_kartyPobytu")
+        }
+)
+
+
 @Data
 @Entity
 @Table(name = "karta_pobytu")

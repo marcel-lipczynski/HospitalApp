@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "pielegniarka")
 //@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id_pielegniarki")
-public class Pielegniarka {
+public class Pielegniarka implements Comparable<Pielegniarka> {
 
     @Id
     @SequenceGenerator(name = "seq2", sequenceName = "pielegniarka_id_pielegniarki", allocationSize = 1)
@@ -65,7 +65,8 @@ public class Pielegniarka {
     }
 
 
-
-
-
+    @Override
+    public int compareTo(Pielegniarka o) {
+        return this.nazwisko.compareTo(o.nazwisko);
+    }
 }

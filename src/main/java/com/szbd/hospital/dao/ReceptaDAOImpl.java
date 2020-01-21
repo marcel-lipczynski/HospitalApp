@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -108,5 +109,33 @@ public class ReceptaDAOImpl implements ReceptaDAO {
             lek.removeRecepta(recepta);
         }
 
+    }
+
+    @Override
+    public List<Lekarz> getAvailableLekarze(int id_karty) {
+        KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
+        List<Lekarz> allLekarze = kartaPobytu.getLekarze();
+        List<Lekarz> availableLekarze = new ArrayList<>(allLekarze);
+
+        for(Lekarz lekarz: allLekarze){
+            for(Recepta recepta: lekarz.getRecepty()){
+                if(recepta.getId_karty() == id_karty){
+                    availableLekarze.remove(lekarz);
+                }
+            }
+        }
+        return availableLekarze;
+    }
+
+    @Override
+    public List<Lek> findAvailableLeki(int id_recepty) {
+        List<Lek> lekiInDatabase = entityManager.createQuery("from Lek L ORDER BY L.nazwa_leku", Lek.class).getResultList();
+        List<Lek> lekiOnRecepta = entityManager.find(Recepta.class, id_recepty).getLeki();
+
+        for(Lek lek: lekiOnRecepta){
+            lekiInDatabase.remove(lek);
+        }
+
+        return lekiInDatabase;
     }
 }

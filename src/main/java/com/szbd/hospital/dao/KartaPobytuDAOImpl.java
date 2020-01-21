@@ -1,12 +1,12 @@
 package com.szbd.hospital.dao;
 
-import com.szbd.hospital.entity.KartaPobytu;
-import com.szbd.hospital.entity.Lekarz;
-import com.szbd.hospital.entity.Pacjent;
+import com.szbd.hospital.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -21,7 +21,7 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
 
     @Override
     public List<KartaPobytu> findAll() {
-        return entityManager.createQuery("from KartaPobytu", KartaPobytu.class).getResultList();
+        return entityManager.createQuery("from KartaPobytu K ORDER BY K.data_przyjecia DESC, K.godzina_przyjecia", KartaPobytu.class).getResultList();
     }
 
     @Override
@@ -32,6 +32,19 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
     @Override
     public List<Lekarz> findLekarzeOnKartaPobytu(int id_karty) {
         return entityManager.find(KartaPobytu.class, id_karty).getLekarze();
+    }
+
+    @Override
+    public List<Lekarz> findAvailableLekarze(int id_karty) {
+        List<Lekarz> lekarzeInDatabase = entityManager.createQuery("from Lekarz L ORDER BY L.nazwisko", Lekarz.class).getResultList();
+        List<Lekarz> lekarzeOnKarta = entityManager.find(KartaPobytu.class, id_karty).getLekarze();
+
+        for(Lekarz lekarz: lekarzeOnKarta){
+            lekarzeInDatabase.remove(lekarz);
+        }
+
+        return lekarzeInDatabase;
+
     }
 
     @Override
@@ -73,9 +86,9 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
         KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
         Lekarz lekarz = entityManager.find(Lekarz.class, id_lekarza);
 
-        if(kartaPobytu != null && lekarz != null){
-            for (Lekarz lekKarta: kartaPobytu.getLekarze()){
-                if(lekKarta.getId_lekarza() == id_lekarza){
+        if (kartaPobytu != null && lekarz != null) {
+            for (Lekarz lekKarta : kartaPobytu.getLekarze()) {
+                if (lekKarta.getId_lekarza() == id_lekarza) {
                     return;
                 }
             }
@@ -96,10 +109,48 @@ public class KartaPobytuDAOImpl implements KartaPobytuDAO {
 
     @Override
     public void deleteLekarzFromKarta(int id_karty, int id_lekarza) {
+        System.out.println("id_karty: " + id_karty + " id_lekarza: " + id_lekarza);
         KartaPobytu kartaPobytu = entityManager.find(KartaPobytu.class, id_karty);
         Lekarz lekarz = entityManager.find(Lekarz.class, id_lekarza);
         if (kartaPobytu != null && lekarz != null && kartaPobytu.getLekarze().indexOf(lekarz) != -1) {
+
+
+//            List<Diagnoza> diagnozy = new ArrayList<>(kartaPobytu.getDiagnozy());
+//            List<Operacja> operacje = new ArrayList<>(kartaPobytu.getOperacje());
+//            List<Recepta> recepty = new ArrayList<>(kartaPobytu.getRecepty());
+
+
+            List<Diagnoza> diagnozy = entityManager.createQuery("from Diagnoza", Diagnoza.class).getResultList();
+            for (Diagnoza diagnoza : diagnozy) {
+                if (diagnoza.getId_lekarza() == id_lekarza && diagnoza.getId_karty() == id_karty) {
+                    entityManager.remove(diagnoza);
+                }
+            }
+//
+            List<Recepta> recepty = entityManager.createQuery("from Recepta", Recepta.class).getResultList();
+            for(Recepta recepta: recepty){
+                if (recepta.getId_lekarza() == id_lekarza && recepta.getId_karty() == id_karty) {
+                    entityManager.remove(recepta);
+                }
+            }
+//
+            List<Operacja> operacje = entityManager.createQuery("from Operacja", Operacja.class).getResultList();
+            for(Operacja operacja: operacje){
+                if (operacja.getId_lekarza() == id_lekarza && operacja.getId_karty() == id_karty) {
+                    entityManager.remove(operacja);
+                }
+            }
+
             kartaPobytu.removeLekarz(lekarz);
+            lekarz.removeKartaPobytu(kartaPobytu);
+
         }
+    }
+
+    @Override
+    public void addWypisToKarta(int id_karty) {
+        StoredProcedureQuery query = this.entityManager.createNamedStoredProcedureQuery("DodajWypis");
+        query.setParameter("id_kartyPobytu", id_karty);
+        query.execute();
     }
 }

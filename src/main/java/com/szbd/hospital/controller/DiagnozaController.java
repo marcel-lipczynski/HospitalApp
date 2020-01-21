@@ -1,6 +1,7 @@
 package com.szbd.hospital.controller;
 
 import com.szbd.hospital.entity.Diagnoza;
+import com.szbd.hospital.entity.Lekarz;
 import com.szbd.hospital.service.DiagnozaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +39,11 @@ public class DiagnozaController {
     public void deleteDiagnozaById(@PathVariable int id){
         diagnozaService.deleteDiagnozaById(id);
     }
+
+    @GetMapping("/{id_karty}/lekarze")
+    public List<Lekarz> getAvailableLekarze(@PathVariable int id_karty){
+        return diagnozaService.getAvailableLekarze(id_karty);
+    }
+
 
 }

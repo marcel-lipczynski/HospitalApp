@@ -6,34 +6,34 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" [routerLink]="['karty']">Karty pobytu-->
+<!--            <span class="sr-only">(current)</span>-->
+<!--          </a>-->
+<!--        </li>-->
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['karty']">Karty pobytu
-            <span class="sr-only">(current)</span>
-          </a>
+          <a class="nav-link" (click)="hide()" [routerLink]="['pacjenci']">Pacjenci</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['pacjenci']">Pacjenci</a>
+          <a class="nav-link" (click)="hide()" [routerLink]="['lekarze']">Lekarze</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['lekarze']">Lekarze</a>
+          <a class="nav-link" (click)="hide()" [routerLink]="['pielegniarki']">Pielęgniarki</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['pielegniarki']">Pielęgniarki</a>
+          <a class="nav-link" (click)="hide()" [routerLink]="['sale']">Sale</a>
+        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" [routerLink]="['recepty']">Recepty</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" [routerLink]="['diagnozy']">Diagnozy</a>-->
+<!--        </li>-->
+        <li class="nav-item">
+          <a class="nav-link" (click)="hide()" [routerLink]="['specjalizacje']">Specjalizacje</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['sale']">Sale</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['recepty']">Recepty</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['diagnozy']">Diagnozy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['operacje']">Operacje</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['leki']">Leki</a>
+          <a class="nav-link" (click)="hide()" [routerLink]="['leki']">Leki</a>
         </li>
       </ul>
     </div>

@@ -1,0 +1,13 @@
+.required-field::after {
+  content: "*";
+  color: red;
+  margin-left:2px
+}
+.search{
+  margin-left: 1em;
+  width: 61em;
+}
+
+.search_sale{
+  width: 67em;
+}
